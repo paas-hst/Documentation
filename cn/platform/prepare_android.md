@@ -5,18 +5,18 @@
 ## 初始化
 使用SDK的第一步是做初始化：
 
-'''
+```
 FspEngine fspEngine = FspEngine.createsApplication, appId, null, this);
 fspEngine.init();
-'''
+```
 
 
 ## 登录
 登录需要从生成的token, 和上层指定UserId：
 
-'''
+```
 fspEngine.login(token, userId)
-'''
+```
 
 > UserId有一定限制：字符串长度不超过128，只能是字母、数字、下划线(_), 横杠(-)。
 
@@ -28,9 +28,9 @@ fspEngine.login(token, userId)
 
 登录成功后，调用加入组的方法即可加入组：
 
-'''
+```
 fspEngine.joinGroup(groupId)
-'''
+```
 
 > UserId有一定限制：字符串长度不超过128，只能是字母、数字、下划线(_), 横杠(-)。
 
