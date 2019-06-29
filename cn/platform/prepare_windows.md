@@ -19,7 +19,7 @@ m_pFspEngine->Init(m_FspEnginContext);
 登录需要从生成的token, 和上层指定UserId：
 
 ```
-pFspEngine->Login(szToken, szUserId)
+pFspEngine->Login(szToken, szUserId);
 ```
 
 > UserId有一定限制：字符串长度不超过128，只能是字母、数字、下划线(_), 横杠(-)。
