@@ -17,8 +17,6 @@
 2. 配置使用相关产品并上线应用。
 3. 点击 **应用** 下的**应用列表** ，在详情页面获取到 **App ID**。
 
-
-
 ## 添加 SDK
 
 1.  下载 [Android SDK](http://paas.hst.com/developer/downloadSDK)，解压并打开。
@@ -26,6 +24,8 @@
 3.  app的gradle脚本中正确引用到aar库，比如：implementation(name: 'fsp_sdk', ext: 'aar')
 
 现在你已经设置好了 Android Studio 开发环境，可以开始使用 Android SDK 了！
+
+> 目前所有产品的接口在一个SDK内提供，集成后，可以开始所有产品的功能开发。
 
 ## 相关文档
 完成了客户端集成后，你可以使用 SDK，使用各个产品的功能：

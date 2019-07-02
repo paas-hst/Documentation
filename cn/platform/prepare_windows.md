@@ -39,3 +39,6 @@ pFspEngine->JoinGroup(szGroupId);
 > UserId有一定限制：字符串长度不超过128，只能是字母、数字、下划线(_), 横杠(-)。
 
 加入成功或失败的结果，通过回调 OnFspEvent 方法回调， 回调的 eventType == EVENT_JOINGROUP_RESULT。如果 JoinGroup 直接返回失败，则不会收到登录回调。
+
+## 组成员通知
+加入组后，组内有成员进入或离开，会通过 IFspEngineEventHandler::OnRemoteUserEvent 回调通知上层；开始会通过 IFspEngineEventHandler::OnGroupUsersRefreshed 全量通知组内所有成员列表。
