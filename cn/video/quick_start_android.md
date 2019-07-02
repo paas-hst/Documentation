@@ -6,7 +6,7 @@
 
 通过调用如下代码添加预览窗口:
 
-```
+```java
 m_fspEngine.startPreviewVideo(surfaceView);
 ```
 
@@ -16,7 +16,7 @@ m_fspEngine.startPreviewVideo(surfaceView);
 
 调用StartPublishVideo广播本地视频：
 
-```
+```java
 m_fspEngine.startPublishVideo();
 ```
 
@@ -28,7 +28,7 @@ m_fspEngine.startPublishVideo();
 
 组内任何一端收到视频广播事件后，可以设置相关渲染窗口，查看远端视频：
 
-```
+```java
 m_fspEngine.setRemoteVideoRender(userId, videoId, renderView, renderMode)
 ```
 
@@ -38,6 +38,6 @@ m_fspEngine.setRemoteVideoRender(userId, videoId, renderView, renderMode)
 
 如何需要停止查看远端视频，可以将渲染窗口设为空，SDK就会停止查看远端视频
 
-```
+```java
 m_fspEngine.setRemoteVideoRender(userId, videoId, null, renderMode)
 ```

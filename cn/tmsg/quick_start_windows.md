@@ -6,7 +6,7 @@
 
 透明消息都通过 IFspSignaling 接口来调用，初始时需要向IFspSignaling注册回调实现对象。
 
-```
+```c++
 fsp::IFspSignaling* m_pFspSignaling = m_pFspEngine->GetFspSignaling();
 m_pFspSignaling->AddEventHandler(this);
 ```
