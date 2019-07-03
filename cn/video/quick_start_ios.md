@@ -1,4 +1,4 @@
-# 视频流的广播和查看
+# 快速开始
 
 视频通信需要登录后并成功加入组，详见[加入组](../platform/prepare_windows.md)。
 
@@ -6,7 +6,7 @@
 
 通过调用如下代码添加预览窗口:
 
-```
+```c++
 pFspEngine->AddVideoPreview(nDeviceId, hVideoWnd, eRenderMode);
 ```
 
@@ -16,7 +16,7 @@ pFspEngine->AddVideoPreview(nDeviceId, hVideoWnd, eRenderMode);
 
 调用StartPublishVideo广播本地视频：
 
-```
+```c++
 pFspEngine->StartPublishVideo(szVideoId, nDeviceId);
 ```
 
@@ -26,7 +26,7 @@ pFspEngine->StartPublishVideo(szVideoId, nDeviceId);
 
 组内任何一端收到视频广播事件后，可以设置相关渲染窗口，查看远端视频：
 
-```
+```c++
 pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, hVideoWnd, eRenderMode);
 ```
 
@@ -36,6 +36,6 @@ pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, hVideoWnd, eRenderMode);
 
 如何需要停止查看远端视频，可以将渲染窗口设为空，SDK就会停止查看远端视频
 
-```
+```c++
 pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, NULL, eRenderMode);
 ```
