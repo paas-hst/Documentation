@@ -12,7 +12,7 @@
 
 用户ID（User ID）在登录时，此字段必填，开发者必须保证应用下User ID是唯一的。此字段提供给开发者用来关联业务数据，比如，如果想知道应用中某个用户的计费情况，则可以将用户ID传入，平台会将此用户ID与音视频流关联起来，在导出的计费记录中会带上用户ID。
 
-![group_user](../images/group_user.png)
+![group_user](../../images/platform/group_user.png)
 
 ## Video ID
 Video ID用来标识一个虚拟的视频源，Video ID由开发者定义，但需要保证同一个User ID下同一时刻Video ID的唯一性。同一用户可以广播多路视频，不同视频通过Video ID区分。
