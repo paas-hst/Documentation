@@ -16,3 +16,5 @@
 
 ## Video ID
 Video ID用来标识一个虚拟的视频源，Video ID由开发者定义，但需要保证同一个User ID下同一时刻Video ID的唯一性。同一用户可以广播多路视频，不同视频通过Video ID区分。
+
+## 应用鉴权
