@@ -1,6 +1,6 @@
 好视通云通信平台SDK集成非常简单、方便，只需以下几步操作，即可快速将好视通云通信产品集成到您的App中。
 
-<center>![tokendesc](https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/platform/token_desc.png)</center>
+![tokendesc](https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/platform/token_desc.png)
 
 # 注册账号
 使用产品前必须先注册开发者账号，平台会赠送一定额度的测试费用，进行账号认证能够获得更多测试费用，点此注册账号。 
