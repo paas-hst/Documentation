@@ -5,7 +5,7 @@
 # 注册账号
 使用产品前必须先注册开发者账号，平台会赠送一定额度的测试费用，进行账号认证能够获得更多测试费用，点此注册账号。 
 
-<center>![register](images/register.png)</center>
+<img alt="register.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/platform/register.png" align="center" />
 
 # 创建应用
 注册成功后登录账号，可以创建应用。应用是一个虚拟概念，和客户业务上的应用是一个逻辑对等体，是使用平台产品的桥梁和载体。创建应用时，系统会自动为每个应用分配平台唯一的App ID。 用户可以选择应用需要使用的产品，如果产品有参数，还可以配置产品参数。应用创建后默认处于下线状态，只有上线后才可以正常使用平台的产品。 
