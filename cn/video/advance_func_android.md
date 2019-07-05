@@ -9,7 +9,7 @@
 
 目前只有远端视频支持设置拉伸模式：
 
-```java
+```
 fspEngine.setRemoteVideoRender(userId, videoId, renderView, mode);
 
 //mode定义在 FspEngine 类：
@@ -25,7 +25,7 @@ public static final int RENDER_MODE_FIT_CENTER = 3; ///<等比居中显示
 
 广播端通过 setVideoProfile 方法设置视频相关参数：
 
-```java
+```
 VideoProfile profile = new VideoProfile(1280, 720, 15);
 fspEngine.setVideoProfile(profile);
 ```

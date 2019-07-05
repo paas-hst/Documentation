@@ -7,7 +7,7 @@
 
 在线业务都通过 IFspSignaling 接口来调用，初次需要向IFspSignaling注册回调实现对象。
 
-```java
+```
 fsp::IFspSignaling* m_pFspSignaling = m_pFspEngine->GetFspSignaling();
 m_pFspSignaling->AddEventHandler(this);
 ```
@@ -16,7 +16,7 @@ m_pFspSignaling->AddEventHandler(this);
 登录后，通过 UserStatusRefresh 方法可以刷新到应用下所有登录在线的userId列表。
 也可以指定刷新部分userId的在线信息。
 
-```java
+```
 fsp::Vector<fsp::String> vecUserIds;
 unsigned int nRequestId;
 m_pFspSignaling->UserStatusRefresh(vecUserIds, &nRequestId); //vecUserIds为空表示刷新所有在线用户
@@ -28,7 +28,7 @@ m_pFspSignaling->UserStatusRefresh(vecUserIds, &nRequestId); //vecUserIds为空�
 
 登录后，可以发送邀请给指定用户，携带GroupId，这样多方可以通过邀请加入同一个Group。
 邀请发出后，一般会再调用 IFspEngine::JoinGroup 先加入指定的组。
-```java
+```
 fsp::Vector<fsp::String> vecUserIds;
 vecUserIds.push_back("user1");
 vecUserIds.push_back("user2");
@@ -43,7 +43,7 @@ m_pFspEngine->JoinGroup("gropuid");
 收到其他人的邀请后，可以弹出界面让用户选择接受后拒绝并调用相关接口。
 如果接受邀请后，一般会再调用 IFspEngine::JoinGroup 加入指定的组。
 
-```java
+```
 m_pFspSignaling->AcceptInvite("inviterUserId", nInviteId);
 m_pFspEngine->JoinGroup("gropuid");
 ```

@@ -15,7 +15,7 @@ SDK内部会监控系统摄像头拔插，并通过 IFspEngineEventHandler::OnDe
 
 已经广播出去的视频，可直接 通过 StartPublishVideo 实时切换摄像头。
 
-```c++
+```
 pFspEngine->StartPublishVideo(szVideoId, nDeviceId);
 ```
 
@@ -29,7 +29,7 @@ szVideoId 参数传广播的VideoId，nDeviceId为希望切换到的nDeviceId。
 
 1. 本地预览修改拉伸模式：
 
-```c++
+```
 pFspEngine->AddVideoPreview(nDeviceId, hVideoWnd, eRenderMode);
 ```
 
@@ -37,7 +37,7 @@ pFspEngine->AddVideoPreview(nDeviceId, hVideoWnd, eRenderMode);
 
 2. 远端视频修改拉伸模式：
 
-```c++
+```
 pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, hVideoWnd, eRenderMode);
 ```
 
@@ -48,7 +48,7 @@ pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, hVideoWnd, eRenderMode);
 
 广播端通过 SetVideoProfile 方法设置视频相关参数：
 
-```c++
+```
 fsp::VideoProfile profile;
 profile.width = 1280;
 profile.height = 720;
