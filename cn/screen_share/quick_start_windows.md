@@ -6,7 +6,7 @@
 
 共享端调用 StartPublishScreenShare 开始桌面共享:
 
-```c++
+```
 pFspEngine->StartPublishScreenShare(0, 0, 0, 0, SCREEN_SHARE_BIAS_QUALITY);
 ```
 
@@ -16,7 +16,7 @@ pFspEngine->StartPublishScreenShare(0, 0, 0, 0, SCREEN_SHARE_BIAS_QUALITY);
 
 调用StopPublishVideo广播本地视频：
 
-```c++
+```
 pFspEngine->StopPublishVideo();
 ```
 
@@ -27,7 +27,7 @@ pFspEngine->StopPublishVideo();
 组内任何一端收到OnRemoteVideoEvent事件后，判断videoid是否等于 fsp::RESERVED_VIDEOID_SCREENSHARE ，
 如果是这个videoid，表示是屏幕共享，然后调用 SetRemoteVideoRender 设置渲染窗口。
 
-```c++
+```
 //szVideoId==fsp::RESERVED_VIDEOID_SCREENSHARE
 pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, hVideoWnd, eRenderMode);
 ```
@@ -38,7 +38,7 @@ pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, hVideoWnd, eRenderMode);
 
 如何需要停止查看远端视频，可以将渲染窗口设为空，SDK就会停止查看屏幕共享：
 
-```c++
+```
 //szVideoId==fsp::RESERVED_VIDEOID_SCREENSHARE
 pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, NULL, eRenderMode);
 ```

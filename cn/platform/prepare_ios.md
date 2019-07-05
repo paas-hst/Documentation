@@ -5,7 +5,7 @@
 ## 初始化
 使用SDK的第一步是做初始化：
 
-```c++
+```
 IFspEngine* m_pFspEngine = FspGetEngine();
 FspEngineContext enginContext;
 enginContext.app_id = strAppId;
@@ -18,7 +18,7 @@ m_pFspEngine->Init(m_FspEnginContext);
 ## 登录
 登录需要从生成的token, 和上层指定UserId：
 
-```c++
+```
 pFspEngine->Login(szToken, szUserId);
 ```
 
@@ -32,7 +32,7 @@ pFspEngine->Login(szToken, szUserId);
 
 登录成功后，调用加入组的方法即可加入组：
 
-```c++
+```
 pFspEngine->JoinGroup(szGroupId);
 ```
 

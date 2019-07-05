@@ -3,7 +3,7 @@ SDK大部分方法有错误码，或者回调方法有错误码参数，错误�
 
 ## ErrCode 定义
 
-```java
+```
 class FspEngine{
     /** 成功 */
     public static final int ERR_OK = 0;
