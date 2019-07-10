@@ -4,7 +4,7 @@
 
 下面以Windows端Demo程序为例，讲解Demo程序特性，其他端Demo程序类似。
 
-## Window端Dmeo体验
+## Windows端Dmeo体验
 
 ### 应用配置
 Demo不需要做任何配置即可运行，程序内置了默认的App ID和App Secret。如果您想配置自己创建的App，在登录界面点击“应用配置”按钮，在对话框中进行配置。如果测试的是公有云产品，Server Address使用默认的即可，如果是测试私有云产品，Server Address需要填真实服务器地址，具体格式请参考相关文档或咨询技术支持。
@@ -50,11 +50,15 @@ Demo不需要做任何配置即可运行，程序内置了默认的App ID和App 
 - 打开小程序，进入登录界面，点击屏幕下方的设置按钮。
 - 输入App ID和App Secret，使用默认服务器配置，然后点击“获取授权”。
 
+<img alt="wechat_setting.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/platform/wechat_setting.png" align="center" />
+
 ### 加入分组
 
 - 授权获取成功后，会自动切换到登录页面，输入User ID和Group ID，点击“加入分组”。
 
-此时应该可以和其他用户一起进行音视频互动了。
+<img alt="wechat_main.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/platform/wechat_main.png" align="center" />
+
+加入分组成功后，就可以和其他用户一起进行音视频互动了。
 
 
 ## 云录制Demo体验
