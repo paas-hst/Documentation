@@ -44,7 +44,7 @@ webRtcEngine.startPublishVideo().then(() => {
 
 订阅成功到和远程人员建立链接是一个异步的过程，需要订阅onStreamUpdate事件，得到远程流的stream对象，通过video元素播放。
 
-```
+```js
  webEngine.on('onStreamUpdate', function (event) {
    if(event.type === 'audio') {
         dealAudio(event.stream)     
