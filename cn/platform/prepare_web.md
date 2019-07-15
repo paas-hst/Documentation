@@ -45,3 +45,27 @@ webRtcEngine.on('onUnPublisher', function (publisher) {
   console.log(publisher.userId); 
 })
 ```
+
+## 订阅onPublisher事件
+当远程人员推流时，在SDK里会触发onPublisher事件， 通过订阅这个事件，能够得到频道里已经推流的人员:
+
+```
+// 远程发布流事件
+webRtcEngine.on('onPublisher', function (publisher) {
+      //远程发布者ID
+       console.log(publisher.userId); 
+       //远程发布者 媒体id
+       console.log(publisher.mediaId); 
+       // 远程发布者的流类型 1：音频 2：视频
+       console.log(publisher.mediaType);
+})
+```
+
+相对应的也有onUnPublisher事件，当远程用户结束推流时，会触发这个事件：
+
+```
+webRtcEngine.on('onUnPublisher', function (publisher) {
+  //远程发布者ID，在订阅方法时，要用到这个ID 
+  console.log(publisher.userId); 
+})
+```
