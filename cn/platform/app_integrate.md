@@ -18,7 +18,7 @@
 <img alt="sdk.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/platform/sdk.png" align="center" />
 
 ## 开发集成
-好视通云通信平台提供详细的开发这文档，建议在开发之前仔细阅读相关产品的文档。也可以参考提供的Demo源码，能够帮助您快速集成，这些源码都托管在github上，属于凯源代码，无需做版权声明，但是需要明确的是，这些代码只是用来做功能演示，离真正的产品化代码还有距离。
+好视通云通信平台提供详细的开发者文档，建议在开发之前仔细阅读相关产品的文档。也可以参考提供的Demo源码，能够帮助您快速集成，这些源码都托管在github上，属于开源代码，无需做版权声明，但是需要明确的是，这些代码只是用来做功能演示，离真正的产品化代码还有距离。
 
 <img alt="demo.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/platform/demo.png" align="center" />
 

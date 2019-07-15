@@ -16,7 +16,7 @@ m_pFspEngine->Init(m_FspEnginContext);
 
 
 ## 登录
-登录需要从生成的token, 和上层指定UserId：
+登录需要依赖生成的token, 和上层指定UserId：
 
 ```
 pFspEngine->Login(szToken, szUserId);
