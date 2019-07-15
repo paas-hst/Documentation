@@ -6,7 +6,7 @@
 
 通过调用如下代码添加预览窗口:
 
-```
+```js
 let params = {
     audio: true,  // 音频打开
     video: true   // 视频打开
@@ -22,7 +22,7 @@ webRtcEngine.getLocalStream(params).then((stream) => {
 
 如果需要让远程订阅本地的视频流，需要调用startPublishVideo接口，发布本地流，远程会接收到onPublisher事件：
 
-```
+```js
 webRtcEngine.startPublishVideo().then(() => {
      console.log('发布视频频成功')
 })
@@ -34,7 +34,7 @@ webRtcEngine.startPublishVideo().then(() => {
 
 通过receiveRemoteVideo方法可以订阅远程的音视频流，参数为onPublisher事件返回的userId, mediaId。
 
-```
+```js
  webRtcEngine.receiveRemoteVideo(userId, mediaId).then(()=> {
     console.log('订阅视频成功')
    },(error)=>{
@@ -73,7 +73,7 @@ function dealVideo(stream){
 
 当不需要订阅远程的流是，可以调用取消订阅方法，参数为onPublier 返回的userId, mediaId
 
-```
+```js
 webRtcEngine.stopReceiveRemoteVideo(userId, mediaId).then(()=> {
   console.log('取消订阅视频成功')
   },(error)=>{
