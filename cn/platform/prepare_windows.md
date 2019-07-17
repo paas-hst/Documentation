@@ -36,7 +36,7 @@ pFspEngine->Login(szToken, szUserId);
 pFspEngine->JoinGroup(szGroupId);
 ```
 
-> UserId有一定限制：字符串长度不超过128，只能是字母、数字、下划线(_), 横杠(-)。
+> GroupId有一定限制：字符串长度不超过128，只能是字母、数字、下划线(_), 横杠(-)。
 
 加入成功或失败的结果，通过回调 OnFspEvent 方法回调， 回调的 eventType == EVENT_JOINGROUP_RESULT。如果 JoinGroup 直接返回失败，则不会收到登录回调。
 
