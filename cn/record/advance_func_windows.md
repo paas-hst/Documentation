@@ -9,7 +9,7 @@
 <img alt="appid.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/crop_example.jpg" align="center" />
 
 
-## 手动控制视频布局
+## 主动控制视频布局
 
 当自动录制无法满足客户的录制场景时，客户可以通过调用布局接口[设置合成效果]来主动控制视频和音频的混合结果。
 接口通过一个平面坐标轴确定视频的可视位置。左上角为原点(0,0),从左往右x逐渐增加，从上往下y逐渐增加。
@@ -17,8 +17,7 @@
 <img alt="appid.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/axis.jpg" align="center" />
 
 接口参数里的核心控制参数为audio_list和video_list，audio_list对合成的音频内容进行控制。video_list对合成的视频以及其位置、大小进行控制。
-需要知道每个视频的视频区域大小，分配的视频区域过大或过小都不合适。过大，视频会因为拉伸而模糊；过小，视频会被压缩而看不清细节。
-服务器会按照设置的crop_mode值在指定位置填充视频。
+
 
 ```js
 {
@@ -33,15 +32,17 @@
 	},
 "video_list":{
 	{"user_id":"Jack_ID","media_id":0,"media_type":2,"crop_mode":3,"w":530,"h":380},
-	{"user_id":"Jack_ID","media_id":0,"media_type":2,"crop_mode":3,"x":531,"w":530,"h":380},
-	{"user_id":"Jack_ID","media_id":0,"media_type":2,"crop_mode":3,"y":381,"w":530,"h":380},
-	{"user_id":"Jack_ID","media_id":0,"media_type":2,"crop_mode":3,"x":531,"y":381,"w":530,"h":380}
+	{"user_id":"Paul_ID","media_id":0,"media_type":2,"crop_mode":3,"x":531,"w":530,"h":380},
+	{"user_id":"Ana_ID","media_id":0,"media_type":2,"crop_mode":3,"y":381,"w":530,"h":380},
+	{"user_id":"James_ID","media_id":0,"media_type":2,"crop_mode":3,"x":531,"y":381,"w":530,"h":380}
 	},
 "seq":""
 }
 ```
 
-命令发送成功后，录制效果会被设置成“田”字来录制四路视频以及他们的音频内容。
+需要知道每个视频的视频区域大小，分配的视频区域过大或过小都不合适。过大时，视频会因为拉伸而模糊；过小时，视频会被压缩而看不清细节。
+服务器会按照设置的crop_mode值在指定位置填充视频。
+命令发送成功后，录制效果会被设置成“田”字来录制四路视频以及他们的音频内容。完成录制后的效果如下。
 
 <img alt="appid.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/layout_4.jpg" align="center" />
 
@@ -51,7 +52,7 @@
 
 ## 视频增加说明或用户名字
 
-录制下的视频可能需要加上视频对应的用户名，方便查看的时候知道每个视频属于谁的。可以通过[设置视频水印与字幕]接口实现。
+录制下的视频可能需要加上视频对应的用户名，方便查看的时候知道每个视频属于谁的。可以通过[设置视频水印与字幕](http://)接口实现。
 在控制布局后，可以单独调用水印功能。实现在视频上叠加用户名的效果。
 注意：content里填写的是内容，而不是像前面audio_list,video_list里的user_id用户ID。
 
