@@ -3,7 +3,7 @@
 - 请确保已安装 微信开发者工具。
 - 请确保你的微信小程序基础库支持 live-pusher 及 live-player 组件，且这两个组件在微信开发者工具中打开。
 - 请确保在微信公众平台账号的开发设置中，给予以下域名请求权限：
-  ```
+  ```http
   request合法域名:
   https://access.paas.hst.com
   https://fspwxlite.hst.com
