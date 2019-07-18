@@ -71,7 +71,7 @@ function dealVideo(stream){
 
 ## 停止查看远端视频
 
-当不需要订阅远程的流是，可以调用取消订阅方法，参数为onPublier 返回的userId, mediaId
+当不需要订阅远程的流是，可以调用取消订阅方法，参数为 onPublier 返回的userId, mediaId
 
 ```js
 webRtcEngine.stopReceiveRemoteVideo(userId, mediaId).then(()=> {
