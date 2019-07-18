@@ -4,7 +4,7 @@
 
 ## 广播音频
 
-startPublishAudio()广播本地视频：
+startPublishAudio()广播本地音频：
 
 ```js
 webRtcEngine.startPublishVideo().then(() => {
