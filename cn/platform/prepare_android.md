@@ -1,6 +1,24 @@
 # 准备工作
-集成SDK后，需要2个或3个简单的准备动作：初始化，登录，加入组。
-登录和加入组是两个动作，登录成功后才能加入组，大部分业务需要加入组后才能正常使用
+
+好视通云通信平台大部分服务是基于分组的服务，因此，在使用服务前需要加入分组（Group），在加入分组前，需要先登录平台，具体如下所述。
+
+## 前提条件
+
+请确保满足以下开发环境要求:
+
+- Android SDK API Level Level ≥ 17
+
+- Android Studio 3.0 或以上版本
+
+- App 要求 Android 4.1 或以上设备
+
+## 添加 SDK
+
+1.  下载 [Android SDK](http://paas.hst.com/developer/downloadSDK)，解压并打开。
+2.  aar库拷贝到 app/libs 目录下
+3.  app的gradle脚本中正确引用到aar库，比如：implementation(name: 'fsp_sdk', ext: 'aar')
+
+现在你已经设置好了 Android Studio 开发环境，可以开始使用 Android SDK 了！
 
 ## 初始化
 使用SDK的第一步是做初始化：

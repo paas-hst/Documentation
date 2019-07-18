@@ -1,5 +1,13 @@
 # 准备工作
-请确保满足以下开发环境要求：
+
+好视通云通信平台大部分服务是基于分组的服务，因此，在使用服务前需要加入分组（Group），在加入分组前，需要先登录平台，具体如下所述。
+
+## 前提条件
+
+请确保满足以下开发环境要求:
+
+- 安装Chrome 75+浏览器
+- 确保部署环境为localhost或https协议
 - 请确保已安装 微信开发者工具。
 - 请确保你的微信小程序基础库支持 live-pusher 及 live-player 组件，且这两个组件在微信开发者工具中打开。
 - 请确保在微信公众平台账号的开发设置中，给予以下域名请求权限：
@@ -25,10 +33,17 @@
   ```
 - 请确保在使用相关功能及服务前，已打开特定端口
 
+## 添加 SDK
+
+1. 下载 [Web SDK](http://paas.hst.com/developer/downloadSDK)，解压并打开。 
+2. 将JS文件保存到你所操作的项目下。
+3. 在项目相应的前端页面文件中，对JS文件进行引用。
+
+
 ## 初始化
 使用SDK的第一步是做初始化：
 
-```
+```js
 // 引擎初始化
 wx.request({
   url: 'https://access.paas.hst.com/server/address?appType=2',
@@ -45,14 +60,14 @@ wx.request({
 ## 获取试用权限
 鉴权需要appID和appSecret：
 
-```
+```js
 $hstEngine.init(appID, appSecret, onSuccess, onFailure)
 ```
 
 ## 加入组
 登录成功后，调用加入组的方法即可加入组：
 
-```
+```js
 $hstEngine.join(isCreator, groupID, userID, onSuccess, onFailure)
 ```
 

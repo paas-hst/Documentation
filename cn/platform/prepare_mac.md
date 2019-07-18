@@ -18,13 +18,13 @@ m_pFspEngine->Init(m_FspEnginContext);
 ## 登录
 登录需要从生成的token, 和上层指定UserId：
 
-```
-pFspEngine->Login(szToken, szUserId);
+```objectivec
+[fspEngine joinGroup:szGroupId];
 ```
 
 > UserId有一定限制：字符串长度不超过128，只能是字母、数字、下划线(_), 横杠(-)。
 
-登录结果在 OnFspEvent 方法回调， 回调的 eventType == EVENT_LOGIN_RESULT。如果 Login 直接返回失败，则不会收到登录回调。
+登录结果在 FspEngineDelegate::fspEvent  方法回调， 回调的 eventType == EVENT_LOGIN_RESULT。如果 login 直接返回失败，则不会收到登录回调。
 
 关于token请参考 [token说明](./token.md)
 
@@ -32,13 +32,13 @@ pFspEngine->Login(szToken, szUserId);
 
 登录成功后，调用加入组的方法即可加入组：
 
-```
-pFspEngine->JoinGroup(szGroupId);
+```objectivec
+[fspEngine joinGroup:szGroupId];
 ```
 
 > UserId有一定限制：字符串长度不超过128，只能是字母、数字、下划线(_), 横杠(-)。
 
-加入成功或失败的结果，通过回调 OnFspEvent 方法回调， 回调的 eventType == EVENT_JOINGROUP_RESULT。如果 JoinGroup 直接返回失败，则不会收到登录回调。
+加入成功或失败的结果，通过回调 FspEngineDelegate::fspEvent  方法回调， 回调的 eventType == EVENT_JOINGROUP_RESULT。如果 joinGroup 直接返回失败，则不会收到登录回调。
 
 ## 组成员通知
-加入组后，组内有成员进入或离开，会通过 IFspEngineEventHandler::OnRemoteUserEvent 回调通知上层；开始会通过 IFspEngineEventHandler::OnGroupUsersRefreshed 全量通知组内所有成员列表。
+加入组后，组内有成员进入或离开，会通过 FspEngineSignalingDelegate::onGroupUserJoined,onGroupUserLeaved 回调通知上层；开始会通过 FspEngineSignalingDelegate::onGroupUsersRefreshed 全量通知组内所有成员列表。
