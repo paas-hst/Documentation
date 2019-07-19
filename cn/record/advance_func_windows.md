@@ -12,12 +12,14 @@
 ## 主动控制视频布局
 
 当自动录制无法满足客户的录制场景时，客户可以通过调用布局接口[设置合成效果]来主动控制视频和音频的混合结果。
+
+以4位用户音视频沟通的内容录制下来为案例，需要理解以下内容：
 接口通过一个平面坐标轴确定视频的可视位置。左上角为原点(0,0),从左往右x逐渐增加，从上往下y逐渐增加。
 
 <img alt="appid.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/axis.jpg" align="center" />
 
 接口参数里的核心控制参数为audio_list和video_list，audio_list对合成的音频内容进行控制。video_list对合成的视频以及其位置、大小进行控制。
-
+把4位用户的音频、视频信息作为参数列入设置合成接口里。
 
 ```js
 {

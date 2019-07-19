@@ -49,6 +49,7 @@
 {
 "business":"RE",
 "id":8193,
+"code":0,
 "msg":"10000",
 "seq":"XXXXXXXXXXX",
 }
@@ -57,6 +58,7 @@
 {
 "business":"RE",
 "id":8193,
+"code":30008,
 "msg":"10000",
 "seq":"XXXXXXXXXXX",
 }
@@ -78,11 +80,11 @@
 | file_name | String | 否 | 不包含格式的录制文件名 |
 | file_type | int | 否 | 0代表同时录制音视频的mp4格式，1代表仅录制音频的mp3格式，默认格式为mp4 |
 | file_duration | int | 否 | 录制文件切片时长[15,300]（分钟min），默认为60分钟 |
-| width | int | 否 | 幕布宽度[1px,1920px]默认1920px |
-| height | int | 否 | 幕布高[1px,1080px]默认1080px |
+| width | int | 否 | 幕布宽度[1,1920]（单位px）默认1920 |
+| height | int | 否 | 幕布高[1,1080]（单位px）默认1080 |
 | record_mode | int | 否 | 0代表合流（混流）模式 |
-| frame_rate | int | 否 | 录制视频帧率(默认30帧)[1,30] |
-| timeout | int | 否 | 该录制任务拉流失败超过timeout时间，且无录制命令，则服务器主动停止录制，[5,1800]默认值600 |
+| frame_rate | int | 否 | 录制视频帧率(默认30帧)[1,30]（单位帧） |
+| timeout | int | 否 | 该录制任务拉流失败超过timeout时间，且无录制命令，则服务器主动停止录制，[5,1800]（单位秒）默认值600秒 |
 | auto | Array | 否 | 不为空时使用自动录制 |
 | seq | String | 是 | 返回时会把此数据原样输出 |
 
@@ -95,6 +97,42 @@ auto视频列表的请求字段如下：
 | media_type | int | 否 | 媒体顺序。2:优先级按屏幕共享>摄像头>白板的顺序。  |
 | media_count | int | 否 | 范围[1,9]，代表自动录视频数最多不超过的路数  |
 | crop_mode | int | 否 | 视频裁剪模式(1:平铺;2:等比平铺裁剪;3:等比平铺填充)默认为1  |
+
+示例：
+```js
+//手动录制
+{
+"business":"RE",
+"id":4098,
+"group_id":"XXXXXXXX",
+"file_name":"XXXXXXXX",
+"file_type":0,
+"file_duration":15,
+"width":10,
+"height":10,
+"record_mode":0,
+"frame_rate":30,
+"timeout":10,
+"seq":"1",
+}
+
+//自动录制
+{
+"business":"RE",
+"id":4098,
+"group_id":"XXXXXXXX",
+"file_name":"XXXXXXXX",
+"file_type":0,
+"file_duration":15,
+"width":10,
+"height":10,
+"record_mode":0,
+"frame_rate":30,
+"timeout":10,
+"auto":{"type":1,"user_id":2,"media_type":2,"media_count":9,"crop_mode":3},
+"seq":"1",
+}
+```
 
 ### 返回说明
 接口的返回类型为JSON。返回字段如下：
@@ -114,14 +152,17 @@ auto视频列表的请求字段如下：
 {
 "business":"RE",
 "id":8193,
+"code":0,
 "msg":"10000",
 "seq":"XXXXXXXXXXX",
+"record_id":"XXXXXXXXXXX"
 }
 
 //失败结果示例
 {
 "business":"RE",
 "id":8193,
+"code":30001,
 "msg":"10000",
 "seq":"XXXXXXXXXXX",
 "record_id":"XXXXXXXXXXX"
@@ -143,7 +184,15 @@ auto视频列表的请求字段如下：
 | record_id | String | 是 | 录制任务的ID  |
 | seq | String | 是 | 返回时会把此数据原样输出 |
 
-
+示例：
+```js
+{
+"business":"RE",
+"id":4099,
+"record_id":"XXXXXXXX",
+"seq":"1",
+}
+```
 
 
 ### 返回说明
@@ -158,6 +207,28 @@ auto视频列表的请求字段如下：
 | seq | String | 用户请求时填写的数据 |
 | record_id | String | 返回录制任务唯一身份识别ID |
 
+示例：
+```js
+//成功结果示例
+{
+"business":"RE",
+"id":8195,
+"code":0,
+"msg":"10000",
+"seq":"XXXXXXXXXXX",
+"record_id":"XXXXXXXXXXX"
+}
+
+//失败结果示例
+{
+"business":"RE",
+"id":8195,
+"code":30001,
+"msg":"10000",
+"seq":"XXXXXXXXXXX",
+"record_id":"XXXXXXXXXXX"
+}
+```
 
 ## 暂停录制任务
 
@@ -174,7 +245,15 @@ auto视频列表的请求字段如下：
 | record_id | String | 是 | 录制任务的ID  |
 | seq | String | 是 | 返回时会把此数据原样输出 |
 
-
+示例：
+```js
+{
+"business":"RE",
+"id":4100,
+"record_id":"XXXXXXXX",
+"seq":"1",
+}
+```
 
 ### 返回说明
 接口的返回类型为JSON。返回字段如下：
@@ -188,7 +267,28 @@ auto视频列表的请求字段如下：
 | seq | String | 用户请求时填写的数据 |
 | record_id | String | 返回录制任务唯一身份识别ID |
 
+示例：
+```js
+//成功结果示例
+{
+"business":"RE",
+"id":8196,
+"code":0,
+"msg":"10000",
+"seq":"XXXXXXXXXXX",
+"record_id":"XXXXXXXXXXX"
+}
 
+//失败结果示例
+{
+"business":"RE",
+"id":8196,
+"code":30001,
+"msg":"10000",
+"seq":"XXXXXXXXXXX",
+"record_id":"XXXXXXXXXXX"
+}
+```
 
 ## 结束录制任务
 
@@ -205,6 +305,15 @@ auto视频列表的请求字段如下：
 | record_id | String | 是 | 录制任务的ID  |
 | seq | String | 是 | 返回时会把此数据原样输出 |
 
+示例：
+```js
+{
+"business":"RE",
+"id":4101,
+"record_id":"XXXXXXXX",
+"seq":"1",
+}
+```
 
 
 ### 返回说明
@@ -222,10 +331,33 @@ auto视频列表的请求字段如下：
 | seq | String | 用户请求时填写的数据 |
 | record_id | String | 返回录制任务唯一身份识别ID |
 
+示例：
+```js
+//成功结果示例
+{
+"business":"RE",
+"id":8197,
+"code":0,
+"msg":"10000",
+"seq":"XXXXXXXXXXX",
+"record_id":"XXXXXXXXXXX"
+}
+
+//失败结果示例
+{
+"business":"RE",
+"id":8197,
+"code":30001,
+"msg":"10000",
+"seq":"XXXXXXXXXXX",
+"record_id":"XXXXXXXXXXX"
+}
+```
 
 ## 设置合成效果
 
-设置视频的合成布局，音频的合成内容
+设置视频的合成布局样式，以及指定音频合成路数。非自动录制时，首次设置合成效果代表开始录制。
+没有任何可录制音视频时，不会进行合成。
 
 ### 请求参数说明
 
@@ -261,6 +393,23 @@ video_list视频列表的请求字段如下：
 | h | int | 否 | 视频的宽[1,1080]默认值240  |
 | crop_mode | int | 否 | 视频裁剪模式(1:平铺;2:等比平铺裁剪;3:等比平铺填充)默认为1  |
 
+示例：
+```js
+{
+"business":"RE
+"id":"4102",
+"record_id":"XXXXXXXX",
+"audio_list":{
+	{"user_id":"Jack_ID","media_id":1},
+	{"user_id":"Paul_ID","media_id":1}
+	},
+"video_list":{
+	{"user_id":"Jack_ID","media_id":0,"media_type":2,"crop_mode":3,"w":530,"h":380},
+	{"user_id":"Paul_ID","media_id":0,"media_type":2,"crop_mode":3,"x":531,"w":530,"h":380}
+	},
+"seq":""
+}
+```
 
 ### 返回说明
 接口的返回类型为JSON。返回字段如下：
@@ -273,6 +422,29 @@ video_list视频列表的请求字段如下：
 | msg | String | 提示的消息 |
 | seq | String | 用户请求时填写的数据 |
 | record_id | String | 返回录制任务唯一身份识别ID |
+
+示例：
+```js
+//成功结果示例
+{
+"business":"RE",
+"id":8198,
+"code":0,
+"msg":"10000",
+"seq":"XXXXXXXXXXX",
+"record_id":"XXXXXXXXXXX"
+}
+
+//失败结果示例
+{
+"business":"RE",
+"id":8198,
+"code":30001,
+"msg":"10000",
+"seq":"XXXXXXXXXXX",
+"record_id":"XXXXXXXXXXX"
+}
+```
 
 
 ## 设置水印与字幕
@@ -296,13 +468,25 @@ subtitle_list字幕的请求字段如下：
 | 参数名 | 类型 | 是否必填 | 参数说明 |
 | - | - | - | - |
 | type | int | 否 | 1:静态文本,2:动态系统时间；默认为1 |
-| content | String | 否 | 字幕内容，默认为空 |
+| content | String | 否 | 字幕内容，默认为空。type为2时不用填能内容 |
 | color | int | 否 | 字幕颜色rgb，默认值0  |
 | x | int | 否 | 字幕在幕布中横坐标[0,1920]，默认值0   |
 | y | int | 否 | 字幕在幕布中纵坐标[0,1080]，默认值0  |
 | transparency | int | 否 | 字幕透明度[0,100],0表示完全透明，100表示不透明;默认值100  |
 | size | int | 否 | 字幕字体大小[1,200];默认值30  |
 
+示例：
+```js
+{
+"business":"RE",
+"id":"4103",
+"record_id":"XXXXXXXX",
+"subtitle_list":{
+	{"type":1,"content":"Jack","color":#009cff,"x":20,"y":50,"transparency":80,"size":25}
+	},
+"seq":""
+}
+```
 
 ### 返回说明
 接口的返回类型为JSON。返回字段如下：
@@ -316,6 +500,28 @@ subtitle_list字幕的请求字段如下：
 | seq | String | 用户请求时填写的数据 |
 | record_id | String | 返回录制任务唯一身份识别ID |
 
+示例：
+```js
+//成功结果示例
+{
+"business":"RE",
+"id":8199,
+"code":0,
+"msg":"10000",
+"seq":"XXXXXXXXXXX",
+"record_id":"XXXXXXXXXXX"
+}
+
+//失败结果示例
+{
+"business":"RE",
+"id":8199,
+"code":30001,
+"msg":"10000",
+"seq":"XXXXXXXXXXX",
+"record_id":"XXXXXXXXXXX"
+}
+```
 
 ## 录制任务查询
 
