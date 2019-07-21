@@ -23,8 +23,8 @@
 
 <table>
 <tr>
-<th colspan="2">规格项</th>
-<th>规格说明</th>
+<th colspan="2" align="center">规格项</th>
+<th align="center">规格说明</th>
 </tr>
 
 <tr>
@@ -92,7 +92,7 @@
 
 <table>
 <tr>
-<th colspan="2">规格/平台</th>
+<th colspan="2" align="center">规格/平台</th>
 <th>Windows</th>
 <th>Android</th>
 <th>iOS</th>
