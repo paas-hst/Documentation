@@ -28,9 +28,14 @@
 </tr>
 
 <tr>
-<td rowspan="5">功能规格</td>
+<td rowspan="6">功能规格</td>
 <td>RTSP插件</td>
-<td >通过RTSP插件实现接入第三方音频源</td>
+<td >通过RTSP插件接入第三方音频源</td>
+</tr>
+
+<tr>
+<td>热插拔</td>
+<td>支持麦克风和扬声器设备热插拔识别</td>
 </tr>
 
 <tr>
@@ -102,13 +107,23 @@
 </tr>
 
 <tr>
-<td rowspan="5">功能规格</td>
+<td rowspan="6">功能规格</td>
 <td>RTSP插件</td>
 <td align="center">&#10003</td>
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
+<td align="center">&#10005</td>
+</tr>
+
+<tr>
+<td>热插拔</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10005</td>
+<td align="center">&#10005</td>
+<td align="center">&#8211</td>
 <td align="center">&#10005</td>
 </tr>
 
