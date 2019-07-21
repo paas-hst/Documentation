@@ -1,19 +1,165 @@
 # 产品概述
-音频通话 产品 可实现一对一、多人，实时音频通话功能。
+音频通信产品可实现一对一或多方同时互动的实时语音通话功能。
 
-## 关键功能
-- 多人混音
-会议级别多人讲话支持，最多支持6人同时讲话。
+## 产品特点
 
-- 万人并发
-实时高性能流式分发系统，支持同时万人实时接听，满足海量用户需求场景。
++ 领先的3A处理技术，会议级语音品质。
++ 支持48K音频采样和双声道立体声。
++ 支持音频设备热插拔识别。
++ 单分组支持10000人并发。
++ 能抵抗最高70%的丢包不卡顿。
 
-- 48K、双声道
-48K、双声道功能支持，满足音乐教学等多种高音质需求的场景
 
-## 关键特性
-- 会议级别3A处理
-会议级别3A音频处理，保障复杂场景音频质量。
+## 应用场景
 
-- 音频抗丢包率
-上下行抗丢包率60%。
++ 游戏开黑：玩家可通过语音进行游戏内实时沟通，增加游戏的娱乐性和社交属性。
++ 语音客服：替代传统PSTN电话语音，更灵活、更方便、更省成本。
++ 语音会议：召开纯语音会议，实现语音互动。
++ 社交娱乐：声音交友，在线实时语音聊天，发现有趣的声音，结识有趣的朋友等社交娱乐场景。
++ 教育培训：配合电子白板，可以实现远程K12教育、各种技术培训等。
+
+
+## 产品规格
+
+| 规格项 | 规格说明 |
+| :-: | :- |
+| RTSP接入 | 通过RTSP插件实现RTSP协议接入第三方音频源 |
+| 3A处理 | 支持AEC（回音消除）/AGC（自动增益）/ANS（噪声抑制）|
+| VAD | 支持VAD（静音检测），提升语音质量降低带宽占用 |
+| 采集音量自动调节 | 能够根据音频能量自动调节采集音量 |
+| 变声 | 能实现人声改变，可以用来隐藏发言者身份 |
+| 最大采样率 | 48K |
+| 音频编码 | OPUS |
+| 最大采集声道数 | 2 |
+| 最大播放声道数 | 2 |
+| 采样位数 | 16 |
+| 最大抵抗丢包率 | 50% |
+
+## 平台兼容性
+
+<table>
+<tr>
+<th colspan="2">规格/平台</th>
+<th>Windows</th>
+<th>Android</th>
+<th>iOS</th>
+<th>macOS</th>
+<th>Web</th>
+<th>WeChat</th>
+</tr>
+
+<tr>
+<td rowspan="5">功能规格</td>
+<td>RTSP插件</td>
+<td align="center">&#10003</td>
+<td align="center">&#10005</td>
+<td align="center">&#10005</td>
+<td align="center">&#10005</td>
+<td align="center">&#10005</td>
+<td align="center">&#10005</td>
+</tr>
+
+<tr>
+<td>AEC/AGC/ANS</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+</tr>
+
+<tr>
+<td>VAD</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+</tr>
+
+<tr>
+<td>采集音量自动调节</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#8211</td>
+<td align="center">&#8211</td>
+</tr>
+
+<tr>
+<td>变声</td>
+<td align="center">&#10003</td>
+<td align="center">&#10005</td>
+<td align="center">&#10005</td>
+<td align="center">&#10005</td>
+<td align="center">&#10005</td>
+<td align="center">&#10005</td>
+</tr>
+
+
+
+<tr>
+<td rowspan="6">参数规格</td>
+<td>最大采样率</td>
+<td align="center">48K</td>
+<td align="center">48K</td>
+<td align="center">48K</td>
+<td align="center">48K</td>
+<td align="center">48K</td>
+<td align="center">48K</td>
+</tr>
+
+<tr>
+<td>音频编码</td>
+<td align="center">OPUS</td>
+<td align="center">OPUS</td>
+<td align="center">OPUS</td>
+<td align="center">OPUS</td>
+<td align="center">OPUS</td>
+<td align="center">OPUS</td>
+</tr>
+
+<tr>
+<td>最大采集声道数</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">&#8211</td>
+<td align="center">&#8211</td>
+</tr>
+
+<tr>
+<td>最大播放声道数</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">&#8211</td>
+<td align="center">&#8211</td>
+</tr>
+
+<tr>
+<td>采样位数</td>
+<td align="center">16</td>
+<td align="center">16</td>
+<td align="center">16</td>
+<td align="center">16</td>
+<td align="center">16</td>
+<td align="center">16</td>
+</tr>
+
+<tr>
+<td>最大抵抗丢包率</td>
+<td align="center">50%</td>
+<td align="center">50%</td>
+<td align="center">50%</td>
+<td align="center">50%</td>
+<td align="center">&#8211</td>
+<td align="center">&#8211</td>
+</tr>
+
+</table>
