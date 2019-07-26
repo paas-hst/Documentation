@@ -1,11 +1,35 @@
 # 准备工作
-集成SDK后，需要2个或3个简单的准备动作：初始化，登录，加入组。
-登录和加入组是两个动作，登录成功后才能加入组，大部分业务需要加入组后才能正常使用
+好视通云通信平台大部分服务是基于分组的服务，因此，在使用服务前需要加入分组（Group），在加入分组前，需要先登录平台，具体如下所述。
+
+## 前提条件
+请确保满足以下开发环境要求:
+
+- Xcode 10.0+
+- mac OS 10.11+
+- 请确保您的项目已设置有效的开发者签名
+
+## 添加SDK
+1. 下载[Mac SDK](http://paas.hst.com/developer/downloadSDK)，解压并打开。
+
+2. 使用 Xcode 打开你想要运行的项目，然后选中当前 Target。
+3. Build Phases 页签，展开 Link Binary with Libraries 项并添加如下库。点击 + 图标开始添加
+
++ VideoToolbox.framework
++ CoreAudio.framework
++ AudioToolbox.framework
++ CoreMedia.framework
++ VideoDecodeAcceleration.framework
++ libiconv.tbd
++ libz.tbd
++ libc++.tbd
+
+<img alt="mac_integrate" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/mac_Integrate.png" align="center" />
+
 
 ## 初始化
 使用SDK的第一步是做初始化：
 
-```
+```objectivec
 IFspEngine* m_pFspEngine = FspGetEngine();
 FspEngineContext enginContext;
 enginContext.app_id = strAppId;
