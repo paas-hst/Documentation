@@ -23,7 +23,7 @@
 ## 初始化
 使用SDK的第一步是做初始化：
 
-```
+```java
 FspEngine fspEngine = FspEngine.createsApplication, appId, null, this);
 fspEngine.init();
 ```
@@ -32,7 +32,7 @@ fspEngine.init();
 ## 登录
 登录需要从生成的token, 和上层指定UserId：
 
-```
+```java
 fspEngine.login(token, userId);
 ```
 
@@ -46,7 +46,7 @@ fspEngine.login(token, userId);
 
 登录成功后，调用加入组的方法即可加入组：
 
-```
+```java
 fspEngine.joinGroup(groupId);
 ```
 
