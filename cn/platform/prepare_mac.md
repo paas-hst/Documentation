@@ -30,12 +30,7 @@
 使用SDK的第一步是做初始化：
 
 ```objectivec
-IFspEngine* m_pFspEngine = FspGetEngine();
-FspEngineContext enginContext;
-enginContext.app_id = strAppId;
-enginContext.log_path = "./";
-enginContext.event_handler = this;
-m_pFspEngine->Init(m_FspEnginContext);
+FspEngine *fspEngine = [FspEngine sharedEngineWithAppId:appId logPath:logPath serverAddr:serverAddr delegate:delegate];
 ```
 
 
@@ -43,14 +38,13 @@ m_pFspEngine->Init(m_FspEnginContext);
 登录需要从生成的token, 和上层指定UserId：
 
 ```objectivec
-[fspEngine joinGroup:szGroupId];
+[fspEngine login:szToken userId:szUserId];
 ```
 
 > UserId有一定限制：字符串长度不超过128，只能是字母、数字、下划线(_), 横杠(-)。
 
 登录结果在 FspEngineDelegate::fspEvent  方法回调， 回调的 eventType == EVENT_LOGIN_RESULT。如果 login 直接返回失败，则不会收到登录回调。
 
-关于token请参考 [token说明](./token.md)
 
 ## 加入组
 

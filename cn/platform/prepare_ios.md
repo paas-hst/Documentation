@@ -51,7 +51,6 @@ FspEngine *fspEngine = [FspEngine sharedEngineWithAppId:appId logPath:logPath se
 
 登录结果在 FspEngineDelegate::fspEvent 方法回调， 回调的 eventType == EVENT_LOGIN_RESULT。如果 login 直接返回失败，则不会收到登录回调。
 
-关于token请参考 [token说明](./token.md)
 
 ## 加入组
 
