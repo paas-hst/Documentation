@@ -1,22 +1,33 @@
 # 快速开始
 
-音频通信需要登录后并成功加入组，详见[加入组](../platform/prepare_web.md)。
+使用音频通信服务前，请确保已经加入分组，具体请参考“准备工作”。
 
-## 广播音频
 
-startPublishAudio()广播本地音频：
+## 广播本地音频
+
+打开本地麦克风，并广播给分组内所有用户，分组内所有用户都会接收到广播音频事件。
 
 ```js
-webRtcEngine.startPublishVideo().then(() => {
-     console.log('发布视频频成功')
+webRtcEngine.startPublishAudio().then(() => {
+     console.log('发布音频成功')
 })
 ```
 
-音频广播后，组内所有用户会收到音频广播事件。
+
+## 停止广播本地音频
+
+关闭本地麦克风，分组内所有用户都会接收到停止广播音频事件。
+
+```js
+webRtcEngine.stopPublishAudio().then(() => {
+     console.log('停止发布音频成功')
+})
+```
+
 
 ## 接听远端音频
 
-通过receiveRemoteVideo,receiveRemoteAudio方法可以订阅远程的音视频流，参数为onPublisher事件返回的userId, mediaId。
+收到广播音频事件后，便可以调用 receiveRemoteAudio 接口开始接听指定远端用户的音频。参数为 onPublier 返回的userId和mediaId。
 
 ```js
 webRtcEngine.receiveRemoteAudio(userId, mediaId).then(()=>{
@@ -26,9 +37,10 @@ webRtcEngine.receiveRemoteAudio(userId, mediaId).then(()=>{
  })
 ```
 
+
 ## 停止接听远端音频
 
-当不需要订阅远程的流是，可以调用取消订阅方法，参数为onPublier 返回的userId, mediaId
+在通信过程中，可以通过调用 stopReceiveRemoteAudio 方法关闭远端音频。参数为 onPublier 返回的userId和mediaId。
 
 ```js
 webRtcEngine.stopReceiveRemoteAudio(userId, mediaId).then(()=>{
@@ -37,3 +49,5 @@ webRtcEngine.stopReceiveRemoteAudio(userId, mediaId).then(()=>{
        console.log(error.message);
  })
 ```
+
+> 如果远端音频处于广播状态，再次调用 receiveRemoteAudio 又可以重新接听远端音频。
