@@ -25,7 +25,7 @@ pFspEngine->AddVideoPreview(nDeviceId, NULL, 0);
 
 ## 广播本地视频
 
-打开本地摄像头，并广播给分组内所有用户，分组内所有用户都会接收到广播视频事件。
+打开本地摄像头，并广播给分组内所有用户，分组内所有用户除自己外都会接收到广播视频事件。
 
 ```js
 pFspEngine->StartPublishVideo(szVideoId, nDeviceId);

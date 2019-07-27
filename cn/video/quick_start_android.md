@@ -23,7 +23,7 @@ fspEngine.stopPreviewVideo();
 
 ## 广播本地视频
 
-打开本地摄像头，并广播给分组内所有用户，分组内所有用户都会接收到广播视频事件。
+打开本地摄像头，并广播给分组内所有用户，分组内所有远端用户都会接收到广播视频事件。
 
 ```java
 fspEngine.startPublishVideo();
@@ -34,7 +34,7 @@ fspEngine.startPublishVideo();
 
 ## 停止广播本地视频
 
-关闭本地摄像头，分组内所有用户都会接收到停止广播视频事件。
+关闭本地摄像头，分组内所有远端用户都会接收到停止广播视频事件。
 
 ```js
 fspEngine.stopPublishVideo();

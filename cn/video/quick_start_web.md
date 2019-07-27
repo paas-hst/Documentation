@@ -1,10 +1,11 @@
 # 快速开始
 
-视频通信需要登录后并成功加入组。
+使用视频通信服务前，请确保已经加入分组，具体请参考“准备工作”。
+
 
 ## 预览本地视频
 
-通过调用如下代码添加预览窗口:
+只需设置视频预览窗口，便可以预览本地视频，SDK会打开对应视频设备并在对应窗口上渲染本地视频。
 
 ```js
 let params = {
@@ -18,9 +19,10 @@ webRtcEngine.getLocalStream(params).then((stream) => {
 })
 ```
 
-## 广播视频
+## 广播本地视频
 
-如果需要让远程订阅本地的视频流，需要调用startPublishVideo接口，发布本地流，远程会接收到onPublisher事件：
+
+打开本地摄像头，并广播给分组内所有用户，分组内所有远端用户都会接收到广播视频事件。
 
 ```js
 webRtcEngine.startPublishVideo().then(() => {
@@ -28,11 +30,14 @@ webRtcEngine.startPublishVideo().then(() => {
 })
 ```
 
-视频广播后，组内所有用户会收到视频广播事件。
+> 远端用户会收到onPublisher事件。
+
+
 
 ## 查看远端视频
 
-通过receiveRemoteVideo方法可以订阅远程的音视频流，参数为onPublisher事件返回的userId, mediaId。
+通过receiveRemoteVideo方法可以订阅远端用户的音视频流，参数为onPublisher事件返回的userId, mediaId。
+
 
 ```js
  webRtcEngine.receiveRemoteVideo(userId, mediaId).then(()=> {
@@ -67,11 +72,12 @@ function dealVideo(stream){
 }
 ```
 
-注：同一用户的音视频分为两个流
+> 同一用户的音视频分为两个流
+
 
 ## 停止查看远端视频
 
-当不需要订阅远程的流是，可以调用取消订阅方法，参数为 onPublier 返回的userId, mediaId
+当不需要订阅远端用户的视频流时，可以调用取消订阅方法，参数为 onPublier 返回的userId, mediaId
 
 ```js
 webRtcEngine.stopReceiveRemoteVideo(userId, mediaId).then(()=> {
