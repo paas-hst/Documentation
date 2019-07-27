@@ -38,4 +38,4 @@ pFspEngine->MuteRemoteAudio(szUserId, false);
 pFspEngine->MuteRemoteAudio(szUserId, true);
 ```
 
-> 再次调用 MuteRemoteAudio(szUserId, false) 又可以重新接听远端音频。
+> 如果远端音频处于广播状态，再次调用 MuteRemoteAudio(szUserId, false) 又可以重新接听远端音频。
