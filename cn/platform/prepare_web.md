@@ -21,7 +21,7 @@
 
 ## 初始化
 
-使用SDK之前必须初始化。Token用来进行登录认证，为保证账号的安全性，Token应该在开发者服务器端生成。其中，Token为字符串，用来校验身份和鉴权，由开发者自己生成，具体请参考“平台介绍->基本概念->应用鉴权”；User ID也是字符串，由开发者定义，用来唯一标识一个用户，开发者必须保证App下唯一，具体请参考“平台介绍->基本概念->Group ID和User ID”。
+使用SDK之前必须初始化。Token用来进行登录认证，为保证账号的安全性，Token应该在开发者服务器端生成。其中，Token为字符串，用来校验身份和鉴权，由开发者自己生成，具体请参考“平台介绍->基本概念->应用鉴权”；
 
 ```js
   let webRtcEngine = new HstRtcEngine()
@@ -32,7 +32,7 @@
 
 ## 加入分组
 
-通过指定Group ID和User ID加入分组，Group ID和User ID由开发者定义。开发者要保证同一App下Group ID不会冲突，在同一分组中User ID不会冲突。
+通过指定Group ID和User ID加入分组，Group ID和User ID由开发者定义，开发者要保证同一App下Group ID和User ID不会冲突。具体请参考“平台介绍->基本概念->Group ID和User ID”。
 
 
 ```js
@@ -40,6 +40,8 @@
       console.log('加入组成功')
   })
 ```
+
+> User ID和Group ID定义必须符合规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
 > 同一分组下相同的User ID，后加入的会被拒绝掉。
 
