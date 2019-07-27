@@ -52,7 +52,7 @@ fspEngine->Login(szToken, szUserId);
 
 ## 加入分组
 
-登录成功后，绝大多数情况下，你需要加入分组，原因是平台的很多服务都是基于分组来提供的。Group ID也是由开发者自己定义，但必须确保App下唯一，具体请参考“平台介绍->基本概念->Group ID和User ID”。
+平台的很多服务都是基于分组来提供的，登录成功后，需要加入分组。Group ID由开发者自己定义，但必须确保App下唯一，具体请参考“平台介绍->基本概念->Group ID和User ID”。
 
 ```js
 fspEngine->JoinGroup(szGroupId);

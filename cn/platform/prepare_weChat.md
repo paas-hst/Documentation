@@ -41,7 +41,8 @@
 
 
 ## 初始化
-使用SDK的第一步是做初始化：
+
+使用SDK之前必须初始化。
 
 ```js
 // 引擎初始化
@@ -52,23 +53,21 @@ wx.request({
   },
   success: function (res) {
     this.$hstEngine = new HstWxEngine(res.data.result)
+	$hstEngine.init(appID, appSecret, onSuccess, onFailure)
   }
 })
+
 ```
 
+## 加入分组
 
-## 获取试用权限
-鉴权需要appID和appSecret：
 
-```js
-$hstEngine.init(appID, appSecret, onSuccess, onFailure)
-```
+通过指定Group ID和User ID加入分组，Group ID和User ID由开发者定义，开发者要保证同一App下Group ID和User ID不会冲突。具体请参考“平台介绍->基本概念->Group ID和User ID”。
 
-## 加入组
-登录成功后，调用加入组的方法即可加入组：
 
 ```js
 $hstEngine.join(isCreator, groupID, userID, onSuccess, onFailure)
 ```
 
-> UserId有一定限制：字符串长度不超过128，只能是字母、数字、下划线(_), 横杠(-)。
+> User ID和Group ID定义必须符合规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
+
