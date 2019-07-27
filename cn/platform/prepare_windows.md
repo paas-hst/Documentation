@@ -19,6 +19,7 @@
 
 
 ## 初始化
+
 使用SDK之前必须初始化。
 
 ```js
@@ -45,7 +46,9 @@ fspEngine->Login(szToken, szUserId);
 
 > User ID定义必须符合规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
-开发者可以通过OnFspEvent回调获得登录结果，事件类型（eventType）为EVENT_LOGIN_RESULT。返回ERR_OK表示登录成功，否则表示登录失败。
+可以通过OnFspEvent回调获得登录结果，事件类型（eventType）为EVENT_LOGIN_RESULT。
+
+> 如果 Login 调用返回失败，则不会收到回调事件。
 
 ## 加入组
 
@@ -57,7 +60,9 @@ fspEngine->JoinGroup(szGroupId);
 
 > Group ID定义必须符合规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
-开发者可以通过OnFspEvent回调获得加入分组结果，事件类型（eventType）为EVENT_JOINGROUP_RESULT。返回ERR_OK表示加入组成功，否则表示加入组失败。
+可以通过OnFspEvent回调获得加入分组结果，事件类型（eventType）为EVENT_JOINGROUP_RESULT。
+
+> 如果 JoinGroup 调用返回失败，则不会收到回调事件。
 
 ## 组成员列表
 
