@@ -11,6 +11,7 @@
 pFspEngine->AddVideoPreview(nDeviceId, hVideoWnd, eRenderMode);
 ```
 
+
 ## 停止预览本地视频
 
 将视频预览窗口设空，即可停止预览本地窗口。
@@ -21,6 +22,7 @@ pFspEngine->AddVideoPreview(nDeviceId, NULL, 0);
 
 > 第三个参数任意值都可，内部不做校验。
 
+
 ## 广播本地视频
 
 打开本地摄像头，并广播给分组内所有用户，分组内所有用户都会接收到广播视频事件。
@@ -28,6 +30,8 @@ pFspEngine->AddVideoPreview(nDeviceId, NULL, 0);
 ```js
 pFspEngine->StartPublishVideo(szVideoId, nDeviceId);
 ```
+
+> szVideoId参数的设置请参考“平台介绍->基本概念->Video ID”。
 
 
 ## 停止广播本地视频
@@ -41,7 +45,7 @@ pFspEngine->StopPublishVideo(szVideoId, nDeviceId);
 
 ## 查看远端视频
 
-收到广播视频事件后，只需要设置视频窗口，便可查看指定用户的视频，SDK内部会获取指定视频流并渲染到窗口上。
+收到远端广播视频事件后，只需要设置视频窗口，便可查看指定用户的视频，SDK内部会获取指定视频流并渲染到窗口上。
 
 ```js
 pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, hVideoWnd, eRenderMode);
@@ -50,7 +54,7 @@ pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, hVideoWnd, eRenderMode);
 
 ## 停止查看远端视频
 
-在通信过程中，可以通过将视频窗口设空，来关闭远端视频。
+在通信过程中，可以通过将视频窗口设空，来停止查看远端视频。
 
 ```js
 pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, NULL, eRenderMode);
