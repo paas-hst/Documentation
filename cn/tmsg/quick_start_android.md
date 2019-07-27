@@ -6,7 +6,7 @@
 
 透明消息都通过 IFspSignaling 接口来调用，初始时需要向IFspSignaling注册回调实现对象。
 
-```
+```js
 IFspSignaling fspSignaling = m_fspEngine.getFspSignaling();
 fspSignaling.addEventHandler(this);
 ```

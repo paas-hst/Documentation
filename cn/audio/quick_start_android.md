@@ -6,7 +6,7 @@
 
 startPublishAudio()广播本地视频：
 
-```
+```js
 m_fspEngine.startPublishAudio()
 ```
 
@@ -18,7 +18,7 @@ m_fspEngine.startPublishAudio()
 SDK内部默认会自动接听远端音频，初始化时可以配置是否默认接听，通过FspEngineConfigure.autoOpenRemoteAudio参数决定是否默认接听。
 如果没设置默认接听，通过 FspEngine.openRemoteAudio 方法开始接听远端音频。
 
-```
+```js
 m_fspEngine.openRemoteAudio(userId);
 ```
 
@@ -26,7 +26,7 @@ m_fspEngine.openRemoteAudio(userId);
 
 如果音频通信过程中需要关闭远端某路音频，通过closeRemoteAudio方法实现
 
-```
+```js
 m_fspEngine.closeRemoteAudio(userId);
 ```
 
