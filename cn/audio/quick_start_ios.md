@@ -31,7 +31,7 @@
 在通信过程中，可以通过调用 muteRemoteAudio 方法关闭远端音频。
 
 ```objectivec
-[fspEngine muteRemoteAudio:szUserId mute:false];
+[fspEngine muteRemoteAudio:szUserId mute:true];
 ```
 
 需要重新接听再次通过[fspEngine muteRemoteAudio:szUserId mute:false]接听。
