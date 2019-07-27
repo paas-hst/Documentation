@@ -45,7 +45,7 @@ pFspEngine->StopPublishVideo(szVideoId, nDeviceId);
 
 ## 查看远端视频
 
-收到远端广播视频事件后，只需要设置视频窗口，便可查看指定用户的视频，SDK内部会获取指定视频流并渲染到窗口上。
+收到远端广播视频事件后，只需要设置视频窗口，便可查看指定用户的视频，SDK内部会自动获取视频流并渲染到窗口上。
 
 ```js
 pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, hVideoWnd, eRenderMode);
