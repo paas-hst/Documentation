@@ -36,4 +36,4 @@ fspEngine.openRemoteAudio(userId);
 fspEngine.closeRemoteAudio(userId);
 ```
 
-> 如果远端音频处于广播状态，再次调用 openRemoteAudio(userId) 又可以重新接听远端音频。
+> 如果远端音频处于广播状态，再次调用 openRemoteAudio 又可以重新接听远端音频。

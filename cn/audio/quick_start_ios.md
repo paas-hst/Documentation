@@ -1,22 +1,26 @@
 # 快速开始
 
-音频通信需要登录后并成功加入组，详见[加入组](../platform/prepare_ios.md)。
+使用音频通信服务前，请确保已经加入分组，具体请参考“准备工作”。
 
-## 广播音频
+## 广播本地音频
 
-调用startPublishAudio广播本地音频：
+打开本地麦克风，并广播给分组内所有用户，分组内所有用户都会接收到广播音频事件。
 
 ```objectivec
 [fspEngine startPublishAudio];
 ```
 
-音频广播后，组内所有用户会收到音频广播事件。
+## 停止广播本地音频
+
+关闭本地麦克风，分组内所有用户都会接收到停止广播音频事件。
+
+```objectivec
+[fspEngine stopPublishAudio];
+```
 
 ## 接听远端音频
 
-组内任何一端收到视频广播事件后，可以开始接听远端音频。
-SDK内部默认会自动接听远端音频。
-如果没设置默认接听，通过 muteRemoteAudio 方法开始接听远端音频。
+收到广播音频事件后，便可以调用 muteRemoteAudio 接口开始接听指定远端用户的音频。
 
 ```objectivec
 [fspEngine muteRemoteAudio:szUserId mute:false];
@@ -24,10 +28,12 @@ SDK内部默认会自动接听远端音频。
 
 ## 停止接听远端视频
 
-如果音频通信过程中需要关闭远端某路音频，通过muteRemoteAudio方法实现
+在通信过程中，可以通过调用 muteRemoteAudio 方法关闭远端音频。
 
 ```objectivec
 [fspEngine muteRemoteAudio:szUserId mute:false];
 ```
 
 需要重新接听再次通过[fspEngine muteRemoteAudio:szUserId mute:false]接听。
+
+> 如果远端音频处于广播状态，再次调用 muteRemoteAudio 又可以重新接听远端音频。
