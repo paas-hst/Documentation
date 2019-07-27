@@ -5,12 +5,21 @@
 
 ## 预览本地视频
 
-只需设置预览窗口，便可以预览本地视频，SDK会打开对应视频设备并在对应窗口上渲染本地视频。
+只需设置视频预览窗口，便可以预览本地视频，SDK会打开对应视频设备并在对应窗口上渲染本地视频。
 
 ```js
 pFspEngine->AddVideoPreview(nDeviceId, hVideoWnd, eRenderMode);
 ```
 
+## 停止预览本地视频
+
+将视频预览窗口设空，即可停止预览本地窗口。
+
+```js
+pFspEngine->AddVideoPreview(nDeviceId, NULL, 0);
+```
+
+> 第三个参数任意值都可，内部不做校验。
 
 ## 广播本地视频
 
