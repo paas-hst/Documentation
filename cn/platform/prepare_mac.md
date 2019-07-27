@@ -34,7 +34,7 @@ FspEngine *fspEngine = [FspEngine sharedEngineWithAppId:appId logPath:logPath se
 ```
 
 
-## 登录
+## 登录平台
 登录需要从生成的token, 和上层指定UserId：
 
 ```objectivec

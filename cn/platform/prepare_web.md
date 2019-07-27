@@ -20,9 +20,8 @@
 在创建并初始化 HstRtcEngine 对象前，请确保你已完成环境准备、安装包获取等步骤。
 
 ## 初始化
-Token用来进行登录认证，为保证账号的安全性，Token应该在开发者服务器端生成，
 
-[点此下载](http://paas.hst.com/developer/downloadToken)Token生成代码
+使用SDK之前必须初始化。Token用来进行登录认证，为保证账号的安全性，Token应该在开发者服务器端生成。其中，Token为字符串，用来校验身份和鉴权，由开发者自己生成，具体请参考“平台介绍->基本概念->应用鉴权”；User ID也是字符串，由开发者定义，用来唯一标识一个用户，开发者必须保证App下唯一，具体请参考“平台介绍->基本概念->Group ID和User ID”。
 
 ```js
   let webRtcEngine = new HstRtcEngine()
@@ -31,8 +30,10 @@ Token用来进行登录认证，为保证账号的安全性，Token应该在开�
   webRtcEngine.init(appId, token)
 ```
 
-## 加入组
-指定Group ID和User ID加入分组，Group ID和User ID由开发者定义。开发者要保证在同一分组中User ID不会冲突，同一分组下相同的User ID，后加入的会被拒绝掉。
+## 加入分组
+
+通过指定Group ID和User ID加入分组，Group ID和User ID由开发者定义。开发者要保证同一App下Group ID不会冲突，在同一分组中User ID不会冲突。
+
 
 ```js
   webRtcEngine.joinGroup(groupId, userId).then(() => {
@@ -40,22 +41,25 @@ Token用来进行登录认证，为保证账号的安全性，Token应该在开�
   })
 ```
 
-## 组成员通知
-当远程人员推流时，在SDK里会触发onPublisher事件， 通过订阅这个事件，能够得到频道里已经推流的人员:
+> 同一分组下相同的User ID，后加入的会被拒绝掉。
+
+## 订阅事件
+
+当远端广播音视频时，在SDK里会触发 onPublisher 事件。通过订阅这个事件，能够知道谁（User ID）广播了流；广播了什么类型（Media Type）的流：音频、视频；以及流的编号（Media ID）。
 
 ```js
 // 远程发布流事件
 webRtcEngine.on('onPublisher', function (publisher) {
-      //远程发布者ID
+       // 远程发布者ID，在订阅方法时，要用到这个ID
        console.log(publisher.userId); 
-       //远程发布者 媒体id
+       // 远程发布者 媒体id
        console.log(publisher.mediaId); 
        // 远程发布者的流类型 1：音频 2：视频
        console.log(publisher.mediaType);
 })
 ```
 
-相对应的也有onUnPublisher事件，当远程用户结束推流时，会触发这个事件：
+相对应的也有 onUnPublisher 事件，当远端停止广播时，会触发这个事件。
 
 ```js
 webRtcEngine.on('onUnPublisher', function (publisher) {
@@ -64,26 +68,4 @@ webRtcEngine.on('onUnPublisher', function (publisher) {
 })
 ```
 
-## 订阅onPublisher事件
-当远程人员推流时，在SDK里会触发onPublisher事件， 通过订阅这个事件，能够得到频道里已经推流的人员:
-
-```js
-// 远程发布流事件
-webRtcEngine.on('onPublisher', function (publisher) {
-      //远程发布者ID
-       console.log(publisher.userId); 
-       //远程发布者 媒体id
-       console.log(publisher.mediaId); 
-       // 远程发布者的流类型 1：音频 2：视频
-       console.log(publisher.mediaType);
-})
-```
-
-相对应的也有onUnPublisher事件，当远程用户结束推流时，会触发这个事件：
-
-```js
-webRtcEngine.on('onUnPublisher', function (publisher) {
-  //远程发布者ID，在订阅方法时，要用到这个ID 
-  console.log(publisher.userId); 
-})
-```
+> 一个用户同一类型的流可能会有多个，比如接了多个摄像头。
