@@ -20,7 +20,7 @@ pFspEngine->AddVideoPreview(nDeviceId, hVideoWnd, eRenderMode);
 pFspEngine->AddVideoPreview(nDeviceId, NULL, 0);
 ```
 
-> 第三个参数任意值都可，内部不做校验。
+> 第三个参数SDK内部不做校验。
 
 
 ## 广播本地视频
