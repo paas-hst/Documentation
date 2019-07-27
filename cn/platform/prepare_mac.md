@@ -27,7 +27,8 @@
 
 
 ## 初始化
-使用SDK的第一步是做初始化：
+
+使用SDK之前必须初始化。
 
 ```objectivec
 FspEngine *fspEngine = [FspEngine sharedEngineWithAppId:appId logPath:logPath serverAddr:serverAddr delegate:delegate];
@@ -35,28 +36,34 @@ FspEngine *fspEngine = [FspEngine sharedEngineWithAppId:appId logPath:logPath se
 
 
 ## 登录平台
-登录需要从生成的token, 和上层指定UserId：
+
+初始化完成后，就可以登录平台了，登录需要使用到Token和User ID。其中，Token为字符串，用来校验身份和鉴权，由开发者自己生成，具体请参考“平台介绍->基本概念->应用鉴权”；User ID也是字符串，由开发者定义，用来唯一标识一个用户，开发者必须保证App下唯一，具体请参考“平台介绍->基本概念->Group ID和User ID”。
 
 ```objectivec
 [fspEngine login:szToken userId:szUserId];
 ```
 
-> UserId有一定限制：字符串长度不超过128，只能是字母、数字、下划线(_), 横杠(-)。
+> User ID定义必须符合规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
-登录结果在 FspEngineDelegate::fspEvent  方法回调， 回调的 eventType == EVENT_LOGIN_RESULT。如果 login 直接返回失败，则不会收到登录回调。
+可以通过 FspEngineDelegate::fspEvent 回调获得登录结果，事件类型（eventType）为 EVENT_LOGIN_RESULT。
+
+> 如果 Login 调用返回失败，则不会收到回调事件。
 
 
-## 加入组
+## 加入分组
 
-登录成功后，调用加入组的方法即可加入组：
+平台的很多服务都是基于分组来提供的，登录成功后，需要加入分组。Group ID由开发者自己定义，但必须确保App下唯一，具体请参考“平台介绍->基本概念->Group ID和User ID”。
 
 ```objectivec
 [fspEngine joinGroup:szGroupId];
 ```
 
-> UserId有一定限制：字符串长度不超过128，只能是字母、数字、下划线(_), 横杠(-)。
+> Group ID定义必须符合规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
-加入成功或失败的结果，通过回调 FspEngineDelegate::fspEvent  方法回调， 回调的 eventType == EVENT_JOINGROUP_RESULT。如果 joinGroup 直接返回失败，则不会收到登录回调。
+可以通过 OnFspEvent 回调获得加入分组结果，事件类型（eventType）为 EVENT_JOINGROUP_RESULT。
 
-## 组成员通知
-加入组后，组内有成员进入或离开，会通过 FspEngineSignalingDelegate::onGroupUserJoined,onGroupUserLeaved 回调通知上层；开始会通过 FspEngineSignalingDelegate::onGroupUsersRefreshed 全量通知组内所有成员列表。
+> 如果 JoinGroup 调用返回失败，则不会收到回调事件。
+
+## 分组成员列表
+
+加入分组后，可以通过 FspEngineSignalingDelegate::onGroupUsersRefreshed 回调来获取分组成员列表，这个回调只会在加入分组时回调一次，推送全量用户列表。后续分组内成员列表的更新：加入和离开，会通过 FspEngineSignalingDelegate::onGroupUserJoined 和 FspEngineSignalingDelegate::onGroupUserLeaved 回调来通知上层应用，开发者可以基于这两个回调来实时维护分组内用户列表。

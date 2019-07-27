@@ -56,5 +56,5 @@ fspEngine.joinGroup(groupId);
 
 可以通过onJoinGroupResult回调获得加入分组结果。
 
-## 组成员通知
+## 分组成员列表
 加入分组后，可以通过onGroupUsersRefreshed回调来获取分组成员列表，这个回调只会在加入分组时回调一次，推送全量用户列表。后续分组内成员列表的更新：加入和离开，会通过onRemoteUserEvent回调来通知上层应用，开发者可以基于这两个回调来实时维护分组内用户列表。
