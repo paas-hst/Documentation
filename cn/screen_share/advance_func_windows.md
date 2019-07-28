@@ -47,14 +47,6 @@ pFspEngine->RemoteControlOperation("remoteUserId", fsp::REMOTE_CONTROL_REJECT);
 屏幕共享产品提供了两种QoS模式：画面质量优先和画面流畅优先，开发者可以根据业务场景特点手动设置。
 
 ```js
-// 同意远端桌面控制请求
-pFspEngine->RemoteControlOperation("remoteUserId", fsp::REMOTE_CONTROL_ACCEPT);
-
-// 拒绝远端桌面控制请求
-pFspEngine->RemoteControlOperation("remoteUserId", fsp::REMOTE_CONTROL_REJECT);
-```
-
-```js
 // 画面质量优先
 pFspEngine->StartPublishScreenShare(0, 0, 100, 200, SCREEN_SHARE_BIAS_QUALITY);
 
