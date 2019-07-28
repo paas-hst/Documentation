@@ -1,26 +1,27 @@
 # 快速开始
 
-屏幕共享需要登录后并成功加入组，详见[加入组](../platform/prepare_ios.md)。
+使用视频通信服务前，请确保已经加入分组，具体请参考“准备工作”。
 
-目前iOS只支持接收屏幕共享
+> 当前iOS端只支持接收远端屏幕共享，不支持将本端桌面共享出去。
 
 ## 接收屏幕共享
 
-组内任何一端收到FspEngineDelegate::remoteVideoEvent事件后，判断videoid是否等于 FSP_RESERVED_VIDEOID_SCREENSHARE ，
-如果是这个videoid，表示是屏幕共享，然后调用 setRemoteVideoRender 设置渲染窗口。
 
-```objectivec
-//videoId == FSP_RESERVED_VIDEOID_SCREENSHARE
+收到开始共享桌面的事件（FspEngineDelegate::remoteVideoEvent），只需要设置视频窗口，SDK内部会自动接收屏幕共享视频流并将视频渲染到窗口上。
+
+```js
 [fspEngine setRemoteVideoRender:userId videoId:videoId render:renderView mode:renderMode];
 ```
 
-设置渲染窗口，SDK内部就会开始接收并显示屏幕共享画面。
+> 屏幕共享服务和视频通信服务使用的是相同的传输通道，远端开始屏幕共享后，本端收到的事件与视频通信一样，通过Video ID来区分是到底是广播视频还是屏幕共享，如果Video ID为 FSP_RESERVED_VIDEOID_SCREENSHARE，则表示是屏幕共享，否则为广播视频。
 
-## 停止查看远端视频
 
-如何需要停止查看远端视频，可以将渲染窗口设为空，SDK就会停止查看屏幕共享：
+## 停止接受屏幕共享
 
-```objectivec
-//videoId == FSP_RESERVED_VIDEOID_SCREENSHARE
+通信的过程中，可以通过将视频窗口设为空来停止接收屏幕共享。
+
+```js
 [fspEngine setRemoteVideoRender:userId videoId:videoId render:nil mode:renderMode];
 ```
+
+> Video ID为FSP_RESERVED_VIDEOID_SCREENSHARE。

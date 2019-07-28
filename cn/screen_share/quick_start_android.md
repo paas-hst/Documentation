@@ -2,25 +2,26 @@
 
 使用视频通信服务前，请确保已经加入分组，具体请参考“准备工作”。
 
-
+> 当前Android端只支持接收远端屏幕共享，不支持将本端桌面共享出去。
 
 ## 接收屏幕共享
 
-组内任何一端收到OnRemoteVideoEvent事件后，判断videoid是否等于 FspEngine.RESERVED_VIDEOID_SCREENSHARE ，
-如果是这个videoid，表示是屏幕共享，然后调用 SetRemoteVideoRender 设置渲染窗口。
+
+收到开始共享桌面的事件（OnRemoteVideoEvent），只需要设置视频窗口，SDK内部会自动接收屏幕共享视频流并将视频渲染到窗口上。
 
 ```js
-//videoId==FspEngine.RESERVED_VIDEOID_SCREENSHARE
-m_fspEngine.setRemoteVideoRender(userId, videoId, renderView, renderMode);
+fspEngine.setRemoteVideoRender(userId, videoId, renderView, renderMode);
 ```
 
-设置渲染窗口，SDK内部就会开始接收并显示屏幕共享画面。
+> 屏幕共享服务和视频通信服务使用的是相同的传输通道，远端开始屏幕共享后，本端收到的事件与视频通信一样，通过Video ID来区分是到底是广播视频还是屏幕共享，如果Video ID为 fsp::RESERVED_VIDEOID_SCREENSHARE，则表示是屏幕共享，否则为广播视频。
 
-## 停止查看远端视频
 
-如何需要停止查看远端视频，可以将渲染窗口设为空，SDK就会停止查看屏幕共享：
+## 停止接受屏幕共享
+
+通信的过程中，可以通过将视频窗口设为空来停止接收屏幕共享。
 
 ```js
-//videoId==FspEngine.RESERVED_VIDEOID_SCREENSHARE
-m_fspEngine.setRemoteVideoRender(userId, videoId, null, render_mode);
+fspEngine.setRemoteVideoRender(userId, videoId, null, render_mode);
 ```
+
+> Video ID为fsp::RESERVED_VIDEOID_SCREENSHARE。

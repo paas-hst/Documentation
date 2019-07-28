@@ -32,7 +32,8 @@ pFspEngine->StopPublishVideo();
 pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, hVideoWnd, eRenderMode);
 ```
 
-> 屏幕共享服务和视频通信服务使用的是相同的传输通道，远端开始共享后，本端收到的事件与视频通信一样，通过Video ID来区分是到底是视频通信流还是屏幕共享流，如果Video ID为 fsp::RESERVED_VIDEOID_SCREENSHARE，则表示是屏幕共享流，否则为视频通信流。
+
+> 屏幕共享服务和视频通信服务使用的是相同的传输通道，远端开始屏幕共享后，本端收到的事件与视频通信一样，通过Video ID来区分是到底是广播视频还是屏幕共享，如果Video ID为 fsp::RESERVED_VIDEOID_SCREENSHARE，则表示是屏幕共享，否则为广播视频。
 
 
 ## 停止接收屏幕共享
