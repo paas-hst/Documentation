@@ -1,55 +1,49 @@
 # 快速开始
 
-屏幕共享需要登录后并成功加入组，详见[加入组](../platform/prepare_windows.md)。
+使用视频通信服务前，请确保已经加入分组，具体请参考“准备工作”。
+
 
 ## 开始桌面共享
 
-共享端调用 StartPublishScreenShare 开始桌面共享:
+开始采集桌面图像，分组内所有远端用户都会收到开始共享桌面的事件，接口的前四个参数必须填0。
 
 ```js
 pFspEngine->StartPublishScreenShare(0, 0, 0, 0, SCREEN_SHARE_BIAS_QUALITY);
 ```
+> 前四个参数用来指定共享区域，全0标识共享整个桌面，如果想共享桌面的指定区域，具体请参考进阶教程。
 
-开始共享后，组内其他用户会收到 OnRemoteVideoEvent 事件回调， eventType == REMOTE_VIDEO_EVENT_PUBLISHE_STARTED 。
+> 第五个参数为屏幕共享服务的QoS（Quality of Service）模式，具体请参考进阶教程。
 
-## 停止共享
 
-调用StopPublishVideo广播本地视频：
+## 停止桌面共享
+
+停止采集桌面图像，分组内所有远端用户都会收到停止广播视频的事件。
 
 ```js
 pFspEngine->StopPublishVideo();
 ```
 
-停止共享后，组内其他用户会收到 OnRemoteVideoEvent 事件回调， eventType == REMOTE_VIDEO_EVENT_PUBLISHE_STOPED 。
+> 屏幕共享采用的是视频传输通道，因此很多事件与视频通信是相同的，但参数会有变化。
+
 
 ## 接收屏幕共享
 
-组内任何一端收到OnRemoteVideoEvent事件后，判断videoid是否等于 fsp::RESERVED_VIDEOID_SCREENSHARE ，
-如果是这个videoid，表示是屏幕共享，然后调用 SetRemoteVideoRender 设置渲染窗口。
+收到开始共享桌面的事件，只需要设置视频窗口，SDK内部会自动接收屏幕共享视频流并将视频渲染到窗口上。
 
 ```js
 //szVideoId==fsp::RESERVED_VIDEOID_SCREENSHARE
 pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, hVideoWnd, eRenderMode);
 ```
 
-设置渲染窗口，SDK内部就会开始接收并显示屏幕共享画面。
+> 对于Windows端，收到OnRemoteVideoEvent回调后，判断videoId是否等于 fsp::RESERVED_VIDEOID_SCREENSHARE ，
+如果是则表示是屏幕共享视频流。
 
-## 停止查看远端视频
 
-如何需要停止查看远端视频，可以将渲染窗口设为空，SDK就会停止查看屏幕共享：
+## 停止接收屏幕共享
+
+通信的过程中，可以通过将视频窗口设为空来停止接收屏幕共享。
 
 ```js
 //szVideoId==fsp::RESERVED_VIDEOID_SCREENSHARE
 pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, NULL, eRenderMode);
 ```
-
-## 区域共享
-在开始共享或共享过程中，调用StartPublishScreenShare是可以指定共享的区域，SDK会自动调整共享区域，
-已经共享的情况下，StartPublishScreenShare只会调整区域，不会重新共享。
-
-## 远程控制
-1. 接收端调用 IFspEngine::RemoteControlOperation("共享端userid", fsp::REMOTE_CONTROL_REQUEST) 申请远程控制。
-
-2. 共享端收到 IFspEngineEventHandler::OnRemoteControlOperationEvent 回调，
-然后调用IFspEngine::RemoteControlOperation("控制申请端userid", fsp::REMOTE_CONTROL_ACCEPT)接收申请，
-或IFspEngine::RemoteControlOperation("控制申请端userid", fsp::REMOTE_CONTROL_REJECT)拒绝申请。
