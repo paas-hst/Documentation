@@ -17,7 +17,7 @@ pFspEngine->StartPublishScreenShare(0, 0, 100, 200, SCREEN_SHARE_BIAS_QUALITY);
 远程控制分控制端和被控制端两个角色，Windows端既支持控制远端（前提是远端支持被控制），也支持被远端控制。
 SDK内部已经实现了远程控制的申请和控制，上层应用只需调用接口即可。
 
-### 控制端申请远程控制
+#### 控制端申请远程控制
 
 指定远端User ID，调用接口发起远程控制申请。
 
@@ -25,11 +25,11 @@ SDK内部已经实现了远程控制的申请和控制，上层应用只需调�
 pFspEngine->RemoteControlOperation("remoteUserId", fsp::REMOTE_CONTROL_REQUEST);
 ```
 
-### 被控制端收到远程控制请求
+#### 被控制端收到远程控制请求
 
 被控制端会收到 IFspEngineEventHandler::OnRemoteControlOperationEvent 回调，表示远端有人申请控制本端桌面。
 
-### 处理远程控制请求
+#### 处理远程控制请求
 
 收到远程控制请求后，可以调用接口同意/拒绝，控制端会收到处理结果的回调。
 
