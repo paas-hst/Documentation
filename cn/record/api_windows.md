@@ -569,3 +569,113 @@ record_list录制任务列表的返回字段如下：
 | start_time| date | 任务开启时间 |
 | stop_time | date | 任务结束时间 |
 | status | int | 任务状态  |
+
+
+# 存储接口
+
+发post请求，form-data格式的数据。
+
+## 查询录制文件
+
+https://paas-store-rest.haoshitong.com/api/record/file/list
+
+
+参数名 | 类型 | 是否必填 | 参数说明 
+|- | - | - | - 
+| business | String | 是 | 不做校验，填"RE" |
+| app_id | String | 是 | 应用对应的appid |
+| token | String | 是 | 应用通过token生成方式获得的值 |
+| file_name | String | 否 | 完全匹配 |
+| file_state | String | 否 | 录制状态 |
+| page | int | 否 | 页码 |
+| page_size | int | 否 | 每页多少条数据 |
+| start_time | date格式的string | 否 | 开始时间，建议填写。不填写只查询默认30天的范围 |
+| end_time | date格式的string| 否 | 结束时间，建议填写。不填写只查询默认30天的范围 |
+
+返回示例：
+
+```js
+{
+    "code": 0,
+    "message": "OK",
+    "data": null
+}
+```
+
+## 查询存储空间
+
+https://paas-store-rest.haoshitong.com/api/store/volume/getUsedVolume
+
+参数名 | 类型 | 是否必填 | 参数说明 
+|- | - | - | - 
+| business | String | 是 | 不做校验，填"RE" |
+| app_id | String | 是 | 应用对应的appid |
+| token | String | 是 | 应用通过token生成方式获得的值 |
+
+返回示例：
+
+```js
+{
+    "code": 0,
+    "message": "OK",
+    "data": {
+        "volume": 21474836480,
+        "useVolume": 7815569
+    }
+}
+```
+volume是总空间（如果没有设置最大使用空间就没有）
+usevolume是已使用空间
+
+
+## 获取存储文件下载链接
+
+https://paas-store-rest.haoshitong.com/api/record/file/download
+下载存储文件，如果有多个分片会返回多条，最多返回30条分片。
+
+参数名 | 类型 | 是否必填 | 参数说明 
+|- | - | - | - 
+| business | String | 是 | 不做校验，填"RE" |
+| app_id | String | 是 | 应用对应的appid |
+| token | String | 是 | 应用通过token生成方式获得的值 |
+| file_name | String | 是 | 完全匹配，如果不存在则返回为空 |
+
+
+返回示例：
+
+```js
+{
+    "code": 0,
+    "message": "OK",
+    "data": {
+        "urls": "http://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    }
+}
+```
+完成以上步骤，代表你已经为myFristRecord这个组ID可以开始自动录制了。
+当分组中没有可录制的音视频流时，不会进行录制。
+
+## 删除文件
+
+https://paas-store-rest.haoshitong.com/api/record/file/delete
+
+文件删除成功和文件不存在都是返回ok，data为空。
+
+参数名 | 类型 | 是否必填 | 参数说明 
+|- | - | - | - 
+| business | String | 是 | 不做校验，填"RE" |
+| app_id | String | 是 | 应用对应的appid |
+| token | String | 是 | 应用通过token生成方式获得的值 |
+| file_name | String | 是 | 完全匹配 |
+
+返回示例：
+
+```js
+{
+    "code": 0,
+    "message": "OK",
+    "data": null
+}
+```
+
+
