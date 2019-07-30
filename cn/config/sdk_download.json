@@ -1,0 +1,77 @@
+{
+    "jsonData": [
+        {
+            "title": "SDK下载",
+            "data": [
+                {
+                    "icon": "http://fs.hst.com/download/paas/images/download/windows.png",
+                    "title": "SDK for Windows",
+                    "platform": "XP/Windows 7/Windows 10",
+                    "version": "2.15.1",
+                    "size": "128MB",
+                    "updateDate": "2019年6月10日",
+                    "downloadUrl": "http://fs.hst.com/download/paas/sdk/windows/fsp_sdk_win32.zip"
+                },
+                {
+                    "icon": "http://fs.hst.com/download/paas/images/download/android.png",
+                    "title": "SDK for Android",
+                    "platform": "Android",
+                    "version": "2.15.1",
+                    "size": "128MB",
+                    "updateDate": "2019年6月10日",
+                    "downloadUrl": "http://fs.hst.com/download/paas/sdk/android/fsp_sdk_android.zip"
+                },
+                {
+                    "icon": "http://fs.hst.com/download/paas/images/download/apple.png",
+                    "title": "SDK for IOS",
+                    "platform": "iOS",
+                    "version": "2.15.1",
+                    "size": "128MB",
+                    "updateDate": "2019年6月10日",
+                    "downloadUrl": "http://fs.hst.com/download/paas/sdk/android/fsp_sdk_ios.zip"
+                },
+                {
+                    "icon": "http://fs.hst.com/download/paas/images/download/apple.png",
+                    "title": "SDK for macOS",
+                    "platform": "macOS",
+                    "version": "2.15.1",
+                    "size": "128MB",
+                    "updateDate": "2019年6月10日",
+                    "downloadUrl": "http://fs.hst.com/download/paas/sdk/android/fsp_sdk_mac.zip"
+                },
+                {
+                    "icon": "http://fs.hst.com/download/paas/images/download/web.png",
+                    "title": "SDK for Web",
+                    "platform": "web",
+                    "version": "2.15.1",
+                    "size": "128MB",
+                    "updateDate": "2019年6月10日",
+                    "downloadUrl": "http://fs.hst.com/download/paas/sdk/android/fsp_sdk_web.zip"
+                },
+                {
+                    "icon": "http://fs.hst.com/download/paas/images/download/wx.png",
+                    "title": "SDK for WeChat",
+                    "platform": "WeChat",
+                    "version": "2.15.1",
+                    "size": "128MB",
+                    "updateDate": "2019年6月10日",
+                    "downloadUrl": "http://fs.hst.com/download/paas/sdk/android/fsp_sdk_wx.zip"
+                }
+            ]
+        },
+        {
+            "title": "插件下载",
+            "data": [
+                {
+                    "icon": "../../images/download/download-icon06.png",
+                    "title": "RTSP Plugin",
+                    "platform": "Windows",
+                    "version": "2.15.1",
+                    "size": "128MB",
+                    "updateDate": "2019年6月10日",
+                    "downloadUrl": "http://fs.hst.com/download/paas/sdk/android/fsp_sdk_wx.zip"
+                }
+            ]
+        }
+    ]
+}
