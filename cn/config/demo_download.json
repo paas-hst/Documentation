@@ -19,7 +19,7 @@
                 },
                 {
                     "pic": "http://fs.hst.com/download/paas/images/code/mobile.png",
-                    "title": "Windows",
+                    "title": "iOS",
                     "url": "https://github.com/paas-hst/MeetingDemo_ios",
                     "acc": "扫码体验",
                     "accImg": "http://fs.hst.com/download/paas/images/code/meetingdemo_ios.png"
@@ -40,7 +40,7 @@
                 },
                 {
                     "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
-                    "title": "Windows",
+                    "title": "WeChat",
                     "url": "https://github.com/paas-hst/MeetingDemo_wx",
                     "acc": "扫码体验",
                     "accImg": "http://fs.hst.com/download/paas/images/code/meetingdemo_wx.png"
