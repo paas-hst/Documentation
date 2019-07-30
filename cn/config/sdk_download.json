@@ -63,7 +63,7 @@
             "title": "插件下载",
             "data": [
                 {
-                    "icon": "../../images/download/download-icon06.png",
+                    "icon": "http://fs.hst.com/download/paas/images/download/windows.png",
                     "title": "RTSP Plugin",
                     "platform": "Windows",
                     "version": "2.15.1",
