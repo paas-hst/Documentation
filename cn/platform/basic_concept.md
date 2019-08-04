@@ -29,4 +29,4 @@ Video ID用来标识一个虚拟的视频源，Video ID由开发者定义，但�
 
 <img alt="token_desc.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/platform/token_desc.png" align="center" />
 
-Token在开发者这一侧通过代码生成，[点此](developer/code)选择对应语言的Token生成代码，开发者需要将此代码集成到自己的服务器中，控制Token的生成和分发。由于Token会使用App Secret进行加密，开发者需要确保App Secret的安全性。考虑到App Secret泄漏的风险，如无特殊情况，不建议将Token生成代码集成到客户端。
+Token在开发者这一侧通过代码生成，[点此](code)选择对应语言的Token生成代码，开发者需要将此代码集成到自己的服务器中，控制Token的生成和分发。由于Token会使用App Secret进行加密，开发者需要确保App Secret的安全性。考虑到App Secret泄漏的风险，如无特殊情况，不建议将Token生成代码集成到客户端。
