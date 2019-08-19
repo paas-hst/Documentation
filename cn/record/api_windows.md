@@ -577,7 +577,7 @@ record_list录制任务列表的返回字段如下：
 
 ## 查询录制文件
 
-https://paas-store-rest.haoshitong.com/api/record/file/list
+请求地址：https://fsp-store-gw.hst.com/api/record/file/list
 
 
 参数名 | 类型 | 是否必填 | 参数说明 
@@ -598,13 +598,40 @@ https://paas-store-rest.haoshitong.com/api/record/file/list
 {
     "code": 0,
     "message": "OK",
-    "data": null
+    "data": {
+        "count": 2,
+        "dataList": [
+            {
+                "resourceName": "20190712110046_10050",
+                "fileLength": XXXXXX,
+                "fileState": "normal",
+                "fileSize": XXXXXX,
+                "resourceType": ".mp4",
+                "recordTime": "2019-07-01 11:00:46"
+            },
+            {
+                "resourceName": "XXXXXXXXXXXXX",
+                "fileLength": XXXXXX,
+                "fileState": "normal",
+                "fileSize": XXXXXX,
+                "resourceType": ".mp3",
+                "recordTime": "2019-07-02 17:58:02"
+            }
+        ]
+    }
 }
 ```
+count代表总共有多少条
+resourceName代表文件的名称
+fileLength代表文件总时长，单位是秒。
+fileState代表当前的状态。creating 初始化；uploading 上传中；normal  完成，可下载；exception 异常。
+fileSize是文件大小，单位是Byte。
+resourceType是文件类型，目前有mp3、mp4两种。
+recordTime是录制任务开始时间。
 
 ## 查询存储空间
 
-https://paas-store-rest.haoshitong.com/api/store/volume/getUsedVolume
+请求地址：https://fsp-store-gw.hst.com/api/store/volume/getUsedVolume
 
 参数名 | 类型 | 是否必填 | 参数说明 
 |- | - | - | - 
@@ -624,14 +651,14 @@ https://paas-store-rest.haoshitong.com/api/store/volume/getUsedVolume
     }
 }
 ```
-volume是总空间（如果没有设置最大使用空间就没有）
-usevolume是已使用空间
+volume代表总空间，单位Byte（如果没有设置最大使用空间返回为-1）
+usevolume代表已使用空间，单位Byte（如果没有开通最大使用空间返回为-1）
 
 
 ## 获取存储文件下载链接
 
-https://paas-store-rest.haoshitong.com/api/record/file/download
-下载存储文件，如果有多个分片会返回多条，最多返回30条分片。
+请求地址：https://fsp-store-gw.hst.com/api/record/file/download
+下载某个具体文件的内容，如果文件有多个分片则会返回多条记录。
 
 参数名 | 类型 | 是否必填 | 参数说明 
 |- | - | - | - 
@@ -648,17 +675,19 @@ https://paas-store-rest.haoshitong.com/api/record/file/download
     "code": 0,
     "message": "OK",
     "data": {
-        "urls": "http://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        "urls": "http://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"count": 1
     }
 }
 ```
-完成以上步骤，代表你已经为myFristRecord这个组ID可以开始自动录制了。
-当分组中没有可录制的音视频流时，不会进行录制。
+
+urls代表下载链接。需要在1个小时内请求下载。下载时间超过1个小时没影响，但没办法再次请求。
+count代表可下载分片文件总数，可通过http请求下载。
+
 
 ## 删除文件
 
-https://paas-store-rest.haoshitong.com/api/record/file/delete
-
+请求地址：https://fsp-store-gw.hst.com/api/record/file/delete
 文件删除成功和文件不存在都是返回ok，data为空。
 
 参数名 | 类型 | 是否必填 | 参数说明 
@@ -678,4 +707,20 @@ https://paas-store-rest.haoshitong.com/api/record/file/delete
 }
 ```
 
+## 错误码
+
+
+错误码 | 描述  
+|- | - | 
+| 30000 | 异常失败 | 
+| 30001 | 上下文不存在 | 
+| 30003 | 命令参数错误 | 
+| 30004 | app_id已登录(目前同时只能建立一个链接) | 
+| 30005 | Json解析失败 | 
+| 30006 | 未登录 | 
+| 30007 | 鉴权失败 |
+| 30011 | 已到达客户设置的硬盘上限 | 
+| 30035 | 自动录制不支持设置布局 |
+| 30038 | 一个房间只允许有一个自动录制任务 |
+| 其他错误码 | 重新请求依然有问题时，请联系服务提供商 |
 
