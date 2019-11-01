@@ -24,7 +24,7 @@
 
 安全起见，生产环境，Token应该在业务服务器上生成，客户端需要登录鉴权后才能获取Token，[点击此处](http://customer.paas.hst.com/code) 获取Token生成代码。  
 
-为了方便测试，我们提供了一个在线生成token的RESTFUL接口，用来临时生成token，上线后建议更换App ID。 
+为了方便测试，我们提供了一个在线生成临时Token的RESTFUL接口，建议使用POSTMAN工具。 
 
 接口访问方式如下：
 
@@ -35,11 +35,14 @@
 | Body | { "appId": "7a02a8217cd541f990152ea666ee24bf","appSecret": "42de63b19db7fda7"} |
 | Response | {"code": 0, "message": "OK","result": "here is the token"} |
 
+> 上线后建议创建新的应用更换App ID
 
 ## 添加 SDK
 
-1. 下载 [Web SDK](http://paas.hst.com/developer/downloadSDK)，解压并打开。 
+1. 下载 [Web SDK](http://paas.hst.com/developer/downloadSDK)，解压并打开。
+ 
 2. 将JS文件保存到你所操作的项目下。
+
 3. 在项目相应的前端页面文件中，对JS文件进行引用。
 
 
