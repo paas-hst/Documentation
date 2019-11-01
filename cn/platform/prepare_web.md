@@ -36,7 +36,7 @@
 | Body | { "appId": "7a02a8217cd541f990152ea666ee24bf","appSecret": "42de63b19db7fda7"} |
 | Response | {"code": 0, "message": "OK","result": "here is the token"} |
 
-> 上线后建议创建新的应用更换App ID
+> 建议上线后创建新的应用，更换App ID，不要使用测试应用。
 
 ## 添加 SDK
 
@@ -52,14 +52,14 @@
 创建HstRtcEngine对象，调用init方法进行初始化，如果是公有云测试，初始化参数为空；如果是私有云测试，此处填Access服务器地址。
 
 ```js
-  let webRtcEngine = new HstRtcEngine();
-  webRtcEngine.init(/*access url for private cloud*/)
-  .then(() => {
-    console.log("Init success.");
-  })
-  .catch(err => {
-    console.log("Init failed!", err);
-  })
+let webRtcEngine = new HstRtcEngine();
+webRtcEngine.init(/*access url for private cloud*/)
+.then(() => {
+	console.log("Init success.");
+})
+.catch(err => {
+	console.log("Init failed!", err);
+})
 ```
 
 ## 登录
@@ -67,19 +67,20 @@
 初始化完成后，立即登录平台。appId和token参数用来鉴权；companyId表示属于哪个企业组织，默认填空即可；userId由开发者定义，具体请参考“平台介绍->基本概念->User ID”。
 
 ```js
-  let param = {
-    appId: '7a02a8217cd541f990152ea666ee24bf',
-    token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHszwvHlCNRVj3wjIxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
-    companyId: '',
-    userId: 'test'
-  };
-  webRtcEngine.login(param)
-  .then(() => {
-    console.log("Login success.");
-  })
-  .catch(err => {
-    console.log("Login failed!", err);
-  })
+let param = {
+	appId: '7a02a8217cd541f990152ea666ee24bf',
+	token: 'here is the token',
+	companyId: '',
+	userId: 'test'
+};
+
+webRtcEngine.login(param)
+.then(() => {
+	console.log("Login success.");
+})
+.catch(err => {
+	console.log("Login failed!", err);
+})
 ```
 
 ## 加入分组
@@ -87,13 +88,13 @@
 登录成功后，通过指定Group ID加入分组，Group ID由开发者定义，开发者要保证同一App下Group ID不会冲突。具体请参考“平台介绍->基本概念->Group ID”。
 
 ```js
-  webRtcEngine.joinGroup(groupId)
-  .then(() => {
-    console.log("Join group success.");
-  })
-  .catch(err => {
-    console.log("join group failed!", err);
-  })
+webRtcEngine.joinGroup(groupId)
+.then(() => {
+	console.log("Join group success.");
+})
+.catch(err => {
+	console.log("join group failed!", err);
+})
 ```
 
 > User ID和Group ID定义必须符合规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
