@@ -2,13 +2,39 @@
 
 好视通云通信平台大部分服务是基于分组的服务，因此，在使用服务前需要加入分组（Group），在加入分组前，需要先登录平台，具体如下所述。
 
-## 前提条件
+## 开发环境
 
 请确保满足以下开发环境要求:
 
-- 安装Chrome 75+浏览器
+- 音视频通信，建议使用Chrome 70+浏览器
+ 
+- 屏幕共享，需要使用Chrome 72+浏览器
 
-- 确保部署环境为localhost或https协议
+- Web App非本机测试（localhost）必须使用https协议
+
+## 创建项目并获取 App ID
+
+1. [点此注册](http://customer.paas.hst.com/register)，按照步骤注册账号，创建应用。
+
+2. 配置使用相关产品并上线应用。
+
+3. 点击 **应用** 下的 **应用列表** ，在详情页面获取到 **App ID** 和 **App Secret**。
+
+## 获取 Token
+
+安全起见，生产环境，Token应该在业务服务器上生成，客户端需要登录鉴权后才能获取Token，[点击此处](http://customer.paas.hst.com/code) 获取Token生成代码。  
+
+为了方便测试，我们提供了一个在线生成token的RESTFUL接口，用来临时生成token，上线后建议更换App ID。 
+
+接口访问方式如下：
+
+| :-: | :- |
+| Method | POST |
+| URL | https://paas-token-gen.haoshitong.com/generate/token |
+| Header | Content-type: application/json |
+| Body | { "appId": "7a02a8217cd541f990152ea666ee24bf","appSecret": "42de63b19db7fda7"} |
+| Response | {"code": 0, "message": "OK","result": "here is the token"} |
+
 
 ## 添加 SDK
 
@@ -17,57 +43,55 @@
 3. 在项目相应的前端页面文件中，对JS文件进行引用。
 
 
-在创建并初始化 HstRtcEngine 对象前，请确保你已完成环境准备、安装包获取等步骤。
-
 ## 初始化
 
-使用SDK之前必须初始化。Token用来进行登录认证，为保证账号的安全性，Token应该在开发者服务器端生成。其中，Token为字符串，用来校验身份和鉴权，由开发者自己生成，具体请参考“平台介绍->基本概念->应用鉴权”；
+创建HstRtcEngine对象，调用init方法进行初始化，如果是公有云测试，初始化参数为空；如果是私有云测试，此处填Access服务器地址。
 
 ```js
-  let webRtcEngine = new HstRtcEngine()
-  let appId = "you app id" // 系统为应用分配的 APP ID
-  let token = "you token"  // token
-  webRtcEngine.init(appId, token)
+  let webRtcEngine = new HstRtcEngine();
+  webRtcEngine.init(/*access url for private cloud*/)
+  .then(() => {
+    console.log("Init success.");
+  })
+  .catch(err => {
+    console.log("Init failed!", err);
+  })
+```
+
+## 登录
+
+初始化完成后，立即登录平台。appId和token参数用来鉴权；companyId表示属于哪个企业组织，默认填空即可；userId由开发者定义，具体请参考“平台介绍->基本概念->User ID”。
+
+```js
+  let param = {
+    appId: '7a02a8217cd541f990152ea666ee24bf',
+    token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHszwvHlCNRVj3wjIxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
+    companyId: '',
+    userId: 'test'
+  };
+  webRtcEngine.login(param)
+  .then(() => {
+    console.log("Login success.");
+  })
+  .catch(err => {
+    console.log("Login failed!", err);
+  })
 ```
 
 ## 加入分组
 
-通过指定Group ID和User ID加入分组，Group ID和User ID由开发者定义，开发者要保证同一App下Group ID和User ID不会冲突。具体请参考“平台介绍->基本概念->Group ID和User ID”。
-
+登录成功后，通过指定Group ID加入分组，Group ID由开发者定义，开发者要保证同一App下Group ID不会冲突。具体请参考“平台介绍->基本概念->Group ID”。
 
 ```js
-  webRtcEngine.joinGroup(groupId, userId).then(() => {
-      console.log('加入组成功')
+  webRtcEngine.joinGroup(groupId)
+  .then(() => {
+    console.log("Join group success.");
+  })
+  .catch(err => {
+    console.log("join group failed!", err);
   })
 ```
 
 > User ID和Group ID定义必须符合规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
-> 同一分组下相同的User ID，后加入的会被拒绝掉。
-
-## 订阅事件
-
-当远端广播音视频时，在SDK里会触发 onPublisher 事件。通过订阅这个事件，能够知道谁（User ID）广播了流；广播了什么类型（Media Type）的流：音频、视频；以及流的编号（Media ID）。
-
-```js
-// 远程发布流事件
-webRtcEngine.on('onPublisher', function (publisher) {
-       // 远程发布者ID，在订阅方法时，要用到这个ID
-       console.log(publisher.userId); 
-       // 远程发布者 媒体id
-       console.log(publisher.mediaId); 
-       // 远程发布者的流类型 1：音频 2：视频
-       console.log(publisher.mediaType);
-})
-```
-
-相对应的也有 onUnPublisher 事件，当远端停止广播时，会触发这个事件。
-
-```js
-webRtcEngine.on('onUnPublisher', function (publisher) {
-  //远程发布者ID，在订阅方法时，要用到这个ID 
-  console.log(publisher.userId); 
-})
-```
-
-> 一个用户同一类型的流可能会有多个，比如接了多个摄像头。
+> 同一App下相同的User ID，后登录的会被拒绝。
