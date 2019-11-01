@@ -12,7 +12,7 @@
 
 - Web App非本机测试（localhost）必须使用https协议
 
-## 创建项目并获取 App ID
+## 创建应用
 
 1. [点此注册](http://customer.paas.hst.com/register)，按照步骤注册账号，创建应用。
 
@@ -28,6 +28,7 @@
 
 接口访问方式如下：
 
+| 参数 | 值 |
 | :-: | :- |
 | Method | POST |
 | URL | https://paas-token-gen.haoshitong.com/generate/token |
