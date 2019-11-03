@@ -44,8 +44,7 @@ hstRtcEngine.login(options)
 
 ### 参数说明
 
-- options <object> 提供登录所需的参数，如下表所示：
-
+options <object> 提供登录所需的参数，如下表所示：
 
 | 参数名 | 类型 | 是否必填 | 参数说明
 | :-: | :-: | :-: | - |
@@ -95,7 +94,7 @@ hstRtcEngine.joinGroup(groupId)
 
 ### 参数说明
 
-- groupId <string> 待加入的分组ID，分组ID由开发者自定义，请注意分组ID的定义约束。
+groupId <string> 待加入的分组ID，分组ID由开发者自定义，请注意分组ID的定义约束。
 
 > Group ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
