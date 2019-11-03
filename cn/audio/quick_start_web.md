@@ -7,7 +7,7 @@
 广播本地音频时，需要指定麦克风设备，同时，也需要选择本地使用的扬声器设备。SDK提供一个接口同时获取摄像头、麦克风和扬声器设备，可以根据需要进行选择。
 
 ```js
-webRtcEngine.getMediaDevices()
+hstRtcEngine.getMediaDevices()
 .then((mediaDevs) => {
 	for (const dev of mediaDevs.micDevs){
 	    console.log("device name: " + dev.devName + " device ID: " + dev.devId);
@@ -31,7 +31,7 @@ webRtcEngine.getMediaDevices()
 打开本地麦克风，并广播给分组内所有用户，分组内所有用户都会接收到广播音频事件。
 
 ```js
-webEngine.startPublishAudio();
+hstRtcEngine.startPublishAudio();
 ```
 
 ## 停止广播本地音频
@@ -39,7 +39,7 @@ webEngine.startPublishAudio();
 关闭本地麦克风，分组内所有用户都会接收到停止广播音频事件。
 
 ```js
-webRtcEngine.stopPublishAudio();
+hstRtcEngine.stopPublishAudio();
 ```
 
 ## 接收远端音频
@@ -47,7 +47,7 @@ webRtcEngine.stopPublishAudio();
 订阅"onPublishMedia"事件，收到广播事件后，调用startReceiveRemoteAudio接口开始接收音频。
 
 ```js
-webEngine.on('onPublishMedia', function (data) {
+hstRtcEngine.on('onPublishMedia', function (data) {
     if (data.mediaType == 1) { // 音频
         webEngine.startReceiveRemoteAudio(data.userId, data.mediaId)
         .then(() => {
@@ -65,7 +65,7 @@ webEngine.on('onPublishMedia', function (data) {
 订阅“onUnPublishMedia”事件，收到停止广播事件后，调用stopReceiveRemoteAudio停止接收音频。
 
 ```js
-webEngine.on("onUnPublishMedia", function(data) {
+hstRtcEngine.on("onUnPublishMedia", function(data) {
     if (data.mediaType == 1) { // 音频
         webEngine.stopReceiveRemoteAudio(data.userId, data.mediaId)
         .then(() => {

@@ -52,34 +52,33 @@
 创建HstRtcEngine对象，调用init方法进行初始化，如果是公有云测试，初始化参数为空；如果是私有云测试，此处填Access服务器地址。
 
 ```js
-let webRtcEngine = new HstRtcEngine();
-webRtcEngine.init(/*access url for private cloud*/)
+let hstRtcEngine = new HstRtcEngine();
+hstRtcEngine.init(/*access url for private cloud*/)
 .then(() => {
 	console.log("Init success.");
 })
-.catch(err => {
-	console.log("Init failed!", err);
+.catch(() => {
+	console.log("Init failed!");
 })
 ```
 
 ## 登录
 
-初始化完成后，立即登录平台。appId和token参数用来鉴权；companyId表示属于哪个企业组织，默认填空即可；userId由开发者定义，具体请参考“平台介绍->基本概念->User ID”。
+初始化完成后，立即登录平台。appId和token参数用来鉴权；userId由开发者定义，具体请参考“平台介绍->基本概念->User ID”。
 
 ```js
-let param = {
+let options = {
 	appId: '7a02a8217cd541f990152ea666ee24bf',
-	token: 'here is the token',
-	companyId: '',
-	userId: 'test'
+	token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHgzwvglCNrVj3wjjxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
+	userId: 'user1'
 };
 
-webRtcEngine.login(param)
+hstRtcEngine.login(options)
 .then(() => {
 	console.log("Login success.");
 })
-.catch(err => {
-	console.log("Login failed!", err);
+.catch(() => {
+	console.log("Login failed!");
 })
 ```
 
@@ -88,15 +87,11 @@ webRtcEngine.login(param)
 登录成功后，通过指定Group ID加入分组，Group ID由开发者定义，开发者要保证同一App下Group ID不会冲突。具体请参考“平台介绍->基本概念->Group ID”。
 
 ```js
-webRtcEngine.joinGroup(groupId)
+hstRtcEngine.joinGroup(groupId)
 .then(() => {
 	console.log("Join group success.");
 })
-.catch(err => {
-	console.log("join group failed!", err);
+.catch(() => {
+	console.log("join group failed!");
 })
 ```
-
-> User ID和Group ID定义必须符合规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
-
-> 同一App下相同的User ID，后登录的会被拒绝。
