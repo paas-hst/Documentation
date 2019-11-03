@@ -4,20 +4,18 @@
 
 ## 获取设备列表
 
-广播本地音频时，需要指定麦克风设备，同时，也需要选择本地使用的扬声器设备。SDK提供一个接口同时获取摄像头、麦克风和扬声器设备，可以根据需要进行选择。
+广播本地音频时，需要指定麦克风设备，同时，也需要选择本地使用的扬声器设备。SDK提供一个接口同时获取摄像头、麦克风和扬声器设备，开发者可以根据需要进行选择。
 
 ```js
 hstRtcEngine.getMediaDevices()
 .then((mediaDevs) => {
+	// 麦克风设备
 	for (const dev of mediaDevs.micDevs){
 	    console.log("device name: " + dev.devName + " device ID: " + dev.devId);
 	}
 	
+	// 扬声器设备
 	for (const dev of mediaDevs.spkDevs){
-	    console.log("device name: " + dev.devName + " device ID: " + dev.devId);
-	}
-	
-	for (const dev of mediaDevs.camDevs){
 	    console.log("device name: " + dev.devName + " device ID: " + dev.devId);
 	}
 })
