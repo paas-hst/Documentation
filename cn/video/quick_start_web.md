@@ -41,7 +41,7 @@ hstRtcEngine.startPublishVideo(mediaId);
 
 ## 查看远端视频
 
-需要订阅“onPublishMedia”事件和“onRemoteMediaAdd”事件。收到“onPublishMedia”事件后，调用“startReceiveRemoteVideo”开始接收远端视频；收到“onRemoteMediaAdd”，调用“setVideoRender”接口查看远端视频。
+需要订阅“onPublishMedia”事件和“onRemoteMediaAdd”事件。收到“onPublishMedia”事件后，调用“startReceiveRemoteVideo”接口开始接收远端视频；收到“onRemoteMediaAdd”事件后，调用“setVideoRender”接口查看远端视频。
 
 ```js
 // 订阅"onPublishMedia"事件，开始接收远端视频
