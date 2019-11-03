@@ -30,16 +30,8 @@ webRtcEngine.getMediaDevices()
 
 打开本地麦克风，并广播给分组内所有用户，分组内所有用户都会接收到广播音频事件。
 
-广播本地音频只需一行代码：
-
 ```js
 webEngine.startPublishAudio();
-```
-
-SDK会选择一个默认麦克风设备，如果有多个麦克风设备，可以选择使用哪个麦克风设备
-
-```js
-webRtcEngine.chooseMicDevice(micDevId);
 ```
 
 ## 停止广播本地音频
