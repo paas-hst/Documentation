@@ -10,10 +10,10 @@
 ```js
 hstRtcEngine.getMediaDevices()
 .then((mediaDevs) => {
-	// 摄像头设备
-	for (const dev of mediaDevs.camDevs){
-	    console.log("device name: " + dev.devName + " device ID: " + dev.devId);
-	}
+    // 摄像头设备
+    for (const dev of mediaDevs.camDevs){
+        console.log("device name: " + dev.devName + " device ID: " + dev.devId);
+    }
 })
 .catch(err => {
     console.log("Load media device failed!", err);
@@ -46,23 +46,23 @@ hstRtcEngine.startPublishVideo(mediaId);
 ```js
 // 订阅"onPublishMedia"事件，开始接收远端视频
 hstRtcEngine.on('onPublishMedia', function (data) {
-	if (data.mediaType == 2) { // 视频	
-		hstRtcEngine.startReceiveRemoteVideo(data.userId, data.mediaId)
-		.then(() => {
-		    console.log("Start receive user " + data.userId + " video! ");
-		})
-		.catch(() => {
-		    console.log("Receive remote video failed!");
-		})
-	} 
+    if (data.mediaType == 2) { // 视频	
+        hstRtcEngine.startReceiveRemoteVideo(data.userId, data.mediaId)
+        .then(() => {
+            console.log("Start receive user " + data.userId + " video! ");
+        })
+        .catch(() => {
+            console.log("Receive remote video failed!");
+        })
+    } 
 }
 
 // 订阅“onRemoteMediaAdd”事件，查看远端视频
 hstRtcEngine.on('onRemoteMediaAdd', function (data) {
-	if (data.mediaType == 2){ // 视频
-	    let videoElement = document.getElementById('video-panel');
-	    hstRtcEngine.setVideoRender(videoElement, data.mediaId, data.userId);
-	}
+    if (data.mediaType == 2){ // 视频
+        let videoElement = document.getElementById('video-panel');
+        hstRtcEngine.setVideoRender(videoElement, data.mediaId, data.userId);
+    }
 });
 
 ```

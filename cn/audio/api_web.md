@@ -24,10 +24,10 @@ hstRtcEngine.init([accessUrl])
 ```js
 hstRtcEngine.init()
 .then(() => {
-	console.log("Init success.");
+    console.log("Init success.");
 })
 .catch(() => {
-	console.log("Init failed!");
+    console.log("Init failed!");
 })
 ```
 
@@ -66,17 +66,17 @@ options <object> 提供登录所需的参数，如下表所示：
 
 ```js
 let options = {
-	appId: '7a02a8217cd541f990152ea666ee24bf',
-	token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHgzwvglCNrVj3wjjxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
-	userId: 'user1'
+    appId: '7a02a8217cd541f990152ea666ee24bf',
+    token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHgzwvglCNrVj3wjjxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
+    userId: 'user1'
 };
 
 hstRtcEngine.login(options)
 .then(() => {
-	console.log("Login success.");
+    console.log("Login success.");
 })
 .catch(() => {
-	console.log("Login failed!");
+    console.log("Login failed!");
 })
 ```
 
@@ -110,10 +110,10 @@ groupId <string> 待加入的分组ID，分组ID由开发者自定义，请注�
 ```js
 hstRtcEngine.joinGroup("test-group")
 .then(() => {
-	console.log("Join group success.");
+    console.log("Join group success.");
 })
 .catch(() => {
-	console.log("Join group failed!");
+    console.log("Join group failed!");
 })
 ```
 
@@ -150,10 +150,10 @@ hstRtcEngine.leaveGroup()
 ```js
 hstRtcEngine.leaveGroup()
 .then(() => {
-	console.log("Leave group success.");
+    console.log("Leave group success.");
 })
 .catch(() => {
-	console.log("Leave group failed!");
+    console.log("Leave group failed!");
 })
 ```
 
@@ -189,10 +189,10 @@ hstRtcEngine.exit()
 ```js
 hstRtcEngine.exit()
 .then(() => {
-	console.log("Exit success.");
+    console.log("Exit success.");
 })
 .catch(() => {
-	console.log("Exit failed!");
+    console.log("Exit failed!");
 })
 
 // do something cleanning without waiting for async callback

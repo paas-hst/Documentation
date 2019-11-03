@@ -9,15 +9,15 @@
 ```js
 hstRtcEngine.getMediaDevices()
 .then((mediaDevs) => {
-	// 麦克风设备
-	for (const dev of mediaDevs.micDevs){
-	    console.log("device name: " + dev.devName + " device ID: " + dev.devId);
-	}
-	
-	// 扬声器设备
-	for (const dev of mediaDevs.spkDevs){
-	    console.log("device name: " + dev.devName + " device ID: " + dev.devId);
-	}
+    // 麦克风设备
+    for (const dev of mediaDevs.micDevs){
+        console.log("device name: " + dev.devName + " device ID: " + dev.devId);
+    }
+
+    // 扬声器设备
+    for (const dev of mediaDevs.spkDevs){
+        console.log("device name: " + dev.devName + " device ID: " + dev.devId);
+    }
 })
 .catch(err => {
     console.log("Load media device failed!", err);

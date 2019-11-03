@@ -55,10 +55,10 @@
 let hstRtcEngine = new HstRtcEngine();
 hstRtcEngine.init(/*access url for private cloud*/)
 .then(() => {
-	console.log("Init success.");
+    console.log("Init success.");
 })
 .catch(() => {
-	console.log("Init failed!");
+    console.log("Init failed!");
 })
 ```
 
@@ -68,17 +68,17 @@ hstRtcEngine.init(/*access url for private cloud*/)
 
 ```js
 let options = {
-	appId: '7a02a8217cd541f990152ea666ee24bf',
-	token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHgzwvglCNrVj3wjjxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
-	userId: 'user1'
+    appId: '7a02a8217cd541f990152ea666ee24bf',
+    token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHgzwvglCNrVj3wjjxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
+    userId: 'user1'
 };
 
 hstRtcEngine.login(options)
 .then(() => {
-	console.log("Login success.");
+    console.log("Login success.");
 })
 .catch(() => {
-	console.log("Login failed!");
+    console.log("Login failed!");
 })
 ```
 
@@ -89,9 +89,9 @@ hstRtcEngine.login(options)
 ```js
 hstRtcEngine.joinGroup(groupId)
 .then(() => {
-	console.log("Join group success.");
+    console.log("Join group success.");
 })
 .catch(() => {
-	console.log("join group failed!");
+    console.log("join group failed!");
 })
 ```

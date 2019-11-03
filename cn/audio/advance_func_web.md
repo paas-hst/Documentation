@@ -23,7 +23,7 @@ webRtcEngine.getStats(options);
 
 let stats = hstRtcEngine.getStats({userId: "xxx", mediaType: 1, mediaId: "xxx"});
 if (stats) {
-	console.log("Audio bitrate = " + stats.audio.bitRate);
+    console.log("Audio bitrate = " + stats.audio.bitRate);
 }
 
 ```
