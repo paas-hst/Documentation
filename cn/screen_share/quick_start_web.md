@@ -24,11 +24,6 @@ hstRtcEngine.stopScreenShare();
 
 需要订阅“onPublishMedia”事件和“onRemoteMediaAdd”事件。收到“onPublishMedia”事件后，调用“startRecvScreenShare”接口开始接收远端屏幕共享流；收到“onRemoteMediaAdd”事件后，调用“setScreenShareRender”接口查看远端屏幕共享。
 
-
-```js
-pFspEngine->SetRemoteVideoRender(szUserId, szVideoId, hVideoWnd, eRenderMode);
-```
-
 ```js
 // 订阅"onPublishMedia"事件，开始接收远端屏幕共享
 hstRtcEngine.on('onPublishMedia', function (data) {
