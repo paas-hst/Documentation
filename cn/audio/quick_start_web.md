@@ -4,7 +4,7 @@
 
 ## 获取设备列表
 
-<div style="font-family: Verdana,Arial,Helvetica,sans-serif;font-size: 20px; margin-top:10px">
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif;font-size: 14px; line-height: 1.8">
 广播本地音频时，需要指定麦克风设备，同时，也需要选择本地使用的扬声器设备。SDK提供一个接口同时获取摄像头、麦克风和扬声器设备，开发者可以根据需要进行选择。
 广播本地音频时，需要指定麦克风设备，同时，也需要选择本地使用的扬声器设备。SDK提供一个接口同时获取摄像头、麦克风和扬声器设备，开发者可以根据需要进行选择。
 广播本地音频时，需要指定麦克风设备，同时，也需要选择本地使用的扬声器设备。SDK提供一个接口同时获取摄像头、麦克风和扬声器设备，开发者可以根据需要进行选择。
