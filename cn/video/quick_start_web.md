@@ -76,7 +76,6 @@ hstRtcEngine.on('onRemoteMediaAdd', function (data) {
         hstRtcEngine.setStreamRender(videoElement, data.mediaId, data.userId);
     }
 });
-
 ```
 
 ## 停止查看远端视频
