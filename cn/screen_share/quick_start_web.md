@@ -11,6 +11,12 @@
 hstRtcEngine.startScreenShare();
 ```
 
+开启屏幕共享号，立即显示本端屏幕共享画面。
+
+```js
+hstRtcEngine.setLocalScreenShareRender(videoElement);
+```
+
 ## 停止屏幕共享
 
 停止采集桌面图像，分组内所有远端用户都会收到停止屏幕共享的事件。
@@ -19,16 +25,21 @@ hstRtcEngine.startScreenShare();
 hstRtcEngine.stopScreenShare();
 ```
 
+停止屏幕共享后，取消显示本端屏幕共享画面。
 
-## 接收屏幕共享
+```js
+hstRtcEngine.unsetScreenShareRender(videoElement);
+```
 
-需要订阅“onPublishMedia”事件和“onRemoteMediaAdd”事件。收到“onPublishMedia”事件后，调用“startRecvScreenShare”接口开始接收远端屏幕共享流；收到“onRemoteMediaAdd”事件后，调用“setScreenShareRender”接口查看远端屏幕共享。
+## 接收远端屏幕共享
+
+订阅“onPublishMedia”事件和“onRemoteMediaAdd”事件，收到“onPublishMedia”事件后，调用“startReceiveScreenShare”接口开始接收远端屏幕共享流；收到“onRemoteMediaAdd”事件后，调用“setRemoteScreenShareRender”接口查看远端屏幕共享画面。
 
 ```js
 // 订阅"onPublishMedia"事件，开始接收远端屏幕共享
 hstRtcEngine.on('onPublishMedia', function (data) {
     if (data.mediaType == 0) { // 屏幕共享	
-        hstRtcEngine.startRecvScreenShare(data.userId, data.mediaId)
+        hstRtcEngine.startReceiveScreenShare(data.userId, data.mediaId)
         .then(() => {
             console.log("Start receive user " + data.userId + " screen share! ");
         })
@@ -42,18 +53,15 @@ hstRtcEngine.on('onPublishMedia', function (data) {
 hstRtcEngine.on('onRemoteMediaAdd', function (data) {
     if (data.mediaType == 0){ // 屏幕共享
         let videoElement = document.getElementById('screen-share-panel');
-        hstRtcEngine.setScreenShareRender(videoElement, data.mediaId, data.userId);
+        hstRtcEngine.setRemoteScreenShareRender(videoElement, data.userId, data.mediaId);
     }
 });
 
 ```
 
+## 停止接收远端屏幕共享
 
-## 停止接收屏幕共享
-
-通信的过程中，可以通过调用stopRecvScreenShare随时停止接收屏幕共享流。
-
-一般情况，开发者需要订阅“onUnPublishMedia”事件，收到事件后，调用stopRecvScreenShare停止接收屏幕共享流。
+开发者可以通过调用stopReceiveScreenShare随时停止接收远端屏幕共享流。典型场景，开发者订阅“onUnPublishMedia”事件，收到事件后，调用stopReceiveScreenShare停止接收屏幕共享流，并调用unsetScreenShareRender取消显示远端屏幕共享画面。
 
 ```js
 hstRtcEngine.on("onUnPublishMedia", function(data) {
@@ -61,6 +69,7 @@ hstRtcEngine.on("onUnPublishMedia", function(data) {
         hstRtcEngine.stopRecvScreenShare(data.userId, data.mediaId)
         .then(() => {
             console.log("Stop receive screen share.");
+            hstRtcEngine.unsetScreenShareRender(videoElement);
         })
         .catch(() => {
             console.log("Stop receive remote screen share failed!");

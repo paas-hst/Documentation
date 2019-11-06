@@ -1,3 +1,4 @@
+
 ## API列表
 | 接口 | 描述 |
 | - | - |
@@ -8,15 +9,14 @@
 | exit | 退出登录 |
 | destroy | 销毁引擎 |
 | on | 订阅事件 |
-| startPublishAudio | 广播本地音频 |
-| stopPublishAudio | 停止广播本地音频 |
-| startReceiveRemoteAudio | 接收远端音频 |
-| stopReceiveRemoteAudio | 停止接收远端音频 |
-| setStreamRender | 设置音频播放对象 |
-| unsetStreamRender | 取消设置音频播放对象 |
-| getStats | 获取音频流统计数据 |
-| getMediaDevices | 获取音频设备 |
-| chooseMicDevice | 选择本地麦克风设备 |
+| startScreenShare | 开启屏幕共享 |
+| stopScreenShare | 关闭屏幕共享 |
+| startReceiveScreenShare | 接收远端屏幕共享 |
+| stopReceiveScreenShare | 停止接收远端屏幕共享|
+| setLocalScreenShareRender | 显示本地屏幕共享画面 |
+| setRemoteScreenShareRender | 显示远端屏幕共享画面 |
+| unsetScreenShareRender | 取消显示屏幕共享画面 |
+| getStats | 获取屏幕共享流统计数据 |
 
 ## init
 
@@ -282,7 +282,7 @@ eventName：需要订阅的事件名称，相关事件定义如下表所示。
 |onUserLeaveGroup | userId |有人离开分组 |
 |onPublishMedia | {userId: "xxx", mediaType: "xxx", mediaId: "xxx"} |分组内有人发布媒体流 |
 |onUnPublishMedia | {userId: "xxx", mediaType: "xxx", mediaId: "xxx"} |分组内有人取消发布媒体流 |
-|onRemoteMediaAdd | {userId: "xxx", mediaType: "xxx", mediaId: "xxx", streamId: "xxx" }  | 接收到远端媒体流|
+|onRemoteMediaAdd | {userId: "xxx", mediaType: "xxx", mediaId: "xxx", streamId: "xxx" }  |接收到远端媒体流 |
   
 callback：事件发生时的回调函数，函数原型如下，不同事件data参数取值不一样。
 
@@ -315,19 +315,19 @@ hstRtcEngine.on('onUserLeaveGroup', function(user){
 }
 
 hstRtcEngine.on('onPublishMedia', function (data) {
-    hstRtcEngine.startReceiveRemoteAudio(data.userId, data.mediaId)
+    hstRtcEngine.startReceiveRemoteVideo(data.userId, data.mediaId)
     .then(() => {
-        console.log("Start receive user " + data.userId + " audio.");
+        console.log("Start receive user " + data.userId + " video.");
     })
     .catch(() => {
-        console.log("Receive remote audio failed!");
+        console.log("Receive remote video failed!");
     })
 }
 
 hstRtcEngine.on('onUnPublishMedia', function (data) {
-    hstRtcEngine.stopReceiveRemoteAudio(data.userId, data.mediaId)
+    hstRtcEngine.stopReceiveRemoteVideo(data.userId, data.mediaId)
     .then(() => {
-        console.log("Stop receive remote audio.");
+        console.log("Stop receive remote video.");
     })
     .catch(() => {
         console.log("Stop receive remote video failed!");
@@ -339,22 +339,20 @@ hstRtcEngine.on('onRemoteMediaAdd', function (data) {
 }
 ```
 
-## startPublishAudio
+## startScreenShare
 
-开始广播本地音频。
+开启本端屏幕共享。
 
 ### 接口原型
 
 ```js
-hstRtcEngine.startPublishAudio([deviceId])
+hstRtcEngine.startScreenShare()
 ```
 
 ### 参数说明
 
-deviceId： 可选，为通过getMediaDevices枚举出来的麦克风设备deviceId。
+无参数
 
-> 如果参数不为空，则会使用deviceId指定的麦克风设备；如果参数为空，但在此之前调用了chooseMicDevice指定麦克风设备，则会使用chooseMicDevice指定的麦克风设备；如果参数为空，且未调用chooseMicDevice，则会使用系统默认麦克风设备。
-  
 
 ### 返回值
 
@@ -363,29 +361,23 @@ deviceId： 可选，为通过getMediaDevices枚举出来的麦克风设备devic
 ### 示例代码
 
 ```js
-hstRtcEngine.chooseMicDevice(micDevId);
-hstRtcEngine.startPublishAudio();
+hstRtcEngine.startScreenShare();
 ```
 
 
-## stopPublishAudio
+## stopScreenShare
 
-停止广播本地麦克风设备。
+停止本端屏幕共享。
 
 ### 接口原型
 
 ```js
-hstRtcEngine.stopPublishAudio([deviceId])
+hstRtcEngine.stopScreenShare()
 ```
 
 ### 参数说明
 
-deviceId： 为通过getMediaDevices枚举出来的摄像头设备deviceId。
-
-> 大多数情况下，stopPublishAudio与startPublishAudio成对调用，两者参数取值一致。  
-
-> 在调用startPublishAudio后，不要调用chooseMicDevice，否则可能会导致广播和取消广播的deviceId不一致。
-  
+无参数
 
 ### 返回值
 
@@ -394,26 +386,27 @@ deviceId： 为通过getMediaDevices枚举出来的摄像头设备deviceId。
 ### 示例代码
 
 ```js
-hstRtcEngine.stopPublishAudio();
+hstRtcEngine.stopScreenShare();
 ```
 
 
-## startReceiveRemoteAudio
+## startReceiveScreenShare
 
-开始接收远端音频
+开始接收远端屏幕共享。
 
 ### 接口原型
 
 ```js
-hstRtcEngine.startReceiveRemoteAudio(userId, mediaId)
+hstRtcEngine.startReceiveScreenShare(userId, mediaId)
 ```
 
 ### 参数说明
 
-userId： 用户ID，指定接收哪个用户的音频。
+userId： 用户ID，指定接收哪个用户的屏幕共享。
 
-mediaId： 媒体ID，指定接收哪一路音频流。
+mediaId： 媒体ID，指定接收哪一路屏幕共享流。
   
+> 原则上，不限制每个客户端屏幕共享的路数，不过当前通过接口一个客户端只能共享一路屏幕共享。
 
 ### 返回值
 
@@ -422,31 +415,31 @@ mediaId： 媒体ID，指定接收哪一路音频流。
 ### 示例代码
 
 ```js
-hstRtcEngine.startReceiveRemoteAudio(userId, mediaId)
+hstRtcEngine.startReceiveScreenShare(userId, mediaId)
 .then(() => {
-    console.log("Start receive remote audio.");
+    console.log("Start receive screen share.");
 })
 .catch(() => {
-    console.log("Receive remote audio failed!");
+    console.log("Receive screen share failed!");
 })
 ```
 
 
-## stopReceiveRemoteAudio
+## stopReceiveScreenShare
 
-停止接收远端音频。
+停止接收远端屏幕共享。
 
 ### 接口原型
 
 ```js
-hstRtcEngine.stopReceiveRemoteAudio(userId, mediaId)
+hstRtcEngine.stopReceiveScreenShare(userId, mediaId)
 ```
 
 ### 参数说明
 
-userId： 用户ID，指定停止接收哪个用户的音频。
+userId： 用户ID，指定接收哪个用户的屏幕共享。
 
-mediaId： 媒体ID，指定停止接收哪一路音频流。
+mediaId： 媒体ID，指定接收哪一路屏幕共享流。
 
 ### 返回值
 
@@ -455,36 +448,29 @@ mediaId： 媒体ID，指定停止接收哪一路音频流。
 ### 示例代码
 
 ```js
-hstRtcEngine.stopReceiveRemoteAudio(userId, mediaId)
+hstRtcEngine.stopReceiveScreenShare(userId, mediaId)
 .then(() => {
-    console.log("Stop receive remote audio!");
+    console.log("Stop receive screen share!");
 })
 .catch(()=>{
-    console.log("Stop receive remote audio failed!");
+    console.log("Stop receive screen share failed!");
 })
 ```
 
 
-## setStreamRender
+## setLocalScreenShareRender
 
-设置音频流播放对象。
+显示本端屏幕共享画面。
 
 ### 接口原型
 
 ```js
-hstRtcEngine.setStreamRender(videoElement, streamId)
+hstRtcEngine.setLocalScreenShareRender(videoElement)
 ```
 
 ### 参数说明
 
 videoElement： video标签对象。
-
-streamId： 流标识，由订阅onRemoteMediaAdd事件返回。
-
-> 音频、视频和屏幕共享都使用video标签进行播放。
-
-> 一个Stream中可能同时包含音频和视频，onRemoteMediaAdd事件可能会通知两次，但只需调用setStreamRender一次即可。
-  
 
 ### 返回值
 
@@ -494,25 +480,27 @@ streamId： 流标识，由订阅onRemoteMediaAdd事件返回。
 
 ```js
 let videoElement = document.getElementById('test-video');
-hstRtcEngine.setStreamRender(videoElement, streamId);
+hstRtcEngine.setLocalScreenShareRender(videoElement);
 ```
 
-## unsetStreamRender
 
-取消设置音频流播放对象。
+## setRemoteScreenShareRender
+
+显示远端屏幕共享画面。
 
 ### 接口原型
 
 ```js
-hstRtcEngine.unsetStreamRender(videoElement, streamId);
+hstRtcEngine.setRemoteScreenShareRender(videoElement, userId, mediaId)
 ```
 
 ### 参数说明
 
 videoElement： video标签对象。
 
-streamId： 流标识，由订阅onRemoteMediaAdd事件返回。
-  
+userId： 用户ID，指定显示哪个用户的屏幕共享画面。
+
+mediaId： 媒体ID，指定显示哪一路屏幕共享流。
 
 ### 返回值
 
@@ -521,13 +509,39 @@ streamId： 流标识，由订阅onRemoteMediaAdd事件返回。
 ### 示例代码
 
 ```js
-hstRtcEngine.unsetStreamRender(videoElement, streamId);
+let videoElement = document.getElementById('test-video');
+hstRtcEngine.setRemoteScreenShareRender(videoElement, userId, mediaId);
+```
+
+
+## unsetScreenShareRender
+
+取消显示本端或远端的屏幕共享画面。
+
+### 接口原型
+
+```js
+hstRtcEngine.unsetScreenShareRender(videoElement);
+```
+
+### 参数说明
+
+videoElement： video标签对象。
+
+### 返回值
+
+此方法是一个同步调用，无返回值。
+
+### 示例代码
+
+```js
+hstRtcEngine.unsetScreenShareRender(videoElement);
 ```
 
 
 ## getStats
 
-获取音频流统计数据。
+获取屏幕共享流统计数据。
 
 ### 接口原型
 
@@ -548,6 +562,7 @@ options： 对流进行描述的参数对象，如下所示：
 ```
 
 > mediaType取值： 0-屏幕共享，1-音频，2-视频
+  
 
 ### 返回值
 
@@ -562,102 +577,25 @@ options： 对流进行描述的参数对象，如下所示：
 
 > bitRate单位为kbps
 
+> 屏幕共享也是一路视频，取video数据。
+
 ### 示例代码
 
 ```js
 // 使用定时器定时刷新统计数据
-function displayAudioStats() {
+function displayScreenShareStats() {
     setTimeout(function() {
-        let options = { userId: "xxx", mediaType: 1, mediaId: "xxxx" };
+        let options = { userId: "xxx", mediaType: 0, mediaId: "xxxx" };
         let stats = hstRtcEngine.getStats(options);
         if (stats) {
-            let statsInfo = stats.audio.bitRate + "kbps";
+            let statsInfo = stats.video.width + "*" 
+                + stats.video.height + " " 
+                + stats.video.frameRate + "fps " 
+                + stats.video.bitRate + "kbps";
             console.log(statsInfo);
         } else {
             console.log("Get stats failed!");
         }
-    displayAudioStats();
+    displayScreenShareStats();
 }
-```
-
-
-## getMediaDevices
-
-获取音频设备。
-
-### 接口原型
-
-```js
-hstRtcEngine.getMediaDevices()
-```
-
-### 参数说明
-
-无参数。
-  
-
-### 返回值
-
-此方法是一个异步调用，会返回一个Promise对象。
-
-调用成功返回所有音频、视频设备列表，数据结构为：
-
-```js
-{
-    micDev: [ { devName: "xxx", devId: "xxx" } ],
-    spkDev: [ { devName: "xxx", devId: "xxx" } ],
-    camDev: [ { devName: "xxx", devId: "xxx" } ]
-}
-```
-
-调用失败返回错误。
-
-
-### 示例代码
-
-```js
-hstRtcEngine.getMediaDevices()
-.then((mediaDevs) => {
-    // 麦克风设备
-    for (const dev of mediaDevs.micDevs){
-        console.log("MIC: " + dev.devName);
-    }
-    // 扬声器设备
-    for (const dev of mediaDevs.spkDevs){
-        console.log("SPK: " + dev.devName);
-    }
-    // 摄像头设备
-    for (const dev of mediaDevs.camDevs){
-        console.log("CAM: " + dev.devName);
-    }
-})
-.catch(err => {
-    console.log("Load media device failed!", err);
-});
-```
-
-
-## chooseMicDevice
-
-选择麦克风设备。
-
-### 接口原型
-
-```js
-hstRtcEngine.chooseMicDevice(deviceId)
-```
-
-### 参数说明
-
-deviceId： 麦克风设备deviceId。
-  
-
-### 返回值
-
-此方法是一个同步调用，无返回值。
-
-### 示例代码
-
-```js
-hstRtcEngine.chooseMicDevice(deviceId);
 ```

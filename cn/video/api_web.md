@@ -524,14 +524,22 @@ hstRtcEngine.unsetStreamRender(videoElement, streamId);
 ### 接口原型
 
 ```js
-hstRtcEngine.unsetStreamRender(videoElement, streamId);
+hstRtcEngine.getStats(options)
 ```
 
 ### 参数说明
 
-videoElement： video标签对象。
+options： 对流进行描述的参数对象，如下所示：
 
-streamId： 流标识，由订阅onRemoteMediaAdd事件返回。
+```js
+{
+    userId: "xxx", 
+    mediaType: x,
+    mediaId: "xxx"
+}
+```
+
+> mediaType取值： 0-屏幕共享，1-音频，2-视频
   
 
 ### 返回值
