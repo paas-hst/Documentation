@@ -1,4 +1,4 @@
-
+<object>
 ## API列表
 | 接口 | 描述 |
 | - | - |
@@ -345,3 +345,4 @@ hstRtcEngine.destroy();
 hstRtcEngine = null;
 ```
 
+</object>
