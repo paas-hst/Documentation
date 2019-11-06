@@ -33,7 +33,7 @@ hstRtcEngine.init([accessUrl])
 
 ### 参数说明
 
-- accessUrl： Access服务URL地址。
+accessUrl： Access服务URL地址。
   Access服务主要提供负载均衡功能，客户端需要访问Access服务来获取其他服务的地址。
   如果使用的公有云服务，则不需要传递此参数；如果使用的私有云服务，则需要设置此参数，具体传递规则请咨询技术人员。
 
