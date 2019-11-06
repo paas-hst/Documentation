@@ -42,7 +42,7 @@ hstRtcEngine.stopPublishAudio();
 
 ## 接收远端音频
 
-订阅"onPublishMedia"事件，收到广播事件后，调用startReceiveRemoteAudio接口开始接收音频。
+订阅"onPublishMedia"事件，收到广播事件后，调用startReceiveRemoteAudio接口开始接收远端音频。
 
 ```js
 hstRtcEngine.on('onPublishMedia', function (data) {
@@ -58,15 +58,28 @@ hstRtcEngine.on('onPublishMedia', function (data) {
 });
 ```
 
+## 播放远端音频
+
+订阅"onRemoteMediaAdd"事件，收到事件后，调用setStreamRender接口播放远端音频。
+
+```js
+hstRtcEngine.on('onRemoteMediaAdd', function (data) {
+    if (params.mediaType == 1) {// 音频 
+        hstRtcEngine.setStreamRender(videoElement, streamId);
+    }
+}
+```
+
 ## 停止接收远端音频
 
-订阅“onUnPublishMedia”事件，收到停止广播事件后，调用stopReceiveRemoteAudio停止接收音频。
+订阅“onUnPublishMedia”事件，收到事件后，调用stopReceiveRemoteAudio停止接收远端音频，并调用unsetStreamRender停止播放远端音频。
 
 ```js
 hstRtcEngine.on("onUnPublishMedia", function(data) {
     if (data.mediaType == 1) { // 音频
         webEngine.stopReceiveRemoteAudio(data.userId, data.mediaId)
         .then(() => {
+            hstRtcEngine.unsetStreamRender(streamId);
             console.log("Stop receive remote audio.");
         })
         .catch(()=>{

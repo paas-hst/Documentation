@@ -22,26 +22,38 @@ hstRtcEngine.getMediaDevices()
 
 ## 预览本地视频
 
-只需设置video标签元素和Media ID，其中video标签元素为渲染目标对象，Media ID为调用getMediaDevices接口获取的设备devId。
+设置video标签和设备ID，引擎会打开deviceId指定的摄像头，并将视频渲染到video标签对象。
 
 ```js
 let videoElement = document.getElementById('video-panel');
 let mediaId = "camera1";
-hstRtcEngine.setVideoRender(videoElement, mediaId);
+hstRtcEngine.setVideoRender(videoElement, deviceId);
 ```
+
+> deviceId为调用getMediaDevices接口获取的设备devId。
+
 
 ## 广播本地视频
 
-打开本地摄像头，并广播给分组内所有用户，分组内所有远端用户都会接收到广播事件。
+打开本地摄像头，并广播给分组内所有用户，分组内所有远端用户都会接收到onPublishMedia事件。
 
 ```js
-hstRtcEngine.startPublishVideo(mediaId);
+hstRtcEngine.startPublishVideo(deviceId);
+```
+
+
+## 停止广播本地视频
+
+停止发送本地视频流，分组内所有远端用户都会收到onUnPublishMedia事件。
+
+```js
+hstRtcEngine.stopPublishVideo(deviceId);
 ```
 
 
 ## 查看远端视频
 
-需要订阅“onPublishMedia”事件和“onRemoteMediaAdd”事件。收到“onPublishMedia”事件后，调用“startReceiveRemoteVideo”接口开始接收远端视频；收到“onRemoteMediaAdd”事件后，调用“setVideoRender”接口查看远端视频。
+订阅“onPublishMedia”事件和“onRemoteMediaAdd”事件。收到“onPublishMedia”事件后，调用“startReceiveRemoteVideo”接口开始接收远端视频；收到“onRemoteMediaAdd”事件后，调用“setStreamRender”接口显示远端视频。
 
 ```js
 // 订阅"onPublishMedia"事件，开始接收远端视频
@@ -61,8 +73,26 @@ hstRtcEngine.on('onPublishMedia', function (data) {
 hstRtcEngine.on('onRemoteMediaAdd', function (data) {
     if (data.mediaType == 2){ // 视频
         let videoElement = document.getElementById('video-panel');
-        hstRtcEngine.setVideoRender(videoElement, data.mediaId, data.userId);
+        hstRtcEngine.setStreamRender(videoElement, data.mediaId, data.userId);
     }
 });
 
+```
+
+## 停止查看远端视频
+
+订阅“onUnPublishMedia”事件，收到事件后，调用“stopReceiveRemoteVideo”接口停止接收远端视频，同时，调用“unsetStreamRender”接口取消显示远端视频。
+
+```js
+hstRtcEngine.on("onUnPublishMedia", function(data) {
+    if (data.mediaType == 2) { // 视频
+        hstRtcEngine.stopReceiveRemoteVideo(data.userId, data.mediaId)
+        .then(() => {
+            hstRtcEngine.unsetStreamRender(videoElement, streamId);
+        })
+        .catch(() => {
+            console.log("Stop receive remote video failed!");
+        })
+    }
+}
 ```
