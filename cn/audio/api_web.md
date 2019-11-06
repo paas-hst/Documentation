@@ -1,4 +1,3 @@
-<object>
 ## API列表
 | 接口 | 描述 |
 | - | - |
@@ -24,7 +23,6 @@
 创建RTC引擎后，需要立即进行初始化，初始化成功后才能够调用其他接口和使用引擎提供的功能。
 
 ### 方法原型
-options提供登录所需的参数，如下表所示：
 
 ```js
 hstRtcEngine.init([accessUrl])
@@ -68,28 +66,7 @@ hstRtcEngine.login(options)
 
 ### 参数说明
 
-```js
-hstRtcEngine.init()
-.then(() => {
-    console.log("Init success.");
-})
-.catch(() => {
-    console.log("Init failed!");
-})
-```
-
 options提供登录所需的参数，如下表所示：
-
-
-```js
-hstRtcEngine.init()
-.then(() => {
-    console.log("Init success.");
-})
-.catch(() => {
-    console.log("Init failed!");
-})
-```
 
 | 参数名 | 类型 | 是否必填 | 参数说明 |
 | :-: | :-: | :-: | - |
@@ -98,30 +75,9 @@ hstRtcEngine.init()
 | userId | string | 是 | 开发者自定义，请注意用户ID的定义约束 |
 
 
-```js
-hstRtcEngine.init()
-.then(() => {
-    console.log("Init success.");
-})
-.catch(() => {
-    console.log("Init failed!");
-})
-```
-
 > User ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
 > 同一App下相同的User ID，后登录的会被拒绝。
-
-
-```js
-hstRtcEngine.init()
-.then(() => {
-    console.log("Init success.");
-})
-.catch(() => {
-    console.log("Init failed!");
-})
-```
 
 
 ### 返回值
@@ -155,11 +111,6 @@ hstRtcEngine.login(options)
 .catch(() => {
     console.log("Login failed!");
 })
-```
-
-
-```js
-hstRtcEngine.login(options)
 ```
 
 
@@ -344,5 +295,3 @@ eventName：需要订阅的事件名称，相关事件定义如下表所示。
 hstRtcEngine.destroy();
 hstRtcEngine = null;
 ```
-
-</object>
