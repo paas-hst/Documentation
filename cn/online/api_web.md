@@ -26,6 +26,7 @@ eventName：需要订阅的事件名称，相关事件定义如下表所示。
 | - | - | - |
 |onCommingInvite | {seqId: xxx, groupId: "xxx", userId: "xxx", userName: "xxx", extendInfo: "xxx"} | 收到别人邀请 |
 |onInviteReply | {seqId: xxx, userId: "xxx", result: xxx} | 收到邀请响应 |
+|onOnlineUserState | {userId: "xxx", mutexType: "xxx", customState: "xxx", state: xxx } | 在线用户实时上下线通知 |
   
 callback：事件发生时的回调函数，函数原型如下，不同事件data参数取值不一样。
 
@@ -84,37 +85,37 @@ hstRtcEngine.getOnlineUsers()
 {
     pageInfo: { totalPages: 2, curPage: 1 },
     userInfo: [
+        {
+            userId: "xxx", 
+            onlineInfo: [
                 {
-                    userId: "xxx", 
-                    onlineInfo: [
-                        {
-                            mutexType: "web",
-                            customState: "xxx",
-                            state: xxx
-                        }
-                        {
-                            mutexType: "windows",
-                            customState: "xxx",
-                            state: xxx
-                        }
-                    ]
+                    mutexType: "web",
+                    customState: "xxx",
+                    state: xxx
                 }
                 {
-                    userId: "xxx", 
-                    onlineInfo: [
-                        {
-                            mutexType: "web",
-                            customState: "xxx",
-                            state: xxx
-                        }
-                        {
-                            mutexType: "windows",
-                            customState: "xxx",
-                            state: xxx
-                        }
-                    ]
+                    mutexType: "windows",
+                    customState: "xxx",
+                    state: xxx
                 }
-              ]
+            ]
+        }
+        {
+            userId: "xxx", 
+            onlineInfo: [
+                {
+                    mutexType: "web",
+                    customState: "xxx",
+                    state: xxx
+                }
+                {
+                    mutexType: "windows",
+                    customState: "xxx",
+                    state: xxx
+                }
+            ]
+        }
+    ]
 }
 ```
 
