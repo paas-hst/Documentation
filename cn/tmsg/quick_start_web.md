@@ -44,7 +44,7 @@ hstRtcEngine.sendGroupMsgWithBlackList({
 
 ## 接收在线消息
 
-需要订阅“onRecvUserMsg”事件。
+订阅“onRecvUserMsg”事件。
 
 ```js
 hstRtcEngine.on("onRecvUserMsg", function(data) {
@@ -54,7 +54,7 @@ hstRtcEngine.on("onRecvUserMsg", function(data) {
 
 ## 接收分组消息
 
-用户加入分组后，订阅“onRecvGroupMsg”事件即可接收到分组内的所有消息。
+订阅“onRecvGroupMsg”事件。
 
 ```js
 hstRtcEngine.on("onRecvGroupMsg", function(data) {
