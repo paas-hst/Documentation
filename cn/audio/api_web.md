@@ -105,6 +105,11 @@ hstRtcEngine.login(options)
 ```
 
 
+```js
+hstRtcEngine.login(options)
+```
+
+
 ## 加入分组
 
 平台的很多服务是基于分组来提供的，只有加入分组后才能够使用这些服务和功能。
