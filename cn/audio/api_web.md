@@ -25,9 +25,11 @@
 
 ### 方法原型
 
+
 ```js
 hstRtcEngine.init([accessUrl])
 ```
+
 
 ### 参数说明
 
