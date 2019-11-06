@@ -81,9 +81,30 @@ options <object> 提供登录所需的参数，如下表所示：
 > 同一App下相同的User ID，后登录的会被拒绝。
 
 
+```js
+hstRtcEngine.init()
+.then(() => {
+    console.log("Init success.");
+})
+.catch(() => {
+    console.log("Init failed!");
+})
+```
+
+
 ### 返回值
 
 此方法是一个异步调用，会返回一个Promise对象，异步调用结果没有参数。
+
+```js
+hstRtcEngine.init()
+.then(() => {
+    console.log("Init success.");
+})
+.catch(() => {
+    console.log("Init failed!");
+})
+```
 
 ### 示例代码
 
