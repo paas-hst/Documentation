@@ -24,7 +24,7 @@
 创建RTC引擎后，需要立即进行初始化，初始化成功后才能够调用其他接口和使用引擎提供的功能。
 
 ### 方法原型
-options <object> 提供登录所需的参数，如下表所示：
+options提供登录所需的参数，如下表所示：
 
 ```js
 hstRtcEngine.init([accessUrl])
@@ -78,7 +78,7 @@ hstRtcEngine.init()
 })
 ```
 
-options <object> 提供登录所需的参数，如下表所示：
+options提供登录所需的参数，如下表所示：
 
 
 ```js
