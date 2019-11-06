@@ -18,7 +18,7 @@
 | getMediaDevices | 获取音频设备 |
 | chooseMicDevice | 选择本地麦克风设备 |
 
-## 初始化
+## init
 
 创建RTC引擎后，需要立即进行初始化，初始化成功后才能够调用其他接口和使用引擎提供的功能。
 
@@ -53,7 +53,7 @@ hstRtcEngine.init()
 ```
 
 
-## 登录
+## login
 
 在使用平台提供的服务之前，需要先登录到平台，进行身份校验。
 
@@ -114,7 +114,7 @@ hstRtcEngine.login(options)
 ```
 
 
-## 加入分组
+## joinGroup
 
 平台的很多服务是基于分组来提供的，只有加入分组后才能够使用这些服务和功能。
 
@@ -150,7 +150,7 @@ hstRtcEngine.joinGroup("test-group")
 })
 ```
 
-## 离开分组
+## leaveGroup
 
 离开分组，将不再能使用基于分组的服务和功能。
 
@@ -191,7 +191,7 @@ hstRtcEngine.leaveGroup()
 ```
 
 
-## 退出登录
+## exit
 
 退出分组，将不再能使用平台的所有服务和功能。
 
@@ -233,7 +233,7 @@ hstRtcEngine.exit()
 
 ```
 
-## 销毁引擎
+## destroy
 
 如果不再需要使用到RTC引擎，可以调用此接口销毁RTC引擎。
 
@@ -261,9 +261,9 @@ hstRtcEngine.destroy();
 hstRtcEngine = null;
 ```
 
-## 订阅事件
+## on
 
-用来获取引擎的事件通知。
+用来订阅引擎通知事件。
 
 ### 方法原型
 
@@ -275,14 +275,87 @@ hstRtcEngine.on(eventName, callback)
 
 eventName：需要订阅的事件名称，相关事件定义如下表所示。
 
-| 事件名 | 描述 |
-| - | - |
-|onGroupUserList | 服务器推送分组内所有用户列表，用户在加入分组后，会收到这个事件 |
-|onUserJoinGroup | 有人加入分组 |
-|onUserLeaveGroup | 有人离开分组 |
-|onPublishMedia | 分组内有人发布音频，根据mediaType判断是否是音频 |
-|onUnPublishMedia | 分组内有人取消发布音频，根据mediaType判断是否是音频 |
-|onRemoteMediaAdd | 接收到远端音频流, 根据mediaType判断是否是音频 |
+| 事件名 | 回调参数 | 描述 |
+| - | - | - |
+|onGroupUserList | userId Array |服务器推送分组内所有用户列表，用户在加入分组后，会收到这个事件 |
+|onUserJoinGroup | userId |有人加入分组 |
+|onUserLeaveGroup | userId |有人离开分组 |
+|onPublishMedia | {userId: "xxx", mediaType: "xxx", mediaId: "xxx"} |分组内有人发布音频，根据mediaType判断是否是音频 |
+|onUnPublishMedia | {userId: "xxx", mediaType: "xxx", mediaId: "xxx"} |分组内有人取消发布音频，根据mediaType判断是否是音频 |
+|onRemoteMediaAdd | {userId: "xxx", mediaType: "xxx", mediaId: "xxx", streamId: "xxx" }  |接收到远端音频流, 根据mediaType判断是否是音频 |
+  
+callback：事件发生时的回调函数，函数原型如下，不同事件的data参数不一样。
+
+> mediaType取值： 0-屏幕共享，1-音频，2-视频
+
+```js
+function callback(data)
+```
+
+### 返回值
+
+无返回值。
+
+### 示例代码
+
+```js
+
+hstRtcEngine.on('onGroupUserList', function(data){
+    for (const user of data){
+        console.log(user);
+    }
+});
+
+hstRtcEngine.on('onUserJoinGroup', function(data){
+    console.log(data + " join group.");
+});
+
+hstRtcEngine.on('onUserLeaveGroup', function(user){
+    console.log(data + " leave group.");
+}
+
+hstRtcEngine.on('onPublishMedia', function (data) {
+    hstRtcEngine.startReceiveRemoteVideo(data.userId, data.mediaId)
+    .then(() => {
+        console.log("Start receive user " + data.userId + " video! ");
+    })
+    .catch(() => {
+        console.log("Receive remote video failed!");
+    })
+}
+
+hstRtcEngine.on('onUnPublishMedia', function (data) {
+    hstRtcEngine.stopReceiveRemoteVideo(data.userId, data.mediaId)
+    .then(() => {
+        console.log("Stop receive remote video!");
+    })
+    .catch(() => {
+        console.log("Stop receive remote video failed!");
+    })
+}
+
+hstRtcEngine.on('onRemoteMediaAdd', function (data) {
+     hstRtcEngine.setStreamRender(videoElement, data.streamId);
+}
+
+
+```
+
+## startPublishAudio
+
+开始广播本地音频。
+
+### 方法原型
+
+```js
+hstRtcEngine.startPublishAudio([deviceId])
+```
+
+### 参数说明
+
+deviceId： 可选，为通过getMediaDevices枚举出来的麦克风设备deviceId。
+
+> 如果参数不为空，则会使用deviceId指定的麦克风设备；如果参数为空，但在此之前调用了chooseMicDevice指定麦克风设备，则会使用chooseMicDevice指定的麦克风设备；如果参数为空，且未调用chooseMicDevice，则会使用系统默认麦克风设备。
   
 
 ### 返回值
@@ -292,6 +365,285 @@ eventName：需要订阅的事件名称，相关事件定义如下表所示。
 ### 示例代码
 
 ```js
-hstRtcEngine.destroy();
-hstRtcEngine = null;
+hstRtcEngine.chooseMicDevice(micDevId);
+hstRtcEngine.startPublishAudio();
+```
+
+
+## stopPublishAudio
+
+停止广播本地麦克风设备。
+
+### 方法原型
+
+```js
+hstRtcEngine.stopPublishAudio([deviceId])
+```
+
+### 参数说明
+
+deviceId： 可选，取值与startPublishAudio保持一致。
+
+> 在调用startPublishAudio后，不要调用chooseMicDevice，否则可能会导致广播和取消广播的deviceId不一致。
+  
+
+### 返回值
+
+此方法是一个同步调用，无返回值。
+
+### 示例代码
+
+```js
+hstRtcEngine.stopPublishAudio();
+```
+
+
+## startReceiveRemoteAudio
+
+开始接收远端音频
+
+### 方法原型
+
+```js
+hstRtcEngine.startReceiveRemoteVideo(userId, mediaId)
+```
+
+### 参数说明
+
+userId： 用户ID，指定接收哪个用户的音频。
+
+mediaId： 媒体ID，指定接收哪一路流。
+  
+
+### 返回值
+
+此方法是一个异步调用，会返回一个Promise对象，异步调用结果没有参数。
+
+### 示例代码
+
+```js
+hstRtcEngine.startReceiveRemoteVideo(userId, mediaId)
+.then(() => {
+    console.log("Start receive remote video.");
+})
+.catch(() => {
+    console.log("Receive remote video failed!");
+})
+```
+
+
+## stopReceiveRemoteAudio
+
+停止接收远端音频。
+
+### 方法原型
+
+```js
+hstRtcEngine.stopReceiveRemoteAudio(userId, mediaId)
+```
+
+### 参数说明
+
+与startReceiveRemoteVideo保持一致。
+
+### 返回值
+
+此方法是一个异步调用，会返回一个Promise对象，异步调用结果没有参数。
+
+### 示例代码
+
+```js
+hstRtcEngine.stopReceiveRemoteAudio(userId, mediaId)
+.then(() => {
+    console.log("Stop receive remote audio!");
+})
+.catch(()=>{
+    console.log("Stop receive remote audio failed!");
+})
+```
+
+
+## setStreamRender
+
+设置音频流播放对象。
+
+### 方法原型
+
+```js
+hstRtcEngine.setStreamRender(videoElement, streamId)
+```
+
+### 参数说明
+
+videoElement： video标签对象。
+
+streamId： 订阅onRemoteMediaAdd事件返回。
+
+> 音频、视频和屏幕共享都使用video标签进行播放。
+
+> 一个Stream中可能同时包含音频和视频，onRemoteMediaAdd事件可能会通知两次，但只需调用setStreamRender一次即可。
+  
+
+### 返回值
+
+此方法是一个同步调用，无返回值。
+
+### 示例代码
+
+```js
+let videoElement = document.getElementById('test-video');
+hstRtcEngine.setStreamRender(videoElement, streamId);
+```
+
+## unsetStreamRender
+
+取消设置音频流播放对象。
+
+### 方法原型
+
+```js
+hstRtcEngine.unsetStreamRender(videoElement, streamId);
+```
+
+### 参数说明
+
+参数与setStreamRender一样。
+  
+
+### 返回值
+
+此方法是一个同步调用，无返回值。
+
+### 示例代码
+
+```js
+hstRtcEngine.unsetStreamRender(videoElement, streamId);
+```
+
+
+## getStats
+
+获取音频流统计数据。
+
+### 方法原型
+
+```js
+hstRtcEngine.unsetStreamRender(videoElement, streamId);
+```
+
+### 参数说明
+
+参数与setStreamRender一样。
+  
+
+### 返回值
+
+返回统计数据对象，包含音频和视频统计数据，根据需要取对应统计值。
+
+```js
+{
+    audio: { bitRate: xxx, totalBytes: xxx }
+    video: { bitRate: xxx, totalBytes: xxx, frameRate: xxx, width: xxx, height: xxx }
+}
+```
+
+> bitRate单位为kbps
+
+### 示例代码
+
+```js
+function displayAudioStats() {
+    setTimeout(function() {
+        let options = { userId: "xxx", mediaType: 1, mediaId: "xxxx" };
+        let stats = hstRtcEngine.getStats(options);
+        if (stats) {
+            let statsInfo = stats.audio.bitRate + "kbps";
+            console.log(statsInfo);
+        } else {
+            console.log("Get stats failed!");
+        }
+    displayAudioStats();
+}
+```
+
+
+## getMediaDevices
+
+获取音频设备。
+
+### 方法原型
+
+```js
+hstRtcEngine.getMediaDevices()
+```
+
+### 参数说明
+
+无参数。
+  
+
+### 返回值
+
+此方法是一个异步调用，会返回一个Promise对象。
+
+调用成功返回所有音频、视频设备列表，数据结构为：
+
+```js
+{
+    micDev: [ { devName: "xxx", devId: "xxx" } ],
+    spkDev: [ { devName: "xxx", devId: "xxx" } ],
+    camDev: [ { devName: "xxx", devId: "xxx" } ]
+}
+```
+
+调用失败返回错误。
+
+
+### 示例代码
+
+```js
+hstRtcEngine.getMediaDevices()
+.then((mediaDevs) => {
+    // 麦克风设备
+    for (const dev of mediaDevs.micDevs){
+        console.log("MIC: " + dev.devName);
+    }
+    // 扬声器设备
+    for (const dev of mediaDevs.spkDevs){
+        console.log("SPK: " + dev.devName);
+    }
+    // 摄像头设备
+    for (const dev of mediaDevs.camDevs){
+        console.log("CAM: " + dev.devName);
+    }
+})
+.catch(err => {
+    console.log("Load media device failed!", err);
+});
+```
+
+
+## chooseMicDevice
+
+选择麦克风设备。
+
+### 方法原型
+
+```js
+hstRtcEngine.chooseMicDevice(deviceId)
+```
+
+### 参数说明
+
+deviceId： 麦克风设备deviceId。
+  
+
+### 返回值
+
+此方法是一个同步调用，无返回值。
+
+### 示例代码
+
+```js
+hstRtcEngine.chooseMicDevice(deviceId);
 ```
