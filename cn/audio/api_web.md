@@ -1,4 +1,24 @@
 
+## API列表
+| 接口 | 描述 |
+| - | - |
+| init | 初始化RTC引擎 |
+| login | 登录平台 |
+| joinGroup | 加入分组 |
+| leaveGroup | 离开分组 |
+| exit | 退出登录 |
+| destroy | 销毁引擎 |
+| on | 订阅事件 |
+| startPublishAudio | 广播本地音频 |
+| stopPublishAudio | 停止广播本地音频 |
+| startReceiveRemoteAudio | 接收远端音频 |
+| stopReceiveRemoteAudio | 停止接收远端音频 |
+| setStreamRender | 设置音频播放对象 |
+| unsetStreamRender | 取消设置音频播放对象 |
+| getStats | 获取音频流统计数据 |
+| getMediaDevices | 获取音频设备 |
+| chooseMicDevice | 选择本地麦克风设备 |
+
 ## 初始化
 
 创建RTC引擎后，需要立即进行初始化，初始化成功后才能够调用其他接口和使用引擎提供的功能。
@@ -21,6 +41,7 @@ hstRtcEngine.init([accessUrl])
 
 ### 示例代码
 
+
 ```js
 hstRtcEngine.init()
 .then(() => {
@@ -30,6 +51,7 @@ hstRtcEngine.init()
     console.log("Init failed!");
 })
 ```
+
 
 ## 登录
 
@@ -227,3 +249,39 @@ hstRtcEngine.destroy()
 hstRtcEngine.destroy();
 hstRtcEngine = null;
 ```
+
+## 订阅事件
+
+用来获取引擎的事件通知。
+
+### 方法原型
+
+```js
+hstRtcEngine.on(eventName, callback)
+```
+
+### 参数说明
+
+eventName：需要订阅的事件名称，相关事件定义如下表所示。
+
+| 事件名 | 描述 |
+| - | - |
+|onGroupUserList | 服务器推送分组内所有用户列表，用户在加入分组后，会收到这个事件 |
+|onUserJoinGroup | 有人加入分组 |
+|onUserLeaveGroup | 有人离开分组 |
+|onPublishMedia | 分组内有人发布音频，根据mediaType判断是否是音频 |
+|onUnPublishMedia | 分组内有人取消发布音频，根据mediaType判断是否是音频 |
+|onRemoteMediaAdd | 接收到远端音频流, 根据mediaType判断是否是音频 |
+  
+
+### 返回值
+
+此方法是一个同步调用，无返回值。
+
+### 示例代码
+
+```js
+hstRtcEngine.destroy();
+hstRtcEngine = null;
+```
+
