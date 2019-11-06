@@ -80,7 +80,18 @@ hstRtcEngine.init()
 
 options <object> 提供登录所需的参数，如下表所示：
 
-| 参数名 | 类型 | 是否必填 | 参数说明
+
+```js
+hstRtcEngine.init()
+.then(() => {
+    console.log("Init success.");
+})
+.catch(() => {
+    console.log("Init failed!");
+})
+```
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
 | :-: | :-: | :-: | - |
 | appId | string | 是 | 从后台管理系统获取 |
 | token | string | 是 | 使用Token生成代码生成 |
