@@ -68,6 +68,16 @@ hstRtcEngine.login(options)
 
 ### 参数说明
 
+```js
+hstRtcEngine.init()
+.then(() => {
+    console.log("Init success.");
+})
+.catch(() => {
+    console.log("Init failed!");
+})
+```
+
 options <object> 提供登录所需的参数，如下表所示：
 
 | 参数名 | 类型 | 是否必填 | 参数说明
@@ -75,6 +85,17 @@ options <object> 提供登录所需的参数，如下表所示：
 | appId | string | 是 | 从后台管理系统获取 |
 | token | string | 是 | 使用Token生成代码生成 |
 | userId | string | 是 | 开发者自定义，请注意用户ID的定义约束 |
+
+
+```js
+hstRtcEngine.init()
+.then(() => {
+    console.log("Init success.");
+})
+.catch(() => {
+    console.log("Init failed!");
+})
+```
 
 > User ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
