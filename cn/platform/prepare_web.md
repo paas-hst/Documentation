@@ -40,6 +40,10 @@
 
 推荐使用POSTMAN工具获取临时Token，如下图所示：
 
+<img alt="postman.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/postman.png" align="center" />
+
+
+> 注意Body的内容格式选择“raw”，检查appId和appSecret前后是否包含额外的空格。
 
 
 ## 添加 SDK
