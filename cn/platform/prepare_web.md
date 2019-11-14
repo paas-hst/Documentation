@@ -36,13 +36,17 @@
 | Body | { "appId": "7a02a8217cd541f990152ea666ee24bf","appSecret": "42de63b19db7fda7"} |
 | Response | {"code": 0, "message": "OK","result": "here is the token"} |
 
-> 建议上线后创建新的应用，更换App ID，不要使用测试应用。
+> 建议上线后创建新的应用，使用新的App ID和Token。
+
+推荐使用POSTMAN工具获取临时Token，如下图所示：
+
+
 
 ## 添加 SDK
 
-1. 下载 [Web SDK](http://paas.hst.com/developer/downloadSDK)，解压并打开。
+1. 下载 [Web SDK](http://paas.hst.com/developer/downloadSDK)。
  
-2. 将JS文件保存到你所操作的项目下。
+2. 将解压后的JS文件保存到项目相关路径下。
 
 3. 在项目相应的前端页面文件中，对JS文件进行引用。
 

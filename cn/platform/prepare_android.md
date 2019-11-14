@@ -25,7 +25,7 @@
 使用SDK之前必须初始化。
 
 ```js
-FspEngine fspEngine = FspEngine.createsApplication, appId, null, this);
+FspEngine fspEngine = FspEngine.create(context, appId, null, this);
 fspEngine.init();
 ```
 
