@@ -26,8 +26,7 @@ hstRtcEngine.getMediaDevices()
 
 ```js
 let videoElement = document.getElementById('video-panel');
-let mediaId = "camera1";
-hstRtcEngine.setVideoRender(videoElement, deviceId);
+hstRtcEngine.setLocalVideoRender(videoElement, deviceId);
 ```
 
 > deviceId为调用getMediaDevices接口获取的设备devId。

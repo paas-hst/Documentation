@@ -11,10 +11,12 @@
 | on | 订阅事件 |
 | startPublishVideo | 广播本地视频 |
 | stopPublishVideo | 停止广播本地视频 |
+| setLocalVideoRender | 设置本地视频渲染对象 |
+| unsetLocalVideoRender | 取消设置本地视频渲染对象 |
 | startReceiveRemoteVideo | 接收远端视频 |
 | stopReceiveRemoteVideo | 停止接收远端视频 |
-| setStreamRender | 设置实现显示对象 |
-| unsetStreamRender | 取消设置视频显示对象 |
+| setStreamRender | 设置远端媒体渲染对象 |
+| unsetStreamRender | 取消设置远端媒体渲染对象 |
 | getStats | 获取视频流统计数据 |
 | getMediaDevices | 获取视频设备 |
 
@@ -392,6 +394,59 @@ hstRtcEngine.stopPublishVideo();
 ```
 
 
+## setLocalVideoRender
+
+设置本地视频渲染对象。
+
+### 接口原型
+
+```js
+hstRtcEngine.setLocalVideoRender(videoElement, deviceId)
+```
+
+### 参数说明
+
+videoElement： video标签对象。
+
+deviceId： 设备标识，查询设备列表返回。
+  
+
+### 返回值
+
+此方法是一个同步调用，无返回值。
+
+### 示例代码
+
+```js
+let videoElement = document.getElementById('test-video');
+hstRtcEngine.setLocalVideoRender(videoElement, deviceId);
+```
+
+## unsetLocalVideoRender
+
+取消设置本地视频渲染对象。
+
+### 接口原型
+
+```js
+hstRtcEngine.unsetLocalVideoRender(videoElement, deviceId);
+```
+
+### 参数说明
+
+videoElement： video标签对象。
+
+### 返回值
+
+此方法是一个同步调用，无返回值。
+
+### 示例代码
+
+```js
+hstRtcEngine.unsetLocalVideoRender(videoElement);
+```
+
+
 ## startReceiveRemoteVideo
 
 开始接收远端视频。
@@ -461,7 +516,7 @@ hstRtcEngine.stopReceiveRemoteVideo(userId, mediaId)
 
 ## setStreamRender
 
-设置视频流显示对象。
+设置远端视频渲染对象。
 
 ### 接口原型
 
@@ -493,7 +548,7 @@ hstRtcEngine.setStreamRender(videoElement, streamId);
 
 ## unsetStreamRender
 
-取消设置音频流播放对象。
+取消设置远端视频渲染对象。
 
 ### 接口原型
 
@@ -503,7 +558,9 @@ hstRtcEngine.unsetStreamRender(videoElement, streamId);
 
 ### 参数说明
 
-参数与setStreamRender一样。
+videoElement： video标签对象。
+
+streamId： 流标识，由订阅onRemoteMediaAdd事件返回。
   
 
 ### 返回值
