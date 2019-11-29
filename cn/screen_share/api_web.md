@@ -92,7 +92,7 @@ options： 提供登录所需的参数，如下表所示：
 let options = {
     appId: '7a02a8217cd541f990152ea666ee24bf',
     token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHgzwvglCNrVj3wjjxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
-    company: "",
+    companyId: "",
     userId: 'user1',
     forceLogin: false
 };
