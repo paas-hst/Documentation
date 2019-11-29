@@ -16,7 +16,6 @@
 | unsetStreamRender | 取消设置音频播放对象 |
 | getStats | 获取音频流统计数据 |
 | getMediaDevices | 获取音频设备 |
-| chooseMicDevice | 选择本地麦克风设备 |
 
 ## init
 
@@ -66,33 +65,24 @@ hstRtcEngine.login(options)
 
 ### 参数说明
 
-options提供登录所需的参数，如下表所示：
+options： 提供登录所需的参数，如下表所示：
 
 | 参数名 | 类型 | 是否必填 | 参数说明 |
 | :-: | :-: | :-: | - |
-| appId | string | 是 | 从后台管理系统获取 |
-| token | string | 是 | 使用Token生成代码生成 |
+| appId | string | 是 | 应用标识 |
+| token | string | 是 | 鉴权信息 |
+| companyId | string | 是 | 组织划分，可以用来控制在线状态的可见范围 |
 | userId | string | 是 | 开发者自定义，请注意用户ID的定义约束 |
-
+| forceLogin | boolean | 是 | 是否强制登录 |
 
 > User ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
-> 同一App下相同的User ID，后登录的会被拒绝。
+> 同一App下相同的User ID，如果forceLogin设置为false，则后登录的用户会被拒绝；如果forceLogin设置为true，则后登录的用户会挤掉前面登录的用户。
 
 
 ### 返回值
 
 此方法是一个异步调用，会返回一个Promise对象，异步调用结果没有参数。
-
-```js
-hstRtcEngine.init()
-.then(() => {
-    console.log("Init success.");
-})
-.catch(() => {
-    console.log("Init failed!");
-})
-```
 
 ### 示例代码
 
@@ -101,7 +91,9 @@ hstRtcEngine.init()
 let options = {
     appId: '7a02a8217cd541f990152ea666ee24bf',
     token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHgzwvglCNrVj3wjjxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
-    userId: 'user1'
+    company: "",
+    userId: 'user1',
+    forceLogin: false
 };
 
 hstRtcEngine.login(options)
@@ -346,14 +338,12 @@ hstRtcEngine.on('onRemoteMediaAdd', function (data) {
 ### 接口原型
 
 ```js
-hstRtcEngine.startPublishAudio([deviceId])
+hstRtcEngine.startPublishAudio(deviceId)
 ```
 
 ### 参数说明
 
-deviceId： 可选，为通过getMediaDevices枚举出来的麦克风设备deviceId。
-
-> 如果参数不为空，则会使用deviceId指定的麦克风设备；如果参数为空，但在此之前调用了chooseMicDevice指定麦克风设备，则会使用chooseMicDevice指定的麦克风设备；如果参数为空，且未调用chooseMicDevice，则会使用系统默认麦克风设备。
+deviceId： 为通过getMediaDevices枚举出来的麦克风设备deviceId。
   
 
 ### 返回值
@@ -634,30 +624,4 @@ hstRtcEngine.getMediaDevices()
 .catch(err => {
     console.log("Load media device failed!", err);
 });
-```
-
-
-## chooseMicDevice
-
-选择麦克风设备。
-
-### 接口原型
-
-```js
-hstRtcEngine.chooseMicDevice(deviceId)
-```
-
-### 参数说明
-
-deviceId： 麦克风设备deviceId。
-  
-
-### 返回值
-
-此方法是一个同步调用，无返回值。
-
-### 示例代码
-
-```js
-hstRtcEngine.chooseMicDevice(deviceId);
 ```

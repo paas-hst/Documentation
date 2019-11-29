@@ -43,7 +43,6 @@ accessUrl： Access服务URL地址。
 
 ### 示例代码
 
-
 ```js
 hstRtcEngine.init()
 .then(() => {
@@ -68,33 +67,24 @@ hstRtcEngine.login(options)
 
 ### 参数说明
 
-options提供登录所需的参数，如下表所示：
+options： 提供登录所需的参数，如下表所示：
 
 | 参数名 | 类型 | 是否必填 | 参数说明 |
 | :-: | :-: | :-: | - |
-| appId | string | 是 | 从后台管理系统获取 |
-| token | string | 是 | 使用Token生成代码生成 |
+| appId | string | 是 | 应用标识 |
+| token | string | 是 | 鉴权信息 |
+| companyId | string | 是 | 组织划分，可以用来控制在线状态的可见范围 |
 | userId | string | 是 | 开发者自定义，请注意用户ID的定义约束 |
+| forceLogin | boolean | 是 | 是否强制登录 |
 
 
 > User ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
-> 同一App下相同的User ID，后登录的会被拒绝。
-
+> 同一App下相同的User ID，如果forceLogin设置为false，则后登录的用户会被拒绝；如果forceLogin设置为true，则后登录的用户会挤掉前面登录的用户。
 
 ### 返回值
 
 此方法是一个异步调用，会返回一个Promise对象，异步调用结果没有参数。
-
-```js
-hstRtcEngine.init()
-.then(() => {
-    console.log("Init success.");
-})
-.catch(() => {
-    console.log("Init failed!");
-})
-```
 
 ### 示例代码
 
@@ -103,7 +93,9 @@ hstRtcEngine.init()
 let options = {
     appId: '7a02a8217cd541f990152ea666ee24bf',
     token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHgzwvglCNrVj3wjjxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
-    userId: 'user1'
+    company: "",
+    userId: 'user1',
+    forceLogin: false
 };
 
 hstRtcEngine.login(options)
@@ -119,7 +111,6 @@ hstRtcEngine.login(options)
 ## joinGroup
 
 平台的很多服务是基于分组来提供的，只有加入分组后才能够使用这些服务和功能。
-
 
 ### 接口原型
 
@@ -152,6 +143,7 @@ hstRtcEngine.joinGroup("test-group")
 })
 ```
 
+
 ## leaveGroup
 
 离开分组，将不再能使用基于分组的服务和功能。
@@ -163,7 +155,6 @@ hstRtcEngine.joinGroup("test-group")
 - 会停止接收所有的音频、视频和屏幕共享。
 
 - 不再会接收到分组内的事件通知。
-
 
 ### 接口原型
 
@@ -348,12 +339,25 @@ hstRtcEngine.on('onRemoteMediaAdd', function (data) {
 ### 接口原型
 
 ```js
-hstRtcEngine.startPublishVideo(deviceId)
+hstRtcEngine.startPublishVideo(deviceId, [options])
 ```
 
 ### 参数说明
 
 deviceId： 为通过getMediaDevices枚举出来的摄像头设备deviceId。
+
+options： 可选，用来设置视频的分辨率、帧率和码率，如下所示：
+
+```js
+{
+    width: xxx, 
+    height: xxx,
+    frameRate: xxx,
+    bitRate: xxx
+}
+```
+> 如果未设置options，则使用系统默配置，分辨率为640*480，帧率为15fps，码率为系统内部计算的码率。
+> options对象内部的属性值类型必须为Number，bitRate如果设置为0的话，则使用系统内部计算的码率。
 
 
 ### 返回值
@@ -363,7 +367,14 @@ deviceId： 为通过getMediaDevices枚举出来的摄像头设备deviceId。
 ### 示例代码
 
 ```js
-hstRtcEngine.startPublishVideo(deviceId);
+// 广播本地视频，设置分辨率为1280*720，帧率为15帧/秒，使用系统内置码率
+let options = {
+    width: 1280,
+    height: 720,
+    frameRate: 25,
+    bitRate: 0
+};
+hstRtcEngine.startPublishVideo(deviceId, options);
 ```
 
 

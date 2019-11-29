@@ -29,7 +29,8 @@ hstRtcEngine.getMediaDevices()
 打开本地麦克风，并广播给分组内所有用户，分组内所有用户都会接收到广播音频事件。
 
 ```js
-hstRtcEngine.startPublishAudio();
+// 指定麦克风设备
+hstRtcEngine.startPublishAudio(deviceId);
 ```
 
 ## 停止广播本地音频
