@@ -23,7 +23,7 @@
 + libz.tbd
 + libc++.tbd
 
-<img alt="mac_integrate" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/mac_Integrate.png" align="center" />
+<img alt="mac_integrate" src="http://fs.hst.com/download/paas/images/documentation/mac_Integrate.png" align="center" />
 
 
 ## 初始化

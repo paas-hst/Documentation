@@ -15,7 +15,7 @@
 2. 使用 Xcode 打开你想要运行的项目，然后选中当前 Target。
 3. General 页签,展开Embedded Binaries项,点击+图标添加FspKit.framework
 
-<img alt="ios_integrate2" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/ios_Integrate2.png" align="center" />
+<img alt="ios_integrate2" src="http://fs.hst.com/download/paas/images/documentation/ios_Integrate2.png" align="center" />
 
 4. Build Phases 页签，展开 Link Binary with Libraries 项并添加如下库。点击 + 图标开始添加
 
@@ -29,7 +29,7 @@
     + libz.tbd
     + libc++.tbd
 
-<img alt="ios_integrate1" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/ios_Integrate.png" align="center" />
+<img alt="ios_integrate1" src="http://fs.hst.com/download/paas/images/documentation/ios_Integrate.png" align="center" />
 
 
 

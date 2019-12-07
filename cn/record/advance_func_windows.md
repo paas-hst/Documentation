@@ -6,7 +6,7 @@
 设置视频模式合成布局时，会遇到里面的视频有黑边或显示不全的情况，此时要根据视频的分辨率进行考虑。通过crop_mode控制视频的显示模式。
 比如一个16:9的视频，放到4:3的窗口里。如果选择等比裁剪，则左右会有部分看不见。如果选择等比居中，则上下有黑边。如果选择缩放平铺，则上下会被拉伸，视频会有一点变形。
 
-<img alt="appid.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/crop_example.jpg" align="center" />
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/documentation/crop_example.jpg" align="center" />
 
 
 ## 主动控制视频布局
@@ -16,7 +16,7 @@
 以4位用户音视频沟通的内容录制下来为案例，需要理解以下内容：
 接口通过一个平面坐标轴确定视频的可视位置。左上角为原点(0,0),从左往右x逐渐增加，从上往下y逐渐增加。
 
-<img alt="appid.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/axis.jpg" align="center" />
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/documentation/axis.jpg" align="center" />
 
 接口参数里的核心控制参数为audio_list和video_list，audio_list对合成的音频内容进行控制。video_list对合成的视频以及其位置、大小进行控制。
 把4位用户的音频、视频信息作为参数列入设置合成接口里。
@@ -46,7 +46,7 @@
 服务器会按照设置的crop_mode值在指定位置填充视频。
 命令发送成功后，录制效果会被设置成“田”字来录制四路视频以及他们的音频内容。完成录制后的效果如下。
 
-<img alt="appid.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/layout_4.jpg" align="center" />
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/documentation/layout_4.jpg" align="center" />
 
 
 
@@ -73,7 +73,7 @@
 }
 ```
 
-<img alt="appid.png" src="https://raw.githubusercontent.com/paas-hst/Documentation/master/cn/images/record_name.jpg" align="center" />
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/documentation/record_name.jpg" align="center" />
 
 ## 录制结束/上传完成回调
 
