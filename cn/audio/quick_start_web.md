@@ -90,4 +90,4 @@ hstRtcEngine.on("onUnPublishMedia", function(data) {
 });
 ```
 
-> 如果远端音频处于广播状态，再次调用 receiveRemoteAudio 又可以重新接听远端音频。
+> 如果远端音频处于广播状态，再次调用 startReceiveRemoteAudio 又可以重新接听远端音频。

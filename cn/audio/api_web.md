@@ -7,7 +7,8 @@
 | leaveGroup | 离开分组 |
 | exit | 退出登录 |
 | destroy | 销毁引擎 |
-| on | 订阅事件 |
+| subEvent | 订阅事件 |
+| unsubEvent | 取消订阅事件 |
 | startPublishAudio | 广播本地音频 |
 | stopPublishAudio | 停止广播本地音频 |
 | startReceiveRemoteAudio | 接收远端音频 |
@@ -24,15 +25,13 @@
 ### 接口原型
 
 ```js
-hstRtcEngine.init([accessUrl])
+hstRtcEngine.init([serverAddr])
 ```
 
 
 ### 参数说明
 
-accessUrl： Access服务URL地址。
-  Access服务主要提供负载均衡功能，客户端需要访问Access服务来获取其他服务的地址。
-  如果使用的公有云服务，则不需要传递此参数；如果使用的私有云服务，则需要设置此参数，具体传递规则请咨询技术人员。
+serverAddr： 可选参数，使用公有云服务，则不需要传递此参数；使用的私有云服务，需要设置此参数，具体请咨询技术人员。
 
 ### 返回值
 
@@ -253,14 +252,14 @@ hstRtcEngine.destroy();
 hstRtcEngine = null;
 ```
 
-## on
+## subEvent
 
-用来订阅引擎通知事件。
+订阅引擎通知事件。
 
 ### 接口原型
 
 ```js
-hstRtcEngine.on(eventName, callback)
+hstRtcEngine.subEvent(eventName, callback)
 ```
 
 ### 参数说明
@@ -292,13 +291,13 @@ function callback(data)
 
 ```js
 
-hstRtcEngine.on('onGroupUserList', function(data){
+hstRtcEngine.subEvent('onGroupUserList', function(data){
     for (const user of data){
         console.log(user);
     }
 });
 
-hstRtcEngine.on('onUserJoinGroup', function(data){
+hstRtcEngine.subEvent('onUserJoinGroup', function(data){
     console.log(data + " join group.");
 });
 
@@ -306,7 +305,7 @@ hstRtcEngine.on('onUserLeaveGroup', function(user){
     console.log(data + " leave group.");
 }
 
-hstRtcEngine.on('onPublishMedia', function (data) {
+hstRtcEngine.subEvent('onPublishMedia', function (data) {
     hstRtcEngine.startReceiveRemoteAudio(data.userId, data.mediaId)
     .then(() => {
         console.log("Start receive user " + data.userId + " audio.");
@@ -316,7 +315,7 @@ hstRtcEngine.on('onPublishMedia', function (data) {
     })
 }
 
-hstRtcEngine.on('onUnPublishMedia', function (data) {
+hstRtcEngine.subEvent('onUnPublishMedia', function (data) {
     hstRtcEngine.stopReceiveRemoteAudio(data.userId, data.mediaId)
     .then(() => {
         console.log("Stop receive remote audio.");
@@ -326,9 +325,37 @@ hstRtcEngine.on('onUnPublishMedia', function (data) {
     })
 }
 
-hstRtcEngine.on('onRemoteMediaAdd', function (data) {
+hstRtcEngine.subEvent('onRemoteMediaAdd', function (data) {
      hstRtcEngine.setStreamRender(videoElement, data.streamId);
 }
+```
+
+## unsubEvent
+
+取消订阅引擎通知事件。
+
+### 接口原型
+
+```js
+hstRtcEngine.unsubEvent([eventName])
+```
+
+### 参数说明
+
+eventName：可选参数，要取消订阅的事件名称，如果参数为空或为null，则表示取消已经订阅的所有事件。
+
+### 返回值
+
+无返回值。
+
+### 示例代码
+
+```js
+// 取消订阅'onGroupUserList'事件
+hstRtcEngine.subEvent('onGroupUserList');
+
+// 取消订阅所有事件
+hstRtcEngine.subEvent();
 ```
 
 ## startPublishAudio
@@ -353,8 +380,7 @@ deviceId： 为通过getMediaDevices枚举出来的麦克风设备deviceId。
 ### 示例代码
 
 ```js
-hstRtcEngine.chooseMicDevice(micDevId);
-hstRtcEngine.startPublishAudio();
+hstRtcEngine.startPublishAudio(micDevId);
 ```
 
 
@@ -370,11 +396,9 @@ hstRtcEngine.stopPublishAudio([deviceId])
 
 ### 参数说明
 
-deviceId： 为通过getMediaDevices枚举出来的摄像头设备deviceId。
+deviceId： 可选参数，为通过getMediaDevices枚举出来的摄像头设备deviceId。
 
-> 大多数情况下，stopPublishAudio与startPublishAudio成对调用，两者参数取值一致。  
-
-> 在调用startPublishAudio后，不要调用chooseMicDevice，否则可能会导致广播和取消广播的deviceId不一致。
+> 大多数情况下，只会广播一个麦克风设备，调用stopPublishAudio不需要参数。
   
 
 ### 返回值

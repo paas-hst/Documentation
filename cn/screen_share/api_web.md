@@ -8,7 +8,8 @@
 | leaveGroup | 离开分组 |
 | exit | 退出登录 |
 | destroy | 销毁引擎 |
-| on | 订阅事件 |
+| subEvent | 订阅事件 |
+| unsubEvent | 取消订阅事件 |
 | startScreenShare | 开启屏幕共享 |
 | stopScreenShare | 关闭屏幕共享 |
 | startReceiveScreenShare | 接收远端屏幕共享 |
@@ -25,15 +26,13 @@
 ### 接口原型
 
 ```js
-hstRtcEngine.init([accessUrl])
+hstRtcEngine.init([serverAddr])
 ```
 
 
 ### 参数说明
 
-accessUrl： Access服务URL地址。
-  Access服务主要提供负载均衡功能，客户端需要访问Access服务来获取其他服务的地址。
-  如果使用的公有云服务，则不需要传递此参数；如果使用的私有云服务，则需要设置此参数，具体传递规则请咨询技术人员。
+serverAddr： 可选参数，使用公有云服务，则不需要传递此参数；使用的私有云服务，需要设置此参数，具体请咨询技术人员。
 
 ### 返回值
 
@@ -254,14 +253,14 @@ hstRtcEngine.destroy();
 hstRtcEngine = null;
 ```
 
-## on
+## subEvent
 
 用来订阅引擎通知事件。
 
 ### 接口原型
 
 ```js
-hstRtcEngine.on(eventName, callback)
+hstRtcEngine.subEvent(eventName, callback)
 ```
 
 ### 参数说明
@@ -275,7 +274,7 @@ eventName：需要订阅的事件名称，相关事件定义如下表所示。
 |onUserLeaveGroup | userId |有人离开分组 |
 |onPublishMedia | {userId: "xxx", mediaType: "xxx", mediaId: "xxx"} |分组内有人发布媒体流 |
 |onUnPublishMedia | {userId: "xxx", mediaType: "xxx", mediaId: "xxx"} |分组内有人取消发布媒体流 |
-|onRemoteMediaAdd | {userId: "xxx", mediaType: "xxx", mediaId: "xxx", streamId: "xxx" }  |接收到远端媒体流 |
+|onRemoteMediaAdd | {userId: "xxx", mediaType: "xxx", mediaId: "xxx", streamId: "xxx" }  | 接收到远端媒体流|
   
 callback：事件发生时的回调函数，函数原型如下，不同事件data参数取值不一样。
 
@@ -293,13 +292,13 @@ function callback(data)
 
 ```js
 
-hstRtcEngine.on('onGroupUserList', function(data){
+hstRtcEngine.subEvent('onGroupUserList', function(data){
     for (const user of data){
         console.log(user);
     }
 });
 
-hstRtcEngine.on('onUserJoinGroup', function(data){
+hstRtcEngine.subEvent('onUserJoinGroup', function(data){
     console.log(data + " join group.");
 });
 
@@ -307,29 +306,57 @@ hstRtcEngine.on('onUserLeaveGroup', function(user){
     console.log(data + " leave group.");
 }
 
-hstRtcEngine.on('onPublishMedia', function (data) {
-    hstRtcEngine.startReceiveRemoteVideo(data.userId, data.mediaId)
+hstRtcEngine.subEvent('onPublishMedia', function (data) {
+    hstRtcEngine.startReceiveRemoteAudio(data.userId, data.mediaId)
     .then(() => {
-        console.log("Start receive user " + data.userId + " video.");
+        console.log("Start receive user " + data.userId + " audio.");
     })
     .catch(() => {
-        console.log("Receive remote video failed!");
+        console.log("Receive remote audio failed!");
     })
 }
 
-hstRtcEngine.on('onUnPublishMedia', function (data) {
-    hstRtcEngine.stopReceiveRemoteVideo(data.userId, data.mediaId)
+hstRtcEngine.subEvent('onUnPublishMedia', function (data) {
+    hstRtcEngine.stopReceiveRemoteAudio(data.userId, data.mediaId)
     .then(() => {
-        console.log("Stop receive remote video.");
+        console.log("Stop receive remote audio.");
     })
     .catch(() => {
         console.log("Stop receive remote video failed!");
     })
 }
 
-hstRtcEngine.on('onRemoteMediaAdd', function (data) {
+hstRtcEngine.subEvent('onRemoteMediaAdd', function (data) {
      hstRtcEngine.setStreamRender(videoElement, data.streamId);
 }
+```
+
+## unsubEvent
+
+用来取消订阅引擎通知事件。
+
+### 接口原型
+
+```js
+hstRtcEngine.unsubEvent([eventName])
+```
+
+### 参数说明
+
+eventName：可选参数，要取消订阅的事件名称，如果参数为空或为null，则表示取消已经订阅的所有事件。
+
+### 返回值
+
+无返回值。
+
+### 示例代码
+
+```js
+// 取消订阅'onGroupUserList'事件
+hstRtcEngine.subEvent('onGroupUserList');
+
+// 取消订阅所有事件
+hstRtcEngine.subEvent();
 ```
 
 ## startScreenShare
