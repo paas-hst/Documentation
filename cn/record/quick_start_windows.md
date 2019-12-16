@@ -8,7 +8,7 @@
 
 通过resful接口控制录制任务的生命周期，需要先使用[登录]功能与好视通服务建立一个长链接。
 token的获取方式参考[token生成]。
-录制服务请求地址：ws://fsp-record-gw.hst.com:443
+录制服务请求地址：ws://fsp-record-gw.hst.com
 每个字段的具体含义可以参考api手册。
 
 请求内容：
