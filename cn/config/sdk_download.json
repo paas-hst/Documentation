@@ -76,9 +76,9 @@
                     "title": "RTSP Plugin",
                     "platform": "Windows",
                     "version": "1.0.2",
-                    "size": "78.3KB",
+                    "size": "84.0KB",
                     "updateDate": "2019年12月23日",
-                    "downloadUrl": "http://fs.hst.com/download/paas/plugin/windows/rtsp_plugin.zip"
+                    "downloadUrl": "http://fs.hst.com/download/paas/plugin/windows/fsp_plugin_rtsp.zip"
                 }
             ]
         }
