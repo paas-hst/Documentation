@@ -5,10 +5,17 @@
             "data": [
                 {
                     "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
-                    "title": "Windows",
+                    "title": "Windows(C++)",
                     "url": "https://github.com/paas-hst/MeetingDemo_windows",
                     "acc": "下载体验",
-                    "accUrl": "http://fs.hst.com/download/paas/meetingdemo/windows/meetingdemo_windows.zip"
+                    "accUrl": "http://fs.hst.com/download/paas/meetingdemo/windows/meetingdemo_windows_cpp.zip"
+                },
+				{
+                    "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
+                    "title": "Windows(C#)",
+                    "url": "https://github.com/paas-hst/MeetingDemo_windows_csharp",
+                    "acc": "下载体验",
+                    "accUrl": "http://fs.hst.com/download/paas/meetingdemo/windows/meetingdemo_windows_csharp.zip"
                 },
                 {
                     "pic": "http://fs.hst.com/download/paas/images/code/mobile.png",
