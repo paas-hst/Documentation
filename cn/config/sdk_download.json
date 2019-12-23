@@ -5,19 +5,28 @@
             "data": [
                 {
                     "icon": "http://fs.hst.com/download/paas/images/download/windows.png",
-                    "title": "SDK for Windows",
+                    "title": "SDK for Windows(C++)",
                     "platform": "XP/Windows 7/Windows 10",
                     "version": "2.16.1",
-                    "size": "12.0MB",
+                    "size": "12.2MB",
                     "updateDate": "2019年12月23日",
                     "downloadUrl": "http://fs.hst.com/download/paas/sdk/windows/fsp_sdk_win32.zip"
+                },
+				{
+                    "icon": "http://fs.hst.com/download/paas/images/download/windows.png",
+                    "title": "SDK for Windows(C#)",
+                    "platform": "XP/Windows 7/Windows 10",
+                    "version": "2.16.1",
+                    "size": "12.2MB",
+                    "updateDate": "2019年12月23日",
+                    "downloadUrl": "http://fs.hst.com/download/paas/sdk/windows/fsp_sdk_csharp.zip"
                 },
                 {
                     "icon": "http://fs.hst.com/download/paas/images/download/android.png",
                     "title": "SDK for Android",
                     "platform": "Android",
                     "version": "2.16.1",
-                    "size": "7.03MB",
+                    "size": "6.95MB",
                     "updateDate": "2019年12月23日",
                     "downloadUrl": "http://fs.hst.com/download/paas/sdk/android/fsp_sdk_android.zip"
                 },
@@ -26,7 +35,7 @@
                     "title": "SDK for IOS",
                     "platform": "iOS",
                     "version": "2.16.1",
-                    "size": "3.01MB",
+                    "size": "3.51MB",
                     "updateDate": "2019年12月23日",
                     "downloadUrl": "http://fs.hst.com/download/paas/sdk/ios/fsp_sdk_ios.zip"
                 },
@@ -35,7 +44,7 @@
                     "title": "SDK for macOS",
                     "platform": "macOS",
                     "version": "2.16.1",
-                    "size": "7.84MB",
+                    "size": "26.3MB",
                     "updateDate": "2019年12月23日",
                     "downloadUrl": "http://fs.hst.com/download/paas/sdk/macos/fsp_sdk_mac.zip"
                 },
@@ -44,7 +53,7 @@
                     "title": "SDK for Web",
                     "platform": "web",
                     "version": "1.0.9",
-                    "size": "125KB",
+                    "size": "32KB",
                     "updateDate": "2019年12月23日",
                     "downloadUrl": "http://fs.hst.com/download/paas/sdk/web/fsp_sdk_web.zip"
                 },
