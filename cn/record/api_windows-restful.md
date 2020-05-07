@@ -6,7 +6,8 @@
 ## 获取access_token
 
 获取access_token，后续请求都是使用这个token
-
+使用方法为设置HTTP header.在HTTP请求头Authorization
+	Authorization:access_token
 
 ### 请求参数说明
 
@@ -25,9 +26,7 @@ HTTP header.在HTTP请求头Authorization中携带开发者ID和Token，两者�
 459d0e780b96ce2c42b6356a67e5e35c.k5FUR5LlEoTq5t1ZZ1A9RoQfqgbL1mtJ4DzMdwOW7tvaZZqhXtm6rsisnyoYo9S0HPTDBZGMMhii4gLAorBdCSxb0Iv0yBfFehUTW76gAUm7QuSo3ZqTMvsV
 .前面 那一段是开发者ID，.后面的那一段是token..
 
-注意！！！
-返回的access_token 在除此之外的所有请求中都是用到;使用方法为设置HTTP header.在HTTP请求头Authorization
-	Authorization:access_token
+
 
 示例：
 
