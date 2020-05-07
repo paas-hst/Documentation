@@ -5,7 +5,7 @@
 
 ## 获取access_token
 
-获取access_token，后续请求都是使用这个token
+获取access_token，后续请求都是使用这个token;超时后需要重新获取。
 使用方法为设置HTTP header.在HTTP请求头Authorization
 	Authorization:access_token
 
@@ -32,9 +32,6 @@ HTTP header.在HTTP请求头Authorization中携带开发者ID和Token，两者�
 
 ```js
 Authorization: 459d0e780b96ce2c42b6356a67e5e35c.k5FUR5LlEoTq5t1ZZ1A9RoQfqgbL1mtJ4DzMdwOW7tvaZZqhXtm6rsisnyoYo9S0HPTDBZGMMhii4gLAorBdCSxb0Iv0yBfFehUTW76gAUm7QuSo3ZqTMvsV
-Host: 192.168.7.123:8004
-Content-Length: 0
-Content-Type: application/json
 ```
 
 ### 返回说明
@@ -72,7 +69,7 @@ Content-Type: application/json
 ## 初始化录制任务
 
 
-建立长链接以后，可以开始为不同的分组初始化录制任务，设置录制任务的属性，比如格式、分辨率、帧率、录制模式等等。
+可以开始为不同的分组初始化录制任务，设置录制任务的属性，比如格式、分辨率、帧率、录制模式等等。
 
 
 ### 请求参数说明
@@ -84,6 +81,7 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 
 | 参数名 | 类型 | 是否必填 | 参数说明 |
 | - | - | - | - |
+| app_id | String | 是 | 应用ID |
 | group_id | String | 是 | 指定初始化录制任务的分组 |
 | file_name | String | 否 | 不包含格式的录制文件名 |
 | file_type | int | 否 | 0代表同时录制音视频的mp4格式，1代表仅录制音频的mp3格式，默认格式为mp4 |
@@ -110,6 +108,7 @@ auto的请求字段如下：
 ```js
 //手动录制
 {
+"app_id":"XXXXXXXX",
 "group_id":"XXXXXXXX",
 "file_name":"XXXXXXXX",
 "file_type":0,
@@ -333,6 +332,7 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 
 | 参数名 | 类型 | 是否必填 | 参数说明 |
 | - | - | - | - |
+| app_id | String | 是 | 应用ID |
 | record_id | String | 是 | 录制任务的ID  |
 | audio_list | Array | 否 | 音频列表  |
 | video_list | Array | 否 | 视频列表  |
@@ -412,7 +412,7 @@ video_list视频列表的请求字段如下：
 ### 请求参数说明
 
 请求地址：/v1/record/task/list  HTTP协议，GET方法
-接口的请求类型为JSON。请求字段如下：
+请求字段如下：
 
 | 参数名 | 类型 | 是否必填 | 参数说明 |
 | - | - | - | - |
@@ -458,7 +458,7 @@ record_list录制任务列表的返回字段如下：
 
 ## 获取下载录制文件的URL
 
-请求地址：/v1/record/file/download/url
+请求地址：/v1/record/file/download/url HTTP协议，GET方法
 
 ### 请求参数说明
 
