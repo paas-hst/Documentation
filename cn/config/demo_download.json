@@ -46,12 +46,19 @@
                     "accUrl": "https://fspweb.hst.com"
                 },
                 {
-                    "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
+                    "pic": "http://fs.hst.com/download/paas/images/code/mobile.png",
                     "title": "WeChat",
                     "url": "https://github.com/paas-hst/MeetingDemo_wx",
                     "acc": "扫码体验",
                     "accImg": "http://fs.hst.com/download/paas/images/code/meetingdemo_wx.jpg"
-                }
+                },
+				{
+                    "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
+                    "title": "CloudRecord",
+                    "url": "https://github.com/paas-hst/CloudRecordDemo",
+                    "acc": "在线体验",
+                    "accUrl": "https://record-demo-paas.hst.com"
+                },
             ]
         },
         {
