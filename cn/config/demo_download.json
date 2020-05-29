@@ -51,15 +51,25 @@
                     "url": "https://github.com/paas-hst/MeetingDemo_wx",
                     "acc": "扫码体验",
                     "accImg": "http://fs.hst.com/download/paas/images/code/meetingdemo_wx.jpg"
-                },
-				{
+                }
+            ]
+        },
+		{
+            "title": "CloudRecordDemo(云录制)",
+            "data": [
+                {
                     "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
-                    "title": "云录制DEMO",
+                    "title": "Web",
                     "url": "https://github.com/paas-hst/CloudRecordDemo",
                     "acc": "在线体验",
                     "accUrl": "http://record-demo-paas.hst.com"
-                },
-				{
+                }
+            ]
+        },
+		{
+            "title": "CloudLiveDemo(云直播)",
+            "data": [
+                {
                     "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
                     "title": "云直播DEMO",
                     "url": "https://github.com/paas-hst/CloudLiveDemo",
