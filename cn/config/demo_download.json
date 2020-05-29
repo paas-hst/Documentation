@@ -54,10 +54,17 @@
                 },
 				{
                     "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
-                    "title": "CloudRecord",
+                    "title": "云录制DEMO",
                     "url": "https://github.com/paas-hst/CloudRecordDemo",
                     "acc": "在线体验",
                     "accUrl": "http://record-demo-paas.hst.com"
+                },
+				{
+                    "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
+                    "title": "云直播DEMO",
+                    "url": "https://github.com/paas-hst/CloudLiveDemo",
+                    "acc": "在线体验",
+                    "accUrl": "http://live-demo-paas.hst.com"
                 }
             ]
         },
