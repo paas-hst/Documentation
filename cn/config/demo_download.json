@@ -55,7 +55,7 @@
             ]
         },
 		{
-            "title": "CloudRecordDemo(云录制)",
+            "title": "CloudRecordDemo",
             "data": [
                 {
                     "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
@@ -67,11 +67,11 @@
             ]
         },
 		{
-            "title": "CloudLiveDemo(云直播)",
+            "title": "CloudLiveDemo",
             "data": [
                 {
                     "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
-                    "title": "云直播DEMO",
+                    "title": "Web",
                     "url": "https://github.com/paas-hst/CloudLiveDemo",
                     "acc": "在线体验",
                     "accUrl": "http://live-demo-paas.hst.com"
