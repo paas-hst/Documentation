@@ -4,7 +4,7 @@
             "title": "Main SDK",
             "data": [
                 {
-                    "icon": "http://fs.hst.com/download/paas/images/download/windows.png",
+                    "icon": "http://fs.hst.com/download/paas/images/sdk/windows.png",
                     "title": "SDK for Windows(C++)",
                     "platform": "XP/Windows 7/Windows 10",
                     "version": "2.16.1",
@@ -13,7 +13,7 @@
                     "downloadUrl": "http://fs.hst.com/download/paas/sdk/windows/fsp_sdk_win32.zip"
                 },
 				{
-                    "icon": "http://fs.hst.com/download/paas/images/download/windows.png",
+                    "icon": "http://fs.hst.com/download/paas/images/sdk/windows.png",
                     "title": "SDK for Windows(C#)",
                     "platform": "XP/Windows 7/Windows 10",
                     "version": "2.16.1",
@@ -22,7 +22,7 @@
                     "downloadUrl": "http://fs.hst.com/download/paas/sdk/windows/fsp_sdk_csharp.zip"
                 },
                 {
-                    "icon": "http://fs.hst.com/download/paas/images/download/android.png",
+                    "icon": "http://fs.hst.com/download/paas/images/sdk/android.png",
                     "title": "SDK for Android",
                     "platform": "Android",
                     "version": "2.16.1",
@@ -31,7 +31,7 @@
                     "downloadUrl": "http://fs.hst.com/download/paas/sdk/android/fsp_sdk_android.zip"
                 },
                 {
-                    "icon": "http://fs.hst.com/download/paas/images/download/apple.png",
+                    "icon": "http://fs.hst.com/download/paas/images/sdk/ios.png",
                     "title": "SDK for IOS",
                     "platform": "iOS",
                     "version": "2.16.1",
@@ -40,7 +40,7 @@
                     "downloadUrl": "http://fs.hst.com/download/paas/sdk/ios/fsp_sdk_ios.zip"
                 },
                 {
-                    "icon": "http://fs.hst.com/download/paas/images/download/apple.png",
+                    "icon": "http://fs.hst.com/download/paas/images/sdk/macos.png",
                     "title": "SDK for macOS",
                     "platform": "macOS",
                     "version": "2.16.1",
@@ -49,7 +49,7 @@
                     "downloadUrl": "http://fs.hst.com/download/paas/sdk/macos/fsp_sdk_mac.zip"
                 },
                 {
-                    "icon": "http://fs.hst.com/download/paas/images/download/web.png",
+                    "icon": "http://fs.hst.com/download/paas/images/sdk/web.png",
                     "title": "SDK for Web",
                     "platform": "web",
                     "version": "1.0.10",
@@ -58,7 +58,7 @@
                     "downloadUrl": "http://fs.hst.com/download/paas/sdk/web/fsp_sdk_web.zip"
                 },
                 {
-                    "icon": "http://fs.hst.com/download/paas/images/download/wx.png",
+                    "icon": "http://fs.hst.com/download/paas/images/sdk/wechat.png",
                     "title": "SDK for WeChat",
                     "platform": "WeChat",
                     "version": "1.0.1",
@@ -72,7 +72,7 @@
             "title": "Plugin",
             "data": [
                 {
-                    "icon": "http://fs.hst.com/download/paas/images/download/windows.png",
+                    "icon": "http://fs.hst.com/download/paas/images/sdk/plugin.png",
                     "title": "RTSP Plugin",
                     "platform": "Windows",
                     "version": "1.0.2",
