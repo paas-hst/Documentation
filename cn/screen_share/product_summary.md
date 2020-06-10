@@ -1,14 +1,14 @@
 # 产品介绍
-屏幕共享产品可以将桌面共享给组内所有用户，并能实现远程控制。
+屏幕共享产品可以将屏幕共享给组内所有用户，并能实现远程控制。
 
 
 ## 产品特点
 
 + 支持1080P超清共享画面。
-+ 支持共享整个桌面。
++ 支持共享整个屏幕。
 + 支持共享指定区域。
 + 支持远程控制功能。
-+ 独有的SVC技术与屏幕共享结合，使得共享画面更清晰、流畅。
++ 基于SVC技术的屏幕共享，共享画面更清晰、流畅。
 
 
 ## 应用场景
@@ -27,13 +27,13 @@
 
 <tr>
 <td rowspan="5">功能规格</td>
-<td>共享桌面</td>
-<td >将主讲人整个桌面共享出去</td>
+<td>共享屏幕</td>
+<td >将主讲人桌面内容/屏幕内容共享出去</td>
 </tr>
 
 <tr>
 <td>共享区域</td>
-<td>将桌面指定的区域共享出去</td>
+<td>将屏幕指定的区域共享出去</td>
 </tr>
 
 <tr>
@@ -86,12 +86,12 @@
 
 <tr>
 <td rowspan="5">功能规格</td>
-<td>共享桌面</td>
+<td>共享屏幕</td>
 <td align="center">&#10003</td>
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
-<td align="center">&#10005</td>
+<td align="center">&#10003</td>
 <td align="center">&#10005</td>
 </tr>
 
@@ -121,7 +121,7 @@
 <td align="center">&#10003</td>
 <td align="center">&#10003</td>
 <td align="center">&#10003</td>
-<td align="center">&#10005</td>
+<td align="center">&#10003</td>
 <td align="center">&#10005</td>
 </tr>
 
@@ -143,7 +143,7 @@
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
-<td align="center">&#10005</td>
+<td align="center">1080P</td>
 <td align="center">&#10005</td>
 </tr>
 
@@ -153,7 +153,7 @@
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
-<td align="center">&#10005</td>
+<td align="center">&#8211</td>
 <td align="center">&#10005</td>
 </tr>
 
