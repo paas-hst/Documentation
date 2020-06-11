@@ -37,7 +37,7 @@ DEMO需要配置App ID、App Secret才可以运行。为了方便开发者快速
 
 ## RecordDemo
 
-RecordDemo用来体验云录制服务。
+RecordDemo用来演示云录制相关接口和能力。
 
 ### 登录平台
 
@@ -59,6 +59,8 @@ RecordDemo用来体验云录制服务。
 
 ## LiveDemo
 
+LiveDemo用来演示云直播相关接口和能力。
+
 ### 登录平台
 
 公有云使用开发者ID和开发者秘钥登录；私有云使用App ID和App Secret登录。
@@ -73,4 +75,3 @@ RecordDemo用来体验云录制服务。
 
 ### 观看直播
 直播任务创建成功后，可以点击“观看”按钮立即播放直播视频，也可将直播链接拷贝到支持的播放器中进行播放。
-
