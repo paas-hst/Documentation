@@ -1,64 +1,76 @@
 # 体验试用
 
-您可以通过Demo程序快速体验好视通云通信平台提供的产品服务。运行Demo程序有两种方式，第一种方式是直接下载/安装然后运行，[点击此处下载Demo]； 第二种方式是下载源码编译运行，Demo源码托管在GitHub上，[点击此处下载Demo源码]。相比较而言，前者更加快捷方便，后者拥有更多修改方式。
+您可以通过DEMO程序快速体验好视通云通信平台提供的产品服务。运行Demo程序有两种方式，第一种方式是立即体验， 第二种方式是下载对应平台的源码编译运行。
 
-下面以Windows端Demo程序为例，讲解Demo程序特性，其他端Demo程序类似。
+## 准备工作
 
-## Windows端Demo体验
+在体验DEMO前，请[点此](demo)获取对应平台和产品的DEMO。有些是下载后在本地直接运行体验，有些是扫码后运行体验，还有些是在线体验。
 
-### 应用配置
-Demo不需要做任何配置即可运行，程序内置了默认的App ID和App Secret。如果您想配置自己创建的App，在登录界面点击“应用配置”按钮，在对话框中进行配置。如果测试的是公有云产品，Server Address使用默认的即可，如果是测试私有云产品，Server Address需要填真实服务器地址，具体格式请参考相关文档或咨询技术支持。
+## MeetingDemo
 
-<img alt="demo_app_setting.png" src="http://fs.hst.com/download/paas/images/documentation/platform/demo_app_setting.png" align="center" />
+MeetingDemo集成了平台的大部分终端特性，适合在各种终端上进行体验。
 
-### 登录界面
-登录平台需要输入User ID，User ID用来唯一标识一个用户，需要保证在App下唯一，User ID由开发者定义，只能包含字母、数字和下划线。
+### 配置DEMO
 
-<img alt="demo_login.png" src="http://fs.hst.com/download/paas/images/documentation/platform/demo_login.png" align="center" />
+DEMO需要配置App ID、App Secret和Server Address才可以运行，不过，为了方便开发者快速体验，DEMO程序内置了默认的App ID、App Secret和Server Address，因此，一般情况下，不做任何配置DEMO也是可运行的。
 
-### 在线界面
-登录平台后，进入在线界面，此界面能够看到App下所有在线用户。在此界面输入Group ID，Group ID用来唯一标识一个分组，可以认为等同于会议中的房间， 如果希望多人在一个房间中进行交互，则要确保大家填入相同的Group ID，加入相同的分组。一种入会方式是点击“加入分组”按钮，则直接进入主界面；另一种入会方式是邀请入会，从在线用户列表中选择被邀请人，然后点击“邀请并加入分组”，也会进入主界面，但同时会向被选择的在线用户发起邀请入会呼叫，被邀请端会弹出邀请框，用户选择是同意邀请还是拒绝邀请。
+> 默认配置只是用来快速体验，系统对默认配置有些限制，因此不可作为测试和生产配置。
 
-<img alt="demo_online.png" src="http://fs.hst.com/download/paas/images/documentation/platform/demo_online.png" align="center" />
-<img alt="demo_invite.png" src="http://fs.hst.com/download/paas/images/documentation/platform/demo_invite.png" align="center" />
+如果想在公有云上使用自己的App进行测试，则需要将App ID和App Secret配置为自己创建的APP。如果想测试私有云，则需要配置Server Address，具体请咨询技术人员。
 
-### 主界面
-登录成功后会进入Demo主界面。主界面集中展示了好视通云通信平台所提供的服务能力，但不是全部，具体请参考相关文档。
+### 登录平台
 
-<img alt="demo_main.png" src="http://fs.hst.com/download/paas/images/documentation/platform/demo_main.png" align="center" />
+使用User ID登录平台，User ID自定义，需要保证在App中是唯一的，否则可能会被拒绝登录。
 
-### 参数设置
-点击工具栏的设置按钮，可以对某些功能进行参数设置。
-
-<img alt="demo_setting.png" src="http://fs.hst.com/download/paas/images/documentation/platform/demo_setting.png" align="center" />
-
-
-## 微信小程序Demo体验
-好视通云通信官方微信小程序Demo已经上线，您可以在微信中搜索“好视通PaaSdemo”，直接体验小程序。
-
-### 准备工作
-
-微信小程序Demo默认不再内置App ID，因此体验微信小程序之前，需要做些准备工作：
-
-- 注册成为企业开发者，然后申请开通“微信小程序”产品。
-- 创建应用，选择使用“微信小程序”产品，并上线。
-
-### 应用设置
-
-微信小程序产品只有企业开发者才可以体验，应用创建并上线后，第一次使用微信小程序，按以下步骤操作：
-
-- 打开小程序，进入登录界面，点击屏幕下方的设置按钮。
-- 输入App ID和App Secret，使用默认服务器配置，然后点击“获取授权”。
-
-<img alt="wechat_setting.png" style="height: 400px"  src="http://fs.hst.com/download/paas/images/documentation/platform/wechat_setting.png" align="center" />
+> User ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
 ### 加入分组
 
-- 授权获取成功后，会自动切换到登录页面，输入User ID和Group ID，点击“加入分组”。
+使用Group ID加入分组，Group ID自定义，如果是第一个用户，系统会自动创建分组；如果分组已经存在，则加入分组。
 
-<img alt="wechat_main.png" src="http://fs.hst.com/download/paas/images/documentation/platform/wechat_main.jpg" align="center" />
+> Group ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
-加入分组成功后，就可以和其他用户一起进行音视频互动了。
+### 体验功能
+
+加入分组后，就可以体验基于分组的相关功能了。
 
 
-## 云录制Demo体验
+## RecordDemo
+
+RecordDemo用来体验云录制服务。
+
+### 登录平台
+
+公有云使用开发者ID和开发者秘钥登录；私有云使用App ID和App Secret登录。
+
+> 私有云需要填写服务器地址，具体请咨询技术人员。
+
+### 查询录制任务
+支持基于App ID、Group ID和Record State查询录制任务，其中App ID必填。
+
+### 创建录制任务
+点击“创建”按钮，能够创建指定分组的录制任务。系统支持创建自动录制任务和手动录制任务，自动录制任务无需外部干预，会基于内部定义的布局进行合成录制；手动录制任务需要开发者选择录制哪一路媒体。
+
+### 控制录制任务
+对于手动录制任务，点击控制，能够对录制过程进行灵活控制。由于录制控制在界面实现会比较繁琐，因此DEMO只实现了简单控制：选择录制的媒体，录制布局采用内部预定义布局。
+
+### 录制文件管理
+录制完成后，登录到管理后台，能够查看和下载录制的文件。
+
+## LiveDemo
+
+### 登录平台
+
+公有云使用开发者ID和开发者秘钥登录；私有云使用App ID和App Secret登录。
+
+> 私有云需要填写服务器地址，具体请咨询技术人员。
+
+### 查询直播任务
+支持基于App ID查询直播任务。
+
+### 创建直播任务
+点击“创建”按钮，填入App ID和Group ID，便可创建指定分组的直播任务。
+
+### 观看直播
+直播任务创建成功后，可以点击“观看”按钮立即播放直播视频，也可将直播链接拷贝到支持的播放器中进行播放。
+
