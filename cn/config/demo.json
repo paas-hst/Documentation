@@ -4,92 +4,86 @@
             "title": "MeetingDemo",
             "data": [
                 {
-                    "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
+                    "pic": "http://fs.hst.com/download/paas/images/demo/pc.png",
                     "title": "Windows(C++)",
                     "url": "https://github.com/paas-hst/MeetingDemo_windows",
+					"icon": "http://fs.hst.com/download/paas/images/demo/download.png",
                     "acc": "下载体验",
                     "accUrl": "http://fs.hst.com/download/paas/meetingdemo/windows/meetingdemo_windows_cpp.zip"
                 },
 				{
-                    "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
+                    "pic": "http://fs.hst.com/download/paas/images/demo/pc.png",
                     "title": "Windows(C#)",
                     "url": "https://github.com/paas-hst/MeetingDemo_windows_csharp",
+					"icon": "http://fs.hst.com/download/paas/images/demo/download.png",
                     "acc": "下载体验",
                     "accUrl": "http://fs.hst.com/download/paas/meetingdemo/windows/meetingdemo_windows_csharp.zip"
                 },
                 {
-                    "pic": "http://fs.hst.com/download/paas/images/code/mobile.png",
+                    "pic": "http://fs.hst.com/download/paas/images/demo/mobile.png",
                     "title": "Android",
                     "url": "https://github.com/paas-hst/MeetingDemo_android",
+					"icon": "http://fs.hst.com/download/paas/images/demo/qrcode.png",
                     "acc": "扫码体验",
-                    "accImg": "http://fs.hst.com/download/paas/images/code/meetingdemo_android.png"
+                    "accImg": "http://fs.hst.com/download/paas/images/demo/meetingdemo_android.png"
                 },
                 {
-                    "pic": "http://fs.hst.com/download/paas/images/code/mobile.png",
+                    "pic": "http://fs.hst.com/download/paas/images/demo/mobile.png",
                     "title": "iOS",
                     "url": "https://github.com/paas-hst/MeetingDemo_ios",
+					"icon": "http://fs.hst.com/download/paas/images/demo/qrcode.png",
                     "acc": "扫码体验",
-                    "accImg": "http://fs.hst.com/download/paas/images/code/meetingdemo_ios.png"
+                    "accImg": "http://fs.hst.com/download/paas/images/demo/meetingdemo_ios.png"
                 },
                 {
-                    "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
+                    "pic": "http://fs.hst.com/download/paas/images/demo/pc.png",
                     "title": "macOS",
                     "url": "https://github.com/paas-hst/MeetingDemo_mac",
+					"icon": "http://fs.hst.com/download/paas/images/demo/download.png",
                     "acc": "下载体验",
                     "accUrl": "http://fs.hst.com/download/paas/meetingdemo/mac/meetingdemo_mac.zip"
                 },
                 {
-                    "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
+                    "pic": "http://fs.hst.com/download/paas/images/demo/pc.png",
                     "title": "Web",
                     "url": "https://github.com/paas-hst/MeetingDemo_web_jquery",
+					"icon": "http://fs.hst.com/download/paas/images/demo/online.png",
                     "acc": "在线体验",
                     "accUrl": "https://fspweb.hst.com"
                 },
                 {
-                    "pic": "http://fs.hst.com/download/paas/images/code/mobile.png",
+                    "pic": "http://fs.hst.com/download/paas/images/demo/mobile.png",
                     "title": "WeChat",
                     "url": "https://github.com/paas-hst/MeetingDemo_wx",
+					"icon": "http://fs.hst.com/download/paas/images/demo/qrcode.png",
                     "acc": "扫码体验",
-                    "accImg": "http://fs.hst.com/download/paas/images/code/meetingdemo_wx.jpg"
+                    "accImg": "http://fs.hst.com/download/paas/images/demo/meetingdemo_wx.jpg"
                 }
             ]
         },
 		{
-            "title": "CloudRecordDemo",
+            "title": "RecordDemo",
             "data": [
                 {
-                    "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
+                    "pic": "http://fs.hst.com/download/paas/images/demo/record.png",
                     "title": "Web",
                     "url": "https://github.com/paas-hst/CloudRecordDemo",
+					"icon": "http://fs.hst.com/download/paas/images/demo/online.png",
                     "acc": "在线体验",
                     "accUrl": "http://record-demo-paas.hst.com"
                 }
             ]
         },
 		{
-            "title": "CloudLiveDemo",
+            "title": "LiveDemo",
             "data": [
                 {
-                    "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
+                    "pic": "http://fs.hst.com/download/paas/images/demo/live.png",
                     "title": "Web",
                     "url": "https://github.com/paas-hst/CloudLiveDemo",
+					"icon": "http://fs.hst.com/download/paas/images/demo/online.png",
                     "acc": "在线体验",
                     "accUrl": "http://live-demo-paas.hst.com"
-                }
-            ]
-        },
-        {
-            "title": "TokenGenerator",
-            "data": [
-                {
-                    "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
-                    "title": "C++",
-                    "url": "https://github.com/paas-hst/TokenGenerator_cpp"
-                },
-                {
-                    "pic": "http://fs.hst.com/download/paas/images/code/pc.png",
-                    "title": "Java",
-                    "url": "https://github.com/paas-hst/TokenGenerator_java"
                 }
             ]
         }
