@@ -3,11 +3,19 @@
 云录制相关业务功能需要客户的账号通过企业开发者的资格认证。认证成功就可以调用云录制api。
 云录制接口是调用一套RESTful Api来实现用户对录制业务的控制。
 
+简化步骤：
+
+ 手动录制：初始化录制任务->设置合成效果->结束录制  
+
+ 自动录制：初始化录制任务                              结束任务
+
+ 直        播：开启直播                                         结束直播   
+
 ## 获取access_token
 
 获取access_token，后续请求都是使用这个token;超时后需要重新获取。
 使用方法为设置HTTP header.在HTTP请求头Authorization
-	Authorization:access_token
+ 	Authorization:$access_token
 
 ### 请求参数说明
 
@@ -15,7 +23,6 @@
 HTTP协议，GET方法
 
 参数名 | 类型 | 是否必填 | 参数说明 
-|- | - | - | - 
 | dev_id | String | 是 | 应用对应的开发者id |
 | token | String | 是 | 应用通过token生成方式获得的值 |
 
@@ -66,6 +73,10 @@ Authorization: 459d0e780b96ce2c42b6356a67e5e35c.k5FUR5LlEoTq5t1ZZ1A9RoQfqgbL1mtJ
 
 ```
 
+# 录制API
+
+
+
 ## 初始化录制任务
 
 
@@ -102,7 +113,7 @@ auto的请求字段如下：
 | user_id | String | 否 | type=2时需要设置，没有的话则会默认使用第一个进入分组的用户ID |
 | media_type | int | 否 | 媒体顺序。2:优先级按屏幕共享>摄像头>白板的顺序。  |
 | media_count | int | 否 | 范围[1,9]，代表自动录视频数最多不超过的路数  |
-| crop_mode | int | 否 | 视频裁剪模式(1:平铺;2:等比平铺裁剪;3:等比平铺填充)默认为1  |
+| crop_mode | int | 否 | 视频裁剪模式(1:平铺;2:等比平铺裁剪;3:等比平铺填充)默认为2  |
 
 示例：
 ```js
@@ -364,14 +375,14 @@ video_list视频列表的请求字段如下：
 {
 "app_id":"XXXXXXXX",
 "record_id":"XXXXXXXX",
-"audio_list":{
-	{"user_id":"Jack_ID","media_id":1},
-	{"user_id":"Paul_ID","media_id":1}
-	},
-"video_list":{
+"audio_list":[
+	{"user_id":"Jack_ID","media_id":1,"media_type":1},
+	{"user_id":"Paul_ID","media_id":1,"media_type":1}
+	],
+"video_list":[
 	{"user_id":"Jack_ID","media_id":0,"media_type":2,"crop_mode":3,"w":530,"h":380},
 	{"user_id":"Paul_ID","media_id":0,"media_type":2,"crop_mode":3,"x":531,"w":530,"h":380}
-	}
+	]
 }
 ```
 
@@ -452,8 +463,8 @@ record_list录制任务列表的返回字段如下：
 | group_id | int | 组ID |
 | start_time| date | 任务开启时间 |
 | stop_time | date | 任务结束时间 |
-| status | int | 任务状态  |
-
+| status | int | 任务状态 ***<u>完成了下载接口才可用</u>*** |
+![Image](state.png)
 
 
 ## 获取下载录制文件的URL
@@ -548,8 +559,134 @@ data_list  录制文件下载链接列表的返回字段如下：
 }
 ```
 
-错误码 | 描述  
-|- | - | 
+
+
+# 直播API
+
+
+
+## 开始直播
+
+请求地址：/v1/live/start  HTTP协议，POST方法
+
+
+### 请求参数说明
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| app_id | String | 是 | 应用ID |
+| group_id | String | 是 | 指定初始化录制任务的分组 |
+| width | int | 否 | 幕布宽度[1,1920]（单位px）默认1920 |
+| height | int | 否 | 幕布高[1,1080]（单位px）默认1080 |
+| crop_mode | int | 否 | 视频裁剪模式(1:平铺;2:等比平铺裁剪;3:等比平铺填充)默认为2  |
+| frame_rate | int | 否 | 录制视频帧率(默认30帧)[1,30]（单位帧） |                                      |
+| quality_level | int | 否 | 1 流畅、2 清晰、3高清 (默认2)|
+
+请求示例：
+
+```js
+{
+	"app_id":"XXXXXX",
+	"group_id": "XXXX",
+	"width": 1920,
+	"height": 1080,
+	"crop_mode":2,
+	"quality_level":2,
+	"frame_rate":20
+}
+```
+
+### 返回说明
+| 参数名 | 类型  | 参数说明 |
+| - | - | - | - |
+| code | int |  操作结果 0为成功 |
+| group_id | String | 直播的组id |
+| flv_url | String |  flv格式的拉流地址 |
+| m3u8_url | String |  m3u8格式的拉流地址 |
+| rtmp_url | String |  rtmp格式的拉流地址  |
+| msg | String |成功为success|
+返回示例：
+
+```js
+{
+	"code": 0,
+	"flv_url": "http://xxxxxx.haoshitong.com/fsp-live/20200512161527_1111.flv",
+	"group_id": "1111",
+	"m3u8_url": "http://xxxx.haoshitong.com/fsp-live/20200512161527_1111.m3u8",
+	"msg": "success",
+	"rtmp_url": "rtmp://xxxx.haoshitong.com/fsp-live/20200512161527_1111"
+}
+```
+## 关闭直播
+
+请求地址：/v1/live/stop  HTTP协议，POST方法
+
+
+### 请求参数说明
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| app_id | String | 是 | 应用ID |
+| group_id | String | 是 | 指定初始化录制任务的分组 |
+
+请求示例：
+
+```js
+{
+	"app_id":"XXXXXX",
+	"group_id": "XXXX"
+}
+```
+
+### 返回说明
+
+返回示例：
+
+```js
+{
+	"code": 0,
+	"group_id": "1111",
+	"msg": "stop live success"
+}
+```
+
+## 获取直播列表
+
+请求地址：/v1/live/list  HTTP协议，Get方法
+
+### 请求参数说明
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| app_id | String | 是 | 应用ID |
+
+请求示例：
+
+```js
+/v1/live/list?app_id=xxxxx
+```
+
+### 返回说明
+
+返回示例：
+
+```js
+{
+	"code": 0,
+	"id": 9475,
+	"list": [{
+		"flv_url": "http://live.alicdn.haoshitong.com/fsp-live/20200513112347_1111.flv",
+		"group_id": "1111",
+		"m3u8_url": "http://live.alicdn.haoshitong.com/fsp-live/20200513112347_1111.m3u8",
+		"rtmp_url": "rtmp://live.alicdn.haoshitong.com/fsp-live/20200513112347_1111",
+		"start_time": 1589340227
+	}],
+	"msg": "success"
+}
+```
+
+|错误码             | 描述  
+
 | 6050030000| 异常失败 | 
 | 6050030001| 上下文不存在 | 
 | 6050030003|参数错误 |
@@ -582,6 +719,5 @@ data_list  录制文件下载链接列表的返回字段如下：
 | 6050030036|自动录制 登陆事件网关失败   |
 | 6050030038|自动录制 该房间存在一个自动录制任务    |
 | 6050030039|不能暂停  录制中才可以   |
-| 6050030040|没有暂停  不能取消  |
 | 其他错误码 | 重新请求依然有问题时，请联系服务提供商 |
 
