@@ -60,3 +60,11 @@ pFspEngine->SetVideoProfile(szVideoId, profile);
 
 ## 获取远端视频参数
 接收端可以定时调用 GetVideoStats 方法获取远端视频的参数信息：宽高，帧率，码率信息。
+```js
+fsp::VideoStatsInfo status;
+status.width = 1280;
+status.height = 720;
+status.framerate = 15;
+pFspEngine->GetVideoStats(szUserId,szVideoId, status);
+```
+

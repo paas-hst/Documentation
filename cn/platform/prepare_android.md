@@ -33,10 +33,10 @@ fspEngine.init();
 
 ## 登录平台
 
-初始化完成后，就可以登录平台了，登录需要使用到Token和User ID。其中，Token为字符串，用来校验身份和鉴权，由开发者自己生成，具体请参考“平台介绍->基本概念->应用鉴权”；User ID也是字符串，由开发者定义，用来唯一标识一个用户，开发者必须保证App下唯一，具体请参考“平台介绍->基本概念->Group ID和User ID”。
+初始化完成后，就可以登录平台了，登录需要使用到Token、User ID、ForceLogin、CusName。其中，Token为字符串，用来校验身份和鉴权，由开发者自己生成，具体请参考“平台介绍->基本概念->应用鉴权”；User ID也是字符串，由开发者定义，用来唯一标识一个用户，开发者必须保证App下唯一，具体请参考“平台介绍->基本概念->Group ID和User ID”。
 
 ```js
-fspEngine.login(token, userId);
+fspEngine.login(token, userId, bForceLogin, szCustomName);
 ```
 
 > User ID定义必须符合规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。

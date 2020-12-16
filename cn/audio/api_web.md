@@ -1,16 +1,16 @@
 ## API列表
 | 接口 | 描述 |
 | - | - |
-| init | 初始化RTC引擎 |
-| login | 登录平台 |
-| joinGroup | 加入分组 |
-| leaveGroup | 离开分组 |
-| exit | 退出登录 |
-| destroy | 销毁引擎 |
+| Init | 初始化RTC引擎 |
+| Login | 登录平台 |
+| JoinGroup | 加入分组 |
+| LeaveGroup | 离开分组 |
+| Logout | 退出登录 |
+| Destroy | 销毁引擎 |
 | subEvent | 订阅事件 |
 | unsubEvent | 取消订阅事件 |
-| startPublishAudio | 广播本地音频 |
-| stopPublishAudio | 停止广播本地音频 |
+| StartPublishAudio | 广播本地音频 |
+| StopPublishAudio | 停止广播本地音频 |
 | startReceiveRemoteAudio | 接收远端音频 |
 | stopReceiveRemoteAudio | 停止接收远端音频 |
 | setStreamRender | 设置音频播放对象 |
