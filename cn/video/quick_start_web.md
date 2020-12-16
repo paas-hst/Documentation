@@ -5,7 +5,7 @@
 
 ## 获取设备列表
 
-广播本地摄像头，需要指定摄像头设备。SDK提供一个接口同时获取摄像头、麦克风和扬声器设备，开发者可以根据需要进行选择。
+广播本地视频需要指定摄像头设备。SDK提供一个接口同时获取摄像头、麦克风和扬声器设备，开发者可以根据需要进行选择。
 
 ```js
 hstRtcEngine.getMediaDevices()
@@ -25,8 +25,13 @@ hstRtcEngine.getMediaDevices()
 设置video标签和设备ID，引擎会打开deviceId指定的摄像头，并将视频渲染到video标签对象。
 
 ```js
-let videoElement = document.getElementById('video-panel');
-hstRtcEngine.setLocalVideoRender(videoElement, deviceId);
+const MediaType = hstRtcEngine.MediaType;
+
+hstRtcEngine.setMediaRender(
+	userId, // 登录userId
+	MediaType.VIDEO,
+	deviceId,
+	document.getElementById('video-panel'));
 ```
 
 > deviceId为调用getMediaDevices接口获取的设备devId。
@@ -37,7 +42,9 @@ hstRtcEngine.setLocalVideoRender(videoElement, deviceId);
 打开本地摄像头，并广播给分组内所有用户，分组内所有远端用户都会接收到onPublishMedia事件。
 
 ```js
-hstRtcEngine.startPublishVideo(deviceId);
+const MediaType = hstRtcEngine.MediaType;
+
+hstRtcEngine.startPublishMedia(MediaType.VIDEO, deviceId);
 ```
 
 
@@ -46,19 +53,23 @@ hstRtcEngine.startPublishVideo(deviceId);
 停止发送本地视频流，分组内所有远端用户都会收到onUnPublishMedia事件。
 
 ```js
-hstRtcEngine.stopPublishVideo(deviceId);
+const MediaType = hstRtcEngine.MediaType;
+
+hstRtcEngine.stopPublishMedia(MediaType.VIDEO, deviceId);
 ```
 
 
 ## 查看远端视频
 
-订阅“onPublishMedia”事件和“onRemoteMediaAdd”事件。收到“onPublishMedia”事件后，调用“startReceiveRemoteVideo”接口开始接收远端视频；收到“onRemoteMediaAdd”事件后，调用“setStreamRender”接口显示远端视频。
+订阅“onPublishMedia”事件和“onRemoteMediaAdd”事件。收到“onPublishMedia”事件后，调用“startReceiveMedia”接口开始接收远端视频；收到“onRemoteMediaAdd”事件后，调用“setStreamRender”接口显示远端视频。
 
 ```js
+const MediaType = hstRtcEngine.MediaType;
+
 // 订阅"onPublishMedia"事件，开始接收远端视频
-hstRtcEngine.on('onPublishMedia', function (data) {
-    if (data.mediaType == 2) { // 视频	
-        hstRtcEngine.startReceiveRemoteVideo(data.userId, data.mediaId)
+hstRtcEngine.subEvent('onPublishMedia', function (data) {
+    if (data.mediaType == MediaType.VIDEO) {
+        hstRtcEngine.startReceiveMedia(data.userId, MediaType.VIDEO, data.mediaId)
         .then(() => {
             console.log("Start receive user " + data.userId + " video! ");
         })
@@ -69,24 +80,26 @@ hstRtcEngine.on('onPublishMedia', function (data) {
 }
 
 // 订阅“onRemoteMediaAdd”事件，查看远端视频
-hstRtcEngine.on('onRemoteMediaAdd', function (data) {
-    if (data.mediaType == 2){ // 视频
+hstRtcEngine.subEvent('onRemoteMediaAdd', function (data) {
+    if (data.mediaType == MediaType.VIDEO){
         let videoElement = document.getElementById('video-panel');
-        hstRtcEngine.setStreamRender(videoElement, data.mediaId, data.userId);
+        hstRtcEngine.setMediaRender(data.userId, MediaType.VIDEO, data.mediaId, videoElement);
     }
 });
 ```
 
 ## 停止查看远端视频
 
-订阅“onUnPublishMedia”事件，收到事件后，调用“stopReceiveRemoteVideo”接口停止接收远端视频，同时，调用“unsetStreamRender”接口取消显示远端视频。
+订阅“onUnPublishMedia”事件，收到事件后，调用“stopReceiveMedia”接口停止接收远端视频，同时，调用“unsetMediaRender”接口取消显示远端视频。
 
 ```js
-hstRtcEngine.on("onUnPublishMedia", function(data) {
-    if (data.mediaType == 2) { // 视频
-        hstRtcEngine.stopReceiveRemoteVideo(data.userId, data.mediaId)
+const MediaType = hstRtcEngine.MediaType;
+
+hstRtcEngine.subEvent("onUnPublishMedia", function(data) {
+    if (data.mediaType == MediaType.VIDEO) {
+        hstRtcEngine.stopReceiveMedia(data.userId, MediaType.VIDEO, data.mediaId)
         .then(() => {
-            hstRtcEngine.unsetStreamRender(videoElement, streamId);
+            hstRtcEngine.unsetMediaRender(userId, MediaType.VIDEO, videoElement);
         })
         .catch(() => {
             console.log("Stop receive remote video failed!");
