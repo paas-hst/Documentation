@@ -5,15 +5,16 @@
 
 简化步骤：
 
-​	     手动录制：初始化录制任务->设置合成效果->结束录制  
+ 手动录制：初始化录制任务->设置合成效果->结束录制  
 
-​         自动录制：初始化录制任务                              结束任务
+ 自动录制：初始化录制任务                              结束任务
+
 
 ## 获取access_token
 
 获取access_token，后续请求都是使用这个token;超时后需要重新获取。
 使用方法为设置HTTP header.在HTTP请求头Authorization
- 	Authorization:access_token
+ 	Authorization:$access_token
 
 ### 请求参数说明
 
@@ -353,7 +354,7 @@ audio_list音频列表的请求字段如下：
 | - | - | - | - |
 | user_id | String | 是 | 音频流所属用户的ID |
 | media_id | String | 是 | 音频id |
-| media_type | int | 是 | 目前音频类型只有一种：1  |
+| media_type | int | 否 | 目前音频类型只有一种：1  |
 
 video_list视频列表的请求字段如下：
 
@@ -373,14 +374,14 @@ video_list视频列表的请求字段如下：
 {
 "app_id":"XXXXXXXX",
 "record_id":"XXXXXXXX",
-"audio_list":{
+"audio_list":[
 	{"user_id":"Jack_ID","media_id":1,"media_type":1},
 	{"user_id":"Paul_ID","media_id":1,"media_type":1}
-	},
-"video_list":{
-	{"user_id":"Jack_ID","media_id":0,"media_type":2,"crop_mode":3,"w":530,"h":380},
-	{"user_id":"Paul_ID","media_id":0,"media_type":2,"crop_mode":3,"x":531,"w":530,"h":380}
-	}
+	],
+"video_list":[
+	{"user_id":"Jack_ID","media_id":0,"media_type":2,"crop_mode":3,"x":0,"y":0,"w":530,"h":380},
+	{"user_id":"Paul_ID","media_id":0,"media_type":2,"crop_mode":3,"x":531,"y":380,"w":530,"h":380}
+	]
 }
 ```
 
@@ -461,8 +462,8 @@ record_list录制任务列表的返回字段如下：
 | group_id | int | 组ID |
 | start_time| date | 任务开启时间 |
 | stop_time | date | 任务结束时间 |
-| status | int | 任务状态  |
-
+| status | int | 任务状态 ***<u>完成了下载接口才可用</u>*** |
+![Image](state.png)
 
 
 ## 获取下载录制文件的URL
@@ -559,8 +560,9 @@ data_list  录制文件下载链接列表的返回字段如下：
 
 
 
-错误码 | 描述  
-|- | - | 
+
+|错误码             | 描述  
+
 | 6050030000| 异常失败 | 
 | 6050030001| 上下文不存在 | 
 | 6050030003|参数错误 |
