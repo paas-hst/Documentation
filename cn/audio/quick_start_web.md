@@ -48,7 +48,7 @@ hstRtcEngine.stopPublishMedia(MediaType.AUDIO);
 
 ```js
 const MediaType = hstRtcEngine.MediaType;
-hstRtcEngine.on('onPublishMedia', function (data) {
+hstRtcEngine.subEvent('onPublishMedia', function (data) {
     if (data.mediaType == MediaType.AUDIO) {
         hstRtcEngine.startReceiveMedia(data.userId, MediaType.AUDIO, data.mediaId)
         .then(() => {
@@ -67,7 +67,7 @@ hstRtcEngine.on('onPublishMedia', function (data) {
 
 ```js
 const MediaType = hstRtcEngine.MediaType;
-hstRtcEngine.on('onRemoteMediaAdd', function (data) {
+hstRtcEngine.subEvent('onRemoteMediaAdd', function (data) {
     if (data.mediaType == MediaType.AUDIO) {
 		hstRtcEngine.setMediaRender(data.userId, MediaType.AUDIO, data.mediaId, videoElement)
     }
@@ -80,7 +80,7 @@ hstRtcEngine.on('onRemoteMediaAdd', function (data) {
 
 ```js
 const MediaType = hstRtcEngine.MediaType;
-hstRtcEngine.on("onUnPublishMedia", function(data) {
+hstRtcEngine.subEvent("onUnPublishMedia", function(data) {
     if (data.mediaType == MediaType.AUDIO) {
         hstRtcEngine.stopReceiveMedia(data.userId, MediaType.AUDIO, data.mediaId)
         .then(() => {
