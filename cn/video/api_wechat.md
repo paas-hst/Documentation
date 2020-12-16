@@ -15,8 +15,6 @@
 | stopReceiveMedia | 停止接收远端媒体 |
 | setMediaRender | 设置媒体播放对象 |
 | unsetMediaRender | 取消设置媒体播放对象 |
-| getStreamStats | 获取流统计数据 |
-| getMediaDevices | 获取音频设备 |
 | getOnlineUsers | 获取全量在线用户列表 |
 | invite | 向在线用户发起邀请 |
 | replyInvite | 响应在线邀请 |
@@ -73,14 +71,14 @@ options： 提供登录所需的参数，如下表所示：
 
 | 参数名 | 类型 | 是否必填 | 参数说明 |
 | :-: | :-: | :-: | - |
-| appId | String | 是 | 应用标识 |
-| token | String | 是 | 鉴权信息 |
-| companyId | String | 是 | 组织划分，可以用来控制在线状态的可见范围 |
-| userId | String | 是 | 开发者自定义，请注意用户ID的定义约束 |
+| appId | string | 是 | 应用标识 |
+| token | string | 是 | 鉴权信息 |
+| companyId | string | 是 | 组织划分，可以用来控制在线状态的可见范围 |
+| userId | string | 是 | 开发者自定义，请注意用户ID的定义约束 |
 | mutexType | String | 否 | 标识同一用户的不同类型的登录 |
 | forceLogin | boolean | 否 | 是否强制登录 |
-| accessUrl | String | 否 | 服务器地址 |
-| extendInfo | String | 否 | 自定义信息 |
+| accessUrl | string | 否 | 服务器地址 |
+| extendInfo | string | 否 | 自定义信息 |
 
 > User ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
@@ -101,7 +99,7 @@ let options = {
     token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHgzwvglCNrVj3wjjxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
     companyId: "",
     userId: 'user1',
-	mutextType: 'Web', 
+	mutexType: 'wechat',
     forceLogin: false,
 	accessUrl: null,
     extendInfo: 'user-defined info'
@@ -511,28 +509,19 @@ hstRtcEngine.stopReceiveMedia(userId, MediaType.AUDIO, mediaId)
 ### 接口原型
 
 ```js
-setStreamRender(userId, mediaType, mediaId, renderElement, options)
+setStreamRender(userId, mediaType, mediaId, renderElement)
 ```
 
 ### 参数说明
 
 userId： 用户ID，指定停止接收哪个用户的媒体，如果是本地媒体，就填本地userId
 
-mediaType： AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD
+mediaType： WHITE_BOARD
 
 mediaId： 媒体ID，指定渲染哪一路媒体
 
 renderElement： 音频、视频和屏幕共享是video标签对象，电子白板是div标签对象
 
-options： 如果是渲染本地视频和屏幕共享，则可以通过options指定渲染的分辨率、帧率，其它情况无效
-
-options成员变量定义如下：
-
-| 成员 | 类型 | 描述 | 默认值 |
-| - | - | - | - |
-|width | Integer | 视频宽度 | 640 |
-|height | Integer | 视频高度 | 480 |
-|frameRate | Integer | 视频帧率 | 15 |
 
 ### 返回值
 
@@ -541,33 +530,33 @@ options成员变量定义如下：
 ### 示例代码
 
 ```js
-// 显示视频
+// 显示白板
 const MediaType = hstRtcEngine.MediaType;
 
 hstRtcEngine.setMediaRender(
 	userId, 
-	MediaType.VIDEO, 
+	MediaType.WHITE_BOARD, 
 	mediaId, 
-	document.getElementById('test-video'));
+	document.getElementById('test-board'));
 ```
 
 ## unsetMediaRender
 
-删除媒体渲染对象。
+删除媒体渲染对象，除了白板，音频、视频、屏幕共享不用调用此接口。
 
 ### 接口原型
 
 ```js
-unsetMediaRender(userId, mediaType, renderElement);
+unsetMediaRender(userId, mediaType, medidId);
 ```
 
 ### 参数说明
 
-userId： 用户ID，指定停止接收哪个用户的媒体，如果是本地媒体，就填本地userId
+userId： 用户ID，指定停止接收哪个用户的白板
 
-mediaType： AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD
+mediaType： WHITE_BOARD
 
-renderElement： 音频、视频和屏幕共享是video标签对象，电子白板是div标签对象
+mediaId： 白板ID
   
 
 ### 返回值
@@ -579,138 +568,11 @@ renderElement： 音频、视频和屏幕共享是video标签对象，电子白�
 ```js
 const MediaType = hstRtcEngine.MediaType;
 
-// 取消显示视频
+// 取消显示白板
 hstRtcEngine.unsetStreamRender(
 	userId, 
-	MediaType.VIDEO, 
-	document.getElementById('test-video'));
-```
-
-## getStreamStats
-
-获取流统计数据。
-
-### 接口原型
-
-```js
-getStreamStats(options, callback, interval, userData)
-```
-
-### 参数说明
-
-options： 对流进行描述的参数对象，成员变量如下所示：
-
-| 成员 | 类型 | 描述 |
-| - | - | - |
-|userId | String | 流所属用户 |
-|mediaType | Integer | AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD |
-|mediaId | String  | 媒体标识 |
-
-callback： 回调函数，函数原型如下：
-
-```js
-onGetStreamStats(stats, userData)
-```
-
-stats成员变量根据不同的媒体类型而变化，当是音频流时，stats只有一个成员变量volume，volume值小于1；当是视频流（屏幕共享流）时，stats的成员变量定义如下：
-
-| 成员 | 类型 | 描述 |
-| - | - | - |
-|width | Integer | 视频宽度 |
-|height | Integer | 视频高度 |
-|frameRate | Integer  | 帧率 |
-|bitRate | Integer  | 码流 |
-
-interval： 回调频率，单位毫秒
-
-userData： 自定义数据，回调callback时会传回来
-
-
-### 返回值
-
-无
-
-### 示例代码
-
-```js
-
-// 显示视频统计数据
-function displayVideoStats(userId, mediaId) {
-    hstRtcEngine.getStreamStats({
-        userId: userId,
-        mediaType: MediaType.VIDEO,
-        mediaId: mediaId
-    }, function(stats, userData) {
-        let videoInfo = stats.width + "*" + stats.height + " " +
-                        stats.frameRate + "fps " +
-                        stats.bitRate + "kbps "
-        console.log(videoInfo);
-    }, 1000, null)
-}
-
-// 显示音量
-function displayAudioStats(userId, mediaId) {
-    hstRtcEngine.getStreamStats({
-        userId: userId,
-        mediaType: MediaType.AUDIO,
-        mediaId: mediaId
-    }, function(stats, userData) {
-		console.log(stats.volume)
-    }, 100, userId)
-}
-
-```
-
-
-## getMediaDevices
-
-获取媒体设备。
-
-### 接口原型
-
-```js
-getMediaDevices()
-```
-
-### 参数说明
-
-无参数。
-  
-
-### 返回值
-
-此方法是一个异步调用，会返回一个Promise对象。
-
-调用成功返回所有音频、视频设备列表，数据结构为：
-
-```js
-{
-    micDev: [ { devName: "xxx", devId: "xxx" } ],
-    spkDev: [ { devName: "xxx", devId: "xxx" } ],
-    camDev: [ { devName: "xxx", devId: "xxx" } ]
-}
-```
-
-
-### 示例代码
-
-```js
-hstRtcEngine.getMediaDevices().then((mediaDevs) => {
-    // 麦克风设备
-    for (const dev of mediaDevs.micDevs){
-        console.log("MIC: " + dev.devName);
-    }
-    // 扬声器设备
-    for (const dev of mediaDevs.spkDevs){
-        console.log("SPK: " + dev.devName);
-    }
-    // 摄像头设备
-    for (const dev of mediaDevs.camDevs){
-        console.log("CAM: " + dev.devName);
-    }
-}).catch(err => {
-    console.log("Load media device failed!", err);
-});
+	MediaType.WHITE_BOARD, 
+	mediaId);
 ```
 
 ## getOnlineUsers

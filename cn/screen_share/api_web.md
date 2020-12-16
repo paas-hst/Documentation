@@ -73,13 +73,14 @@ options： 提供登录所需的参数，如下表所示：
 
 | 参数名 | 类型 | 是否必填 | 参数说明 |
 | :-: | :-: | :-: | - |
-| appId | string | 是 | 应用标识 |
-| token | string | 是 | 鉴权信息 |
-| companyId | string | 是 | 组织划分，可以用来控制在线状态的可见范围 |
-| userId | string | 是 | 开发者自定义，请注意用户ID的定义约束 |
+| appId | String | 是 | 应用标识 |
+| token | String | 是 | 鉴权信息 |
+| companyId | String | 是 | 组织划分，可以用来控制在线状态的可见范围 |
+| userId | String | 是 | 开发者自定义，请注意用户ID的定义约束 |
+| mutexType | String | 否 | 标识同一用户的不同类型的登录 |
 | forceLogin | boolean | 否 | 是否强制登录 |
-| accessUrl | string | 否 | 服务器地址 |
-| extendInfo | string | 否 | 自定义信息 |
+| accessUrl | String | 否 | 服务器地址 |
+| extendInfo | String | 否 | 自定义信息 |
 
 > User ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
@@ -100,6 +101,7 @@ let options = {
     token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHgzwvglCNrVj3wjjxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
     companyId: "",
     userId: 'user1',
+	mutextType: 'Web', 
     forceLogin: false,
 	accessUrl: null,
     extendInfo: 'user-defined info'
@@ -276,8 +278,6 @@ callback：事件发生时的回调函数，函数原型如下，不同事件dat
 ```js
 function callback(data)
 ```
-
-> mediaType取值： 0-屏幕共享，1-音频，2-视频
 
 ### 返回值
 
