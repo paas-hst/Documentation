@@ -353,7 +353,7 @@ audio_list音频列表的请求字段如下：
 | - | - | - | - |
 | user_id | String | 是 | 音频流所属用户的ID |
 | media_id | String | 是 | 音频id |
-| media_type | int | 否 | 目前音频类型只有一种：1  |
+| media_type | int | 是 | 目前音频类型只有一种：1  |
 
 video_list视频列表的请求字段如下：
 
