@@ -27,10 +27,10 @@
 "id":"4102",
 "record_id":"XXXXXXXX",
 "audio_list":{
-	{"user_id":"Jack_ID","media_id":1},
-	{"user_id":"Paul_ID","media_id":1},
-	{"user_id":"Ana_ID","media_id":1},
-	{"user_id":"James_ID","media_id":1}
+	{"user_id":"Jack_ID","media_id":1, "media_type":1},
+	{"user_id":"Paul_ID","media_id":1, "media_type":1},
+	{"user_id":"Ana_ID","media_id":1, "media_type":1},
+	{"user_id":"James_ID","media_id":1, "media_type":1}
 	},
 "video_list":{
 	{"user_id":"Jack_ID","media_id":0,"media_type":2,"crop_mode":3,"w":530,"h":380},
