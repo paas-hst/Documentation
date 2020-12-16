@@ -29,8 +29,8 @@ hstRtcEngine.getMediaDevices()
 打开本地麦克风，并广播给分组内所有用户，分组内所有用户都会接收到广播音频事件。
 
 ```js
-// 指定麦克风设备
-hstRtcEngine.startPublishAudio(deviceId);
+const MediaType = hstRtcEngine.MediaType;
+hstRtcEngine.startPublishMedia(MediaType.AUDIO, deviceId, null);
 ```
 
 ## 停止广播本地音频
@@ -38,17 +38,19 @@ hstRtcEngine.startPublishAudio(deviceId);
 关闭本地麦克风，分组内所有用户都会接收到停止广播音频事件。
 
 ```js
-hstRtcEngine.stopPublishAudio();
+const MediaType = hstRtcEngine.MediaType;
+hstRtcEngine.stopPublishMedia(MediaType.AUDIO);
 ```
 
 ## 接收远端音频
 
-订阅"onPublishMedia"事件，收到广播事件后，调用startReceiveRemoteAudio接口开始接收远端音频。
+订阅"onPublishMedia"事件，收到广播事件后，调用startReceiveMedia接口开始接收远端音频。
 
 ```js
+const MediaType = hstRtcEngine.MediaType;
 hstRtcEngine.on('onPublishMedia', function (data) {
-    if (data.mediaType == 1) { // 音频
-        webEngine.startReceiveRemoteAudio(data.userId, data.mediaId)
+    if (data.mediaType == MediaType.AUDIO) {
+        hstRtcEngine.startReceiveMedia(data.userId, MediaType.AUDIO, data.mediaId)
         .then(() => {
             console.log("Start receive remote audio.");
         })
@@ -61,26 +63,28 @@ hstRtcEngine.on('onPublishMedia', function (data) {
 
 ## 播放远端音频
 
-订阅"onRemoteMediaAdd"事件，收到事件后，调用setStreamRender接口播放远端音频。
+订阅"onRemoteMediaAdd"事件，收到事件后，调用setStreamRender接口播放远端音频，videoElement为video标签。
 
 ```js
+const MediaType = hstRtcEngine.MediaType;
 hstRtcEngine.on('onRemoteMediaAdd', function (data) {
-    if (params.mediaType == 1) {// 音频 
-        hstRtcEngine.setStreamRender(videoElement, streamId);
+    if (data.mediaType == MediaType.AUDIO) {
+		hstRtcEngine.setMediaRender(data.userId, MediaType.AUDIO, data.mediaId, videoElement)
     }
 }
 ```
 
 ## 停止接收远端音频
 
-订阅“onUnPublishMedia”事件，收到事件后，调用stopReceiveRemoteAudio停止接收远端音频，并调用unsetStreamRender停止播放远端音频。
+订阅“onUnPublishMedia”事件，收到事件后，调用stopReceiveMedia停止接收远端音频，并调用unsetStreamRender停止播放远端音频。
 
 ```js
+const MediaType = hstRtcEngine.MediaType;
 hstRtcEngine.on("onUnPublishMedia", function(data) {
-    if (data.mediaType == 1) { // 音频
-        webEngine.stopReceiveRemoteAudio(data.userId, data.mediaId)
+    if (data.mediaType == MediaType.AUDIO) {
+        hstRtcEngine.stopReceiveMedia(data.userId, MediaType.AUDIO, data.mediaId)
         .then(() => {
-            hstRtcEngine.unsetStreamRender(streamId);
+			hstRtcEngine.unsetMediaRender(data, MediaType.AUDIO, videoElement)
             console.log("Stop receive remote audio.");
         })
         .catch(()=>{
