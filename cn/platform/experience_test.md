@@ -41,27 +41,39 @@ MeetingDemo需要配置App ID、App Secret才可以运行。为了方便开发�
 
 ## RecordDemo
 
-RecordDemo基于RESTFUL接口开发，用来演示云录制相关功能和特性。
+RecordDemo基于RESTFUL接口开发，用来演示云录制相关功能和特性。完成一个录制任务分为以下几个步骤：
 
-### 登录
+### 1. 登录录制后台
 
-对开发者ID和开发者秘钥进行鉴权。
+对开发者ID和开发者秘钥进行鉴权。只有企业开发者才能够进行体验云录制功能，普通开发者和个人开发者暂不开放此能力。
 
 > 私有云需要填写服务器地址，具体请咨询技术人员。
 
 <img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/record-demo-1.png" align="center" />
 
-### 查询录制任务
-支持基于App ID、Group ID和Record State查询录制任务，其中App ID必填。
+### 2. 查询录制任务
 
-### 创建录制任务
-点击“创建”按钮，能够创建指定分组的录制任务。系统支持创建自动录制任务和手动录制任务，自动录制任务无需外部干预，会基于内部定义的布局进行合成录制；手动录制任务需要开发者手动选择录制哪一路媒体，为了简化实现，视频布局使用内部预定义。
+可以基于App ID、Group ID和Record State查询录制任务，其中App ID必填。
 
-### 控制录制任务
-对于手动录制任务，点击控制，能够对录制过程进行灵活控制。由于录制控制在界面实现会比较繁琐，因此DEMO只实现了简单控制：选择录制的媒体，录制布局采用内部预定义布局。
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/record-demo-2.png" align="center" />
 
-### 录制文件管理
+### 3. 创建录制任务
+
+点击“创建”按钮，能够创建指定分组的录制任务。系统支持创建自动录制任务和手动录制任务，自动录制任务无需外部干预，会基于内部定义的布局进行合成录制；手动录制任务需要开发者手动选择录制哪一路媒体。
+
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/record-demo-3.png" align="center" />
+
+### 4. 控制录制任务
+
+自动录制任务可以进行“暂停”和“停止”控制，手动录制任务需要手动指定需要录制的媒体。
+
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/record-demo-4.png" align="center" />
+
+### 5. 管理录制文件
+
 录制完成后，登录到管理后台，能够管理和下载录制文件。
+
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/record-demo-5.png" align="center" />
 
 ## LiveDemo
 
