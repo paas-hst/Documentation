@@ -1,72 +1,102 @@
+
 # 准备工作
 
 好视通云通信平台大部分服务是基于分组的服务，因此，在使用服务前需要加入分组（Group），在加入分组前，需要先登录平台，具体如下所述。
 
-## 前提条件
+## 开发环境
 
-请确保满足以下开发环境要求:
+- 安装微信开发者工具。
+- 微信基础库版本2.9.0以上。
 
-- 安装Chrome 75+浏览器
-- 确保部署环境为localhost或https协议
-- 请确保已安装 微信开发者工具。
-- 请确保你的微信小程序基础库支持 live-pusher 及 live-player 组件，且这两个组件在微信开发者工具中打开。
-- 请确保在微信公众平台账号的开发设置中，给予以下域名请求权限：
-  ```http
-  request合法域名:
-  https://access.paas.hst.com
-  https://fspwxlite.hst.com
-  https://fspwxlite.hst.com:443
-  https://official.opensso.tencent-cloud.com
-  https://paas-token-gen.haoshitong.com
+## 创建应用
 
-  socket合法域名:
-  wss://fsp-wxgw1.hst.com:50001
-  wss://fsp-wxgw2.hst.com:50001
-  wss://fsp-wxgw3.hst.com:50001
-  wss://fsp-wxgw4.hst.com:50001
-  wss://fsp-wxgw5.hst.com:50001
-  wss://fsp-wxgw6.hst.com:50001
-  wss://fsp-wxgw7.hst.com:50001
-  wss://fsp-wxgw8.hst.com:50001
-  wss://fsp-wxgw9.hst.com:50001
-  wss://fspwxlite.hst.com:50001
-  ```
-- 请确保在使用相关功能及服务前，已打开特定端口
+1. [点此注册](http://customer.paas.hst.com/register)，按照步骤注册账号，创建应用。
+
+2. 配置使用相关产品并上线应用。
+
+3. 获取 **App ID** 和 **App Secret**。
+
+## 获取 Token
+
+安全起见，生产环境，Token应该在业务服务器上生成，客户端需要登录鉴权后才能获取Token，[点击此处](http://customer.paas.hst.com/code) 获取Token生成代码。  
+
+为了方便测试，我们提供了一个在线生成临时Token的RESTFUL接口，建议使用POSTMAN工具。 
+
+接口访问方式如下：
+
+| 参数 | 值 |
+| :-: | :- |
+| Method | POST |
+| URL | https://paas-token-gen.haoshitong.com/generate/token |
+| Header | Content-type: application/json |
+| Body | { "appId": "7a02a8217cd541f990152ea666ee24bf","appSecret": "42de63b19db7fda7"} |
+| Response | {"code": 0, "message": "OK","result": "here is the token"} |
+
+> 建议上线后创建新的应用，使用新的App ID和Token。
+
+推荐使用POSTMAN工具获取临时Token，如下图所示：
+
+<img alt="postman.png" src="http://fs.hst.com/download/paas/images/documentation/postman.png" align="center" />
+
+
+> 注意Body的内容格式选择“raw”，检查appId和appSecret前后是否包含额外的空格。
+
 
 ## 添加 SDK
 
-1. 下载 [Web SDK](http://paas.hst.com/developer/downloadSDK)，解压并打开。 
-2. 将JS文件保存到你所操作的项目下。
-3. 在项目相应的前端页面文件中，对JS文件进行引用。
+1. 下载 [WeChat SDK](http://paas.hst.com/developer/downloadSDK)。
+ 
+2. 将解压后的JS文件放到到项目路径下。
+
+3. 在项目种引用SDK。
 
 
 ## 初始化
 
-使用SDK之前必须初始化。
+创建HstRtcEngine对象，调用init方法进行初始化。
 
 ```js
-// 引擎初始化
-wx.request({
-  url: 'https://access.paas.hst.com/server/address?appType=2',
-  header: {
-    'Content-Type': 'application/json'
-  },
-  success: function (res) {
-    this.$hstEngine = new HstWxEngine(res.data.result)
-	$hstEngine.init(appID, appSecret, onSuccess, onFailure)
-  }
+let hstRtcEngine = new HstRtcEngine();
+hstRtcEngine.init().then(() => {
+    console.log("Init success.");
+}).catch(() => {
+    console.log("Init failed!");
 })
+```
 
+## 登录平台
+
+调用login接口登录平台。
+
+```js
+let options = {
+    appId: '7a02a8217cd541f990152ea666ee24bf',
+    token: 'xxxxxxxxxx',
+    companyId: "",
+    userId: 'user1',
+	mutextType: 'Web', 
+    forceLogin: false,
+	accessUrl: null,
+    extendInfo: ''
+};
+
+hstRtcEngine.login(options).then(() => {
+    console.log("Login success.");
+}).catch(() => {
+    console.log("Login failed!");
+})
 ```
 
 ## 加入分组
 
-
-通过指定Group ID和User ID加入分组，Group ID和User ID由开发者定义，开发者要保证同一App下Group ID和User ID不会冲突。具体请参考“平台介绍->基本概念->Group ID和User ID”。
-
+调用joinGroup加入分组。
 
 ```js
-$hstEngine.join(isCreator, groupID, userID, onSuccess, onFailure)
+hstRtcEngine.joinGroup(groupId).then(() => {
+    console.log("Join group success.");
+}).catch(() => {
+    console.log("join group failed!");
+})
 ```
 
 > User ID和Group ID定义必须符合规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。

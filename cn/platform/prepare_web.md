@@ -10,7 +10,7 @@
  
 - 屏幕共享，需要使用Chrome 72+浏览器
 
-- Web App非本机测试（localhost）必须使用https协议
+- 非本机测试（localhost）必须使用https协议
 
 ## 创建应用
 
@@ -18,7 +18,7 @@
 
 2. 配置使用相关产品并上线应用。
 
-3. 点击 **应用** 下的 **应用列表** ，在详情页面获取到 **App ID** 和 **App Secret**。
+3. 获取 **App ID** 和 **App Secret**。
 
 ## 获取 Token
 
@@ -50,56 +50,55 @@
 
 1. 下载 [Web SDK](http://paas.hst.com/developer/downloadSDK)。
  
-2. 将解压后的JS文件保存到项目相关路径下。
+2. 将解压后的JS文件放到到项目路径下。
 
-3. 在项目相应的前端页面文件中，对JS文件进行引用。
+3. 在项目种引用SDK。
 
 
 ## 初始化
 
-创建HstRtcEngine对象，调用init方法进行初始化，如果是公有云测试，初始化参数为空；如果是私有云测试，此处填Access服务器地址。
+创建HstRtcEngine对象，调用init方法进行初始化。
 
 ```js
 let hstRtcEngine = new HstRtcEngine();
-hstRtcEngine.init(/*access url for private cloud*/)
-.then(() => {
+hstRtcEngine.init().then(() => {
     console.log("Init success.");
-})
-.catch(() => {
+}).catch(() => {
     console.log("Init failed!");
 })
 ```
 
-## 登录
+## 登录平台
 
-初始化完成后，立即登录平台。appId和token参数用来鉴权；userId由开发者定义，具体请参考“平台介绍->基本概念->User ID”。
+调用login接口登录平台。
 
 ```js
 let options = {
     appId: '7a02a8217cd541f990152ea666ee24bf',
-    token: '001Sx04XAA406DvYyD8J3oEh/eSZFnogbLaFnwlXozD6QfHgzwvglCNrVj3wjjxldlRYRG28cGFdK9xgku3fhdMKY2pB3j1It4Omq8Quxx4xFH/2h3MbrWmsVCjh/N1cfsx',
-    userId: 'user1'
+    token: 'xxxxxxxxxx',
+    companyId: "",
+    userId: 'user1',
+	mutextType: 'Web', 
+    forceLogin: false,
+	accessUrl: null,
+    extendInfo: ''
 };
 
-hstRtcEngine.login(options)
-.then(() => {
+hstRtcEngine.login(options).then(() => {
     console.log("Login success.");
-})
-.catch(() => {
+}).catch(() => {
     console.log("Login failed!");
 })
 ```
 
 ## 加入分组
 
-登录成功后，通过指定Group ID加入分组，Group ID由开发者定义，开发者要保证同一App下Group ID不会冲突。具体请参考“平台介绍->基本概念->Group ID”。
+调用joinGroup加入分组。
 
 ```js
-hstRtcEngine.joinGroup(groupId)
-.then(() => {
+hstRtcEngine.joinGroup(groupId).then(() => {
     console.log("Join group success.");
-})
-.catch(() => {
+}).catch(() => {
     console.log("join group failed!");
 })
 ```
