@@ -2,9 +2,57 @@
 
 使用音频通信服务前，请确保已经加入分组，具体请参考“准备工作”。
 
+## 初始化
+
+创建HstRtcEngine对象，调用init方法进行初始化。
+
+```js
+let hstRtcEngine = new HstRtcEngine();
+hstRtcEngine.init().then(() => {
+    console.log("Init success.");
+}).catch(() => {
+    console.log("Init failed!");
+})
+```
+
+## 登录平台
+
+调用login接口登录平台。
+
+```js
+let options = {
+    appId: '7a02a8217cd541f990152ea666ee24bf',
+    token: 'xxxxxxxxxx',
+    companyId: "",
+    userId: 'user1',
+	mutextType: 'Web', 
+    forceLogin: false,
+	accessUrl: null,
+    extendInfo: ''
+};
+
+hstRtcEngine.login(options).then(() => {
+    console.log("Login success.");
+}).catch(() => {
+    console.log("Login failed!");
+})
+```
+
+## 加入分组
+
+调用joinGroup加入分组。
+
+```js
+hstRtcEngine.joinGroup(groupId).then(() => {
+    console.log("Join group success.");
+}).catch(() => {
+    console.log("join group failed!");
+})
+```
+
 ## 获取设备列表
 
-广播本地音频时，需要指定麦克风设备，同时，也需要选择本地使用的扬声器设备。SDK提供一个接口同时获取摄像头、麦克风和扬声器设备，开发者可以根据需要进行选择。
+调用getMediaDevices获取本地麦克风和扬声器设备。
 
 ```js
 hstRtcEngine.getMediaDevices()

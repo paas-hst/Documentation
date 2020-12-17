@@ -1,6 +1,6 @@
 # 准备工作
 
-好视通云通信平台大部分服务是基于分组的服务，因此，在使用服务前需要加入分组（Group），在加入分组前，需要先登录平台，具体如下所述。
+在调用Web SDK接口之前，需要做一些准备工作。
 
 ## 开发环境
 
@@ -53,52 +53,3 @@
 2. 将解压后的JS文件放到到项目路径下。
 
 3. 在项目种引用SDK。
-
-
-## 初始化
-
-创建HstRtcEngine对象，调用init方法进行初始化。
-
-```js
-let hstRtcEngine = new HstRtcEngine();
-hstRtcEngine.init().then(() => {
-    console.log("Init success.");
-}).catch(() => {
-    console.log("Init failed!");
-})
-```
-
-## 登录平台
-
-调用login接口登录平台。
-
-```js
-let options = {
-    appId: '7a02a8217cd541f990152ea666ee24bf',
-    token: 'xxxxxxxxxx',
-    companyId: "",
-    userId: 'user1',
-	mutextType: 'Web', 
-    forceLogin: false,
-	accessUrl: null,
-    extendInfo: ''
-};
-
-hstRtcEngine.login(options).then(() => {
-    console.log("Login success.");
-}).catch(() => {
-    console.log("Login failed!");
-})
-```
-
-## 加入分组
-
-调用joinGroup加入分组。
-
-```js
-hstRtcEngine.joinGroup(groupId).then(() => {
-    console.log("Join group success.");
-}).catch(() => {
-    console.log("join group failed!");
-})
-```
