@@ -5,6 +5,11 @@
 
 <img alt="auth.png" src="http://fs.hst.com/download/paas/images/documentation/platform/auth.png" align="center" />
 
+## 开发者ID和开发者秘钥
+开发者ID（Developer ID）和开发者秘钥（Developer Secret）用来标识唯一的开发者（个人或者企业）。开发者在调用后台RESTFUL接口时，需要使用开发者信息进行鉴权，因此，开发者信息对账号安全性来说非常重要，请务必妥善保管。
+
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/documentation/platform/developerid.png" align="center" />
+
 ## App ID和App Secret
 应用（App）是客户使用平台产品的桥梁和载体，在使用平台产品之前，必须先创建应用，系统会为每个应用分配App ID和创建App Secret。App ID用来标识一个应用，全平台唯一。App Secret作为加密秘钥，用来生成登录所需的Token，因此，App Secret对于客户的账号安全非常重要，请务必妥善保管。
 
