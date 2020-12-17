@@ -1,10 +1,10 @@
 # 快速开始
 
-使用音频通信服务前，请确保已经加入分组，具体请参考“准备工作”。
+本章用来演示如何快速广播本地麦克风和接收远端音频。
 
 ## 初始化
 
-创建HstRtcEngine对象，调用init方法进行初始化。
+创建引擎对象，调用init方法进行初始化。
 
 ```js
 let hstRtcEngine = new HstRtcEngine();
@@ -74,7 +74,7 @@ hstRtcEngine.getMediaDevices()
 
 ## 广播本地音频
 
-打开本地麦克风，并广播给分组内所有用户，分组内所有用户都会接收到广播音频事件。
+调用startPublishMedia广播本地麦克风，分组内所有用户都会接收到广播事件。
 
 ```js
 const MediaType = hstRtcEngine.MediaType;

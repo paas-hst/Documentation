@@ -1,7 +1,7 @@
 
 # 准备工作
 
-好视通云通信平台大部分服务是基于分组的服务，因此，在使用服务前需要加入分组（Group），在加入分组前，需要先登录平台，具体如下所述。
+在进行微信小程序开发之前，需要做一些准备工作。
 
 ## 开发环境
 
@@ -16,7 +16,7 @@
 
 3. 获取 **App ID** 和 **App Secret**。
 
-## 获取 Token
+## 获取Token
 
 安全起见，生产环境，Token应该在业务服务器上生成，客户端需要登录鉴权后才能获取Token，[点击此处](http://customer.paas.hst.com/code) 获取Token生成代码。  
 
@@ -42,7 +42,7 @@
 > 注意Body的内容格式选择“raw”，检查appId和appSecret前后是否包含额外的空格。
 
 
-## 添加 SDK
+## 添加SDK
 
 1. 下载 [WeChat SDK](http://paas.hst.com/developer/downloadSDK)。
  
@@ -50,54 +50,9 @@
 
 3. 在项目种引用SDK。
 
+## 添加组件
 
-## 初始化
+微信小程序的音视频互动都是通过live-pusher和live-player组件来实现的，但是直接使用这两个组件，处理起来比较繁杂，因此，腾讯提供了一个webrtc-room的组件，内部封装live-pusher和live-player组件调用，对外提供了加入房间、广播音视频等易用接口，大大方便了上层应用开发。
 
-创建HstRtcEngine对象，调用init方法进行初始化。
-
-```js
-let hstRtcEngine = new HstRtcEngine();
-hstRtcEngine.init().then(() => {
-    console.log("Init success.");
-}).catch(() => {
-    console.log("Init failed!");
-})
-```
-
-## 登录平台
-
-调用login接口登录平台。
-
-```js
-let options = {
-    appId: '7a02a8217cd541f990152ea666ee24bf',
-    token: 'xxxxxxxxxx',
-    companyId: "",
-    userId: 'user1',
-	mutextType: 'Web', 
-    forceLogin: false,
-	accessUrl: null,
-    extendInfo: ''
-};
-
-hstRtcEngine.login(options).then(() => {
-    console.log("Login success.");
-}).catch(() => {
-    console.log("Login failed!");
-})
-```
-
-## 加入分组
-
-调用joinGroup加入分组。
-
-```js
-hstRtcEngine.joinGroup(groupId).then(() => {
-    console.log("Join group success.");
-}).catch(() => {
-    console.log("join group failed!");
-})
-```
-
-> User ID和Group ID定义必须符合规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
+如无特殊要求，建议使用webrtc-room组件进行开发，[点此](https://github.com/TencentVideoCloudMLVBDev/MiniProgram/tree/master/wxlite/pages/components/webrtc-room)获取最新代码，可以直接使用此组件，也可以在此基础上进行修改，当然，也可以使用DEMO中的webrtc-room组件，DEMO中进行了定制化修改，可根据需要进行选择。
 
