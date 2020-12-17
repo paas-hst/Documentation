@@ -8,11 +8,13 @@
 
 ## MeetingDemo
 
-MeetingDemo是基于各终端SDK开发的DEMO，用来演示终端功能和特性，可以在对应终端上进行体验。体验MeetingDemo总共可以分为以下几步：
+MeetingDemo是基于各终端SDK开发的DEMO，用来演示终端功能和特性，可以在对应终端上进行体验。体验MeetingDemo总共可以分为以下几步，下面以Windows系统上CPP开发的DEMO进行演示。
 
 ### 1. 配置
 
 MeetingDemo需要配置App ID、App Secret才可以运行。为了方便开发者快速体验，DEMO中内置了默认的App ID、App Secret，因此，如果想快速体验，无需任何配置即可运行。
+
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/meeting-demo-1.png" align="center" />
 
 > 默认App配置只用来快速体验，不可用作生产配置。
 
@@ -24,6 +26,8 @@ MeetingDemo需要配置App ID、App Secret才可以运行。为了方便开发�
 
 登录平台需要User ID，User ID是自定义的，不需要提前创建用户或者同步账号，但User ID的定义需要满足一定的规则，如下所示。另外，还需要保证在User ID在App中是唯一的，如果已经有相同User ID的用户登录平台，则后登录的用户会被拒绝，当然，你可以使用强制登录选项，将前面的用户踢掉。
 
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/meeting-demo-2.png" align="center" />
+
 > User ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
 登录平台后，就可以看到相同APP下的在线用户列表。
@@ -34,14 +38,18 @@ MeetingDemo需要配置App ID、App Secret才可以运行。为了方便开发�
 
 > Group ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/meeting-demo-3.png" align="center" />
+
 ### 4. 互动体验
 
 加入分组后，就可以体验基于分组的相关功能和特性了，包括音视频、屏幕共享、电子白板、文字聊天等等。
 
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/meeting-demo-4.png" align="center" />
+
 
 ## RecordDemo
 
-RecordDemo基于RESTFUL接口开发，用来演示云录制相关功能和特性。完成一个录制任务分为以下几个步骤：
+RecordDemo基于RESTFUL接口开发，用来演示云录制相关功能和特性。启动一个录制任务可以分为以下几个步骤：
 
 ### 1. 登录录制后台
 
@@ -59,13 +67,13 @@ RecordDemo基于RESTFUL接口开发，用来演示云录制相关功能和特性
 
 ### 3. 创建录制任务
 
-点击“创建”按钮，能够创建指定分组的录制任务。系统支持创建自动录制任务和手动录制任务，自动录制任务无需外部干预，会基于内部定义的布局进行合成录制；手动录制任务需要开发者手动选择录制哪一路媒体。
+点击“创建”按钮，填入App ID和Group ID，用来指定录制哪个App下哪个分组。录制类型可以选择自动录制或手动录制，自动录制任务无需外部干预，基于内部预定义的布局进行录制与合成；手动录制任务需要开发者手动干预录制过程，选择需要录制哪一路媒体。
 
 <img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/record-demo-3.png" align="center" />
 
 ### 4. 控制录制任务
 
-自动录制任务可以进行“暂停”和“停止”控制，手动录制任务需要手动指定需要录制的媒体。
+自动录制任务的控制比较简单，只能“暂停”或“停止”。手动录制任务的控制要稍微复杂些，需要手动指定需要录制的媒体，为了简化DEMO实现，当前不能自定义录制布局，使用预定义布局。
 
 <img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/record-demo-4.png" align="center" />
 
@@ -77,19 +85,30 @@ RecordDemo基于RESTFUL接口开发，用来演示云录制相关功能和特性
 
 ## LiveDemo
 
-LiveDemo用来演示云直播相关接口和能力。
+LiveDemo基于RESTFUL接口开发，用来演示云直播相关功能和特性。启动一个直播分为以下几个步骤：
 
-### 登录平台
+### 1. 登录控制后台
 
-公有云使用开发者ID和开发者秘钥登录；私有云使用App ID和App Secret登录。
+对开发者ID和开发者秘钥进行鉴权。只有企业开发者才能够进行体验云直播功能，普通开发者和个人开发者暂不开放此能力。
 
 > 私有云需要填写服务器地址，具体请咨询技术人员。
 
-### 查询直播任务
-支持基于App ID查询直播任务。
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/live-demo-1.png" align="center" />
 
-### 创建直播任务
-点击“创建”按钮，填入App ID和Group ID，便可创建指定分组的直播任务。
+### 2. 查询直播任务
 
-### 观看直播
-直播任务创建成功后，可以点击“观看”按钮立即播放直播视频，也可将直播链接拷贝到支持的播放器中进行播放。
+支持基于App ID、Group ID和Live State来查询直播任务。
+
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/live-demo-2.png" align="center" />
+
+### 3. 创建直播任务
+
+点击“创建”按钮，填入App ID和Group ID，便可创建指定分组的直播任务。创建直播前，需要保证分组已经存在，且分组内有人广播了媒体，比如音频、视频、屏幕共享等。
+
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/live-demo-3.png" align="center" />
+
+### 4. 观看直播
+
+直播任务创建成功后，可以点击“观看”按钮立即播放直播视频，也可将直播链接拷贝到支持的播放器中进行播放。当前支持flv、rtmp和hls三种媒体格式，可以自由切换。
+
+<img alt="appid.png" src="http://fs.hst.com/download/paas/images/demo/live-demo-4.png" align="center" />
