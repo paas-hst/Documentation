@@ -3,54 +3,6 @@
 本章演示如何快速发起屏幕共享和接收远端屏幕共享。
 
 
-## 初始化
-
-创建HstRtcEngine对象，调用init方法进行初始化。
-
-```js
-let hstRtcEngine = new HstRtcEngine();
-hstRtcEngine.init().then(() => {
-    console.log("Init success.");
-}).catch(() => {
-    console.log("Init failed!");
-})
-```
-
-## 登录平台
-
-调用login接口登录平台。
-
-```js
-let options = {
-    appId: '7a02a8217cd541f990152ea666ee24bf',
-    token: 'xxxxxxxxxx',
-    companyId: "",
-    userId: 'user1',
-	mutextType: 'Web', 
-    forceLogin: false,
-	accessUrl: null,
-    extendInfo: ''
-};
-
-hstRtcEngine.login(options).then(() => {
-    console.log("Login success.");
-}).catch(() => {
-    console.log("Login failed!");
-})
-```
-
-## 加入分组
-
-调用joinGroup加入分组。
-
-```js
-hstRtcEngine.joinGroup(groupId).then(() => {
-    console.log("Join group success.");
-}).catch(() => {
-    console.log("join group failed!");
-})
-```
-
 ## 开始屏幕共享
 
 开始采集桌面图像，分组内所有远端用户都会收到开始屏幕共享的事件。
