@@ -17,7 +17,7 @@ hstRtcEngine.init().then(() => {
 
 ## 登录平台
 
-调用login接口登录平台。
+调用login接口登录云通信平台。
 
 ```js
 let options = {
@@ -92,7 +92,7 @@ hstRtcEngine.stopPublishMedia(MediaType.AUDIO);
 
 ## 接收远端音频
 
-订阅"onPublishMedia"事件，收到广播事件后，调用startReceiveMedia接口开始接收远端音频。
+订阅"onPublishMedia"事件，收到事件后，调用startReceiveMedia接口开始接收远端音频。
 
 ```js
 const MediaType = hstRtcEngine.MediaType;
@@ -141,5 +141,3 @@ hstRtcEngine.subEvent("onUnPublishMedia", function(data) {
     }
 });
 ```
-
-> 如果远端音频处于广播状态，再次调用 startReceiveRemoteAudio 又可以重新接听远端音频。
