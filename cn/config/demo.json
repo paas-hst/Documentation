@@ -62,24 +62,19 @@
             ]
         },
 		{
-            "title": "RecordDemo",
+            "title": "其他DEMO",
             "data": [
                 {
                     "pic": "http://fs.hst.com/download/paas/images/demo/record.png",
-                    "title": "Web",
+                    "title": "RecordDemo",
                     "url": "https://github.com/paas-hst/CloudRecordDemo",
 					"icon": "http://fs.hst.com/download/paas/images/demo/online.png",
                     "acc": "在线体验",
                     "accUrl": "http://record-demo-paas.hst.com"
-                }
-            ]
-        },
-		{
-            "title": "LiveDemo",
-            "data": [
-                {
+                },
+				{
                     "pic": "http://fs.hst.com/download/paas/images/demo/live.png",
-                    "title": "Web",
+                    "title": "LiveDemo",
                     "url": "https://github.com/paas-hst/CloudLiveDemo",
 					"icon": "http://fs.hst.com/download/paas/images/demo/online.png",
                     "acc": "在线体验",
