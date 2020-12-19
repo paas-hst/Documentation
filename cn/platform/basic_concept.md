@@ -5,20 +5,23 @@
 
 <img alt="auth.png" src="http://fs.hst.com/download/paas/images/documentation/platform/auth.png" align="center" />
 
-## 开发者ID和开发者秘钥
+## 开发者ID
 开发者ID（Developer ID）和开发者秘钥（Developer Secret）用来标识唯一的开发者（个人或者企业）。开发者在调用后台RESTFUL接口时，需要使用开发者信息进行鉴权，因此，开发者信息对账号安全性来说非常重要，请务必妥善保管。
 
 <img alt="appid.png" src="http://fs.hst.com/download/paas/images/documentation/platform/developerid.png" align="center" />
 
-## App ID和App Secret
+## App ID
 应用（App）是客户使用平台产品的桥梁和载体，在使用平台产品之前，必须先创建应用，系统会为每个应用分配App ID和创建App Secret。App ID用来标识一个应用，全平台唯一。App Secret作为加密秘钥，用来生成登录所需的Token，因此，App Secret对于客户的账号安全非常重要，请务必妥善保管。
 
 <img alt="appid.png" src="http://fs.hst.com/download/paas/images/documentation/platform/appid.png" align="center" />
 
-## Group ID和User ID
-Group ID（分组ID）是一个非常重要的概念，平台当前提供的很多服务是基于分组的服务，在使用这些服务之前，需要先加入分组，只有加入到同一个分组的用户才能够进行通信。分组ID由开发者定义，开发者保证在App范围内唯一即可，不同App的Group ID重复不会相互影响。
 
-User ID（用户ID）也非常重要，在登录平台时，必须携带此字段，开发者必须保证App下User ID是唯一的，否则由于会产生User ID冲突而导致登录失败。此字段提供给开发者用来关联业务数据，比如，如果想知道应用中某个用户的计费情况，则可以将Use ID传入，平台会将User ID与所使用的服务关联起来，在导出的计费记录中会带上Use ID。
+## User ID
+User ID用来唯一标识一个用户，由开发者定义，在登录云通信平台时，必须携带此字段。开发者必须保证App下User ID是唯一的，否则可能会由于User ID冲突而导致登录失败（不使用强制登录）。云通信平台不保存用户账号信息，因此，不需要在云通信平台创建用户账号或同步用户账号到云通信平台，此字段只用来唯一标识用户。
+
+
+## Group ID
+Group ID（分组ID）对应于会议中Room的概念，要进行多人互动，需要加入同一个分组。分组ID由开发者定义，开发者保证在App范围内唯一即可，不同App的Group ID重复不会相互影响。
 
 <img alt="group_user.png" src="http://fs.hst.com/download/paas/images/documentation/platform/group_user.png" align="center" />
 
