@@ -6,8 +6,8 @@
 好视通PaaS业务网关对外提供了一套RESTful接口，使用这些接口可以方便快捷的进行PaaS平台的业务操作与数据获取。为了安全考虑，接口使用access_token进行鉴权。所以需要先获取access_token，然后将它当做凭证来调用其他接口。
 
 ### access_token介绍
-access_token是长度为32的随机字符串。它的有效时长是7200秒（也就是两小时），超过7200秒，access_token会失效，此时接口返回的状态码code为606000001。在你的代码中，当code为 606000001的判断条件生效时，意味着你需要重新获取一个access_token了。
-对于一个PaaS公有云账户来说，公有云环境同一时刻只会有一个生效的access_token，每次获取新的access_token都会覆盖旧的。所以在你的系统中，access_token最好全局托管，比如提供一个专门管理access_token的服务（或者一个模块），所有对access_token的访问都调用此服务的方法。还有一点非常重要，获取access_token的方法需要设置成线程安全的，以免多个线程并发调用导致互相覆盖返回结果。
+access_token是长度为32的随机字符串。它的有效时长是7200秒（也就是两小时），超过7200秒，access_token会失效，失效后接口返回的状态码code为606000001，此时需要重新获取一个access_token。
+对于一个PaaS公有云账户来说，公有云环境同一时刻只会有一个生效的access_token，每次获取新的access_token都会覆盖旧的。所以在你的系统中，access_token最好全局托管，比如提供一个专门管理access_token的服务（或者一个模块），所有对access_token的访问都调用此服务的方法。还有一点非常重要，获取access_token的方法需要设置成线程安全的，因为多个线程并发调用可能会导致互相覆盖返回结果。
 
 ### 如何获取access_token
 
@@ -119,11 +119,11 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 | consumption_limit | int | 消费限额。单位：元 |
 | service | List/Array | 是 | 应用的服务配置 |
 service中的对象：
-| 参数名 | 类型 | 是否必须 | 参数说明 |
-| - | - | - | - |
-| service_id | int | 是 | 服务ID。3：视频服务；4：音频服务；5：屏幕共享服务；6：信令通道服务；7：在线服务；8：录制服务；9：微信小程序服务 |
+| 参数名 | 类型 | 参数说明 |
+| - | - | - |
+| service_id | int | 服务ID。3：视频服务；4：音频服务；5：屏幕共享服务；6：信令通道服务；7：在线服务；8：录制服务；9：微信小程序服务 |
 | service_name | String | 服务名称 |
-| use_limit | long | 否 | 使用限量 |
+| use_limit | long | 使用限量 |
 
 ### 修改应用配置
 
@@ -158,13 +158,13 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 | app_name | String | 应用名称 |
 | status | String | 应用状态。online:上线；offline:下线 |
 | consumption_limit | int | 消费限额。单位：元 |
-| service | List/Array | 是 | 应用的服务配置 |
+| service | List/Array | 应用的服务配置 |
 service中的对象：
-| 参数名 | 类型 | 是否必须 | 参数说明 |
-| - | - | - | - |
-| service_id | int | 是 | 服务ID。3：视频服务；4：音频服务；5：屏幕共享服务；6：信令通道服务；7：在线服务；8：录制服务；9：微信小程序服务 |
+| 参数名 | 类型 | 参数说明 |
+| - | - | - |
+| service_id | int | 服务ID。3：视频服务；4：音频服务；5：屏幕共享服务；6：信令通道服务；7：在线服务；8：录制服务；9：微信小程序服务 |
 | service_name | String | 服务名称 |
-| use_limit | long | 否 | 使用限量 |
+| use_limit | long | 使用限量 |
 
 ### 删除应用
 
