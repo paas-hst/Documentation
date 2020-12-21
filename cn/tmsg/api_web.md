@@ -505,14 +505,14 @@ hstRtcEngine.stopReceiveMedia(userId, MediaType.AUDIO, mediaId)
 ```
 
 
-## setStreamRender
+## setMediaRender
 
 设置媒体渲染对象。
 
 ### 接口原型
 
 ```js
-setStreamRender(userId, mediaType, mediaId, renderElement, options)
+setMediaRender(userId, mediaType, mediaId, renderElement, options)
 ```
 
 ### 参数说明
@@ -589,7 +589,7 @@ unsetMediaRender(userId, mediaType, renderElement);
 const MediaType = hstRtcEngine.MediaType;
 
 // 取消显示视频
-hstRtcEngine.unsetStreamRender(
+hstRtcEngine.unsetMediaRender(
 	userId, 
 	MediaType.VIDEO, 
 	document.getElementById('test-video'));
