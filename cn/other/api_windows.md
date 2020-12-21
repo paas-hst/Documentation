@@ -17,8 +17,8 @@ HTTP或HTTPS协议，GET方法
 私有云：http://your-server-ip:28000/access/token
 
 ### 请求参数
-| 参数名 | 类型 | 是否必填 | 参数说明 |
-| - | - | - | - |
+| 参数名 | 类型 | 是否必需 | 参数说明 |
+| :-: | :-: | :-: | - |
 | dev_id | String | 是 | 开发者ID |
 | token | String | 是 | 使用开发者ID和开发者秘钥生成的token |
 
@@ -92,15 +92,15 @@ HTTP或HTTPS协议，POST方法
 /v1/app
 
 ### 请求参数
-| 参数名 | 类型 | 是否必须 | 参数说明 |
-| - | - | - | - |
+| 参数名 | 类型 | 是否必需 | 参数说明 |
+| :-: | :-: | :-: | - |
 | app_name | String | 是 | 应用名称。只允许中英文、下划线 |
 | status | String | 否 | 应用状态。online:上线；offline下线。默认下线 |
 | consumption_limit | int | 否 | 消费限额。单位：元 |
 | service | List/Array | 是 | 应用的服务配置 |
 service中的对象：
-| 参数名 | 类型 | 是否必须 | 参数说明 |
-| - | - | - | - |
+| 参数名 | 类型 | 是否必需 | 参数说明 |
+| :-: | :-: | :-: | - |
 | service_id | int | 是 | 服务ID。3：视频服务；4：音频服务；5：屏幕共享服务；6：信令通道服务；7：在线服务；8：录制服务；9：微信小程序服务 |
 | use_limit | long | 否 | 使用限量 |
 
@@ -132,16 +132,16 @@ HTTP或HTTPS协议，PATCH方法
 /v1/app
 
 ### 请求参数
-| 参数名 | 类型 | 是否必须 | 参数说明 |
-| - | - | - | - |
+| 参数名 | 类型 | 是否必需 | 参数说明 |
+| :-: | :-: | :-: | - |
 | app_id | String | 是 | 应用标识 |
 | app_name | String | 否 | 应用名称。只允许中英文、下划线 |
 | status | String | 否 | 应用状态。online:上线；offline下线。默认下线 |
 | consumption_limit | int | 否 | 消费限额。单位：元 |
 | service | List/Array | 否 | 应用的服务配置 |
 service中的对象：
-| 参数名 | 类型 | 是否必须 | 参数说明 |
-| - | - | - | - |
+| 参数名 | 类型 | 是否必需 | 参数说明 |
+| :-: | :-: | :-: | - |
 | service_id | int | 是 | 服务ID。3：视频服务；4：音频服务；5：屏幕共享服务；6：信令通道服务；7：在线服务；8：录制服务；9：微信小程序服务 |
 | use_limit | long | 否 | 使用限量 |
 
@@ -173,8 +173,8 @@ HTTP或HTTPS协议，DELETE方法
 /v1/app
 
 ### 请求参数
-| 参数名 | 类型 | 是否必须 | 参数说明 |
-| - | - | - | - |
+| 参数名 | 类型 | 是否必需 | 参数说明 |
+| :-: | :-: | :-: | - |
 | app_id | String | 是 | 应用标识 |
 
 ### 传参方式
@@ -192,8 +192,8 @@ HTTP或HTTPS协议，GET方法
 /v1/consuming/records
 
 ### 请求参数
-| 参数名 | 类型 | 是否必须 | 参数说明 |
-| - | - | - | - |
+| 参数名 | 类型 | 是否必需 | 参数说明 |
+| :-: | :-: | :-: | - |
 | start_time | long | 是 | 开始时间，单位：毫秒 |
 | end_time | long | 是 | 结束时间，单位：毫秒 |
 | app_id | String | 否 | 应用ID |
@@ -232,8 +232,8 @@ HTTP或HTTPS协议，POST方法
 /v1/kickout
 
 ### 请求参数
-| 参数名 | 类型 | 是否必须 | 参数说明 |
-| - | - | - | - |
+| 参数名 | 类型 | 是否必需 | 参数说明 |
+| :-: | :-: | :-: | - |
 | app_id | String | 是 | 应用唯一标识 |
 | user_id | String | 是 | 用户ID |
 | mutex_type | String | 否 | 终端互斥类型 |
@@ -253,8 +253,8 @@ HTTP或HTTPS协议，GET方法
 /v1/online/user/state
 
 ### 请求参数
-| 参数名 | 类型 | 是否必须 | 参数说明 |
-| - | - | - | - |
+| 参数名 | 类型 | 是否必需 | 参数说明 |
+| :-: | :-: | :-: | - |
 | company_id | String | 否 | 企业ID |
 | page | int | 否 | 页码 |
 | page_size | int | 否 | 每页显示的数目 |
@@ -286,15 +286,15 @@ HTTP或HTTPS协议，POST方法
 /v1/online/trans-cmd
 
 ### 请求参数
-| 参数名 | 类型 | 是否必须 | 参数说明 |
-| - | - | - | - |
+| 参数名 | 类型 | 是否必需 | 参数说明 |
+| :-: | :-: | :-: | - |
 | user_list | List/Array | 是 | 用户列表 |
 | trans_mess | Object | 是 | 给终端传递的信息，由调用方定义 |
 | app_id | String | 是 | 应用ID |
 | msg_id | int  | 是 | 消息唯一标识。消息唯一标识 |
 user_list中的对象：
-| 参数名 | 类型 | 是否必须 | 参数说明 |
-| - | - | - | - |
+| 参数名 | 类型 | 是否必需 | 参数说明 |
+| :-: | :-: | :-: | - |
 | user_id | String | 是 | 用户ID |
 | mutex_type | String | 是 | 终端互斥类型 |
 | client_guid | String | 是 | 客户端标识 |
