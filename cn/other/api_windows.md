@@ -56,7 +56,7 @@ HTTP header. 在HTTP请求头Authorization中携带开发者ID和Token，两者�
 # 业务接口
 
 ## 通用
-以下的说明适用于所有接口
+通用部分适用于所有接口
 
 ### 接口服务地址
 公有云: https://fsp-store-gw.hst.com
