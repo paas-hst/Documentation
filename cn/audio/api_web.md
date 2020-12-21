@@ -69,18 +69,22 @@ hstRtcEngine.login(options)
 
 ### 参数说明
 
-options： 提供登录所需的参数，如下表所示：
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| options | object | 是 | 登录参数和选项 |
+
+options成员如下所示：
 
 | 参数名 | 类型 | 是否必填 | 参数说明 |
 | :-: | :-: | :-: | - |
-| appId | String | 是 | 应用标识 |
-| token | String | 是 | 鉴权信息 |
-| companyId | String | 是 | 组织划分，可以用来控制在线状态的可见范围 |
-| userId | String | 是 | 开发者自定义，请注意用户ID的定义约束 |
-| mutexType | String | 否 | 标识同一用户的不同类型的登录 |
+| appId | string | 是 | 应用标识 |
+| token | string | 是 | 鉴权信息 |
+| companyId | string | 是 | 组织划分，可以用来控制在线状态的可见范围 |
+| userId | string | 是 | 开发者自定义，请注意用户ID的定义约束 |
+| mutexType | string | 否 | 标识同一用户的不同类型的登录 |
 | forceLogin | boolean | 否 | 是否强制登录 |
-| accessUrl | String | 否 | 服务器地址 |
-| extendInfo | String | 否 | 自定义信息 |
+| accessUrl | string | 否 | 服务器地址 |
+| extendInfo | string | 否 | 自定义信息 |
 
 > User ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
@@ -128,7 +132,9 @@ joinGroup(groupId)
 
 ### 参数说明
 
-groupId <string> 待加入的分组ID，分组ID由开发者自定义，请注意分组ID的定义约束。
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| groupId | string | 是 | 待加入的分组ID，分组ID由开发者自定义，请注意分组ID的定义约束。 |
 
 > Group ID定义规则：长度不超过128，只能是字母、数字、下划线(_)和横杠(-)。
 
@@ -257,7 +263,12 @@ subEvent(eventName, callback)
 
 ### 参数说明
 
-eventName：需要订阅的事件名称，相关事件定义如下表所示。
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| eventName | string | 是 | 需要订阅的事件名称，相关事件定义如下表所示 |
+| callback | function | 是 | 事件发生时的回调函数 |
+
+支持订阅的事件类型定义如下表所示：
 
 | 事件名 | 回调参数 | 描述 |
 | - | - | - |
@@ -273,7 +284,7 @@ eventName：需要订阅的事件名称，相关事件定义如下表所示。
 |onRecvUserMsg | {srcUserId: "xxx", msg: "xxx", msgId: "xxx"} | 收到在线消息 |
 |onRecvGroupMsg | {srcUserId: "xxx", msg: "xxx", msgId: "xxx", groupId: "xxx"} | 收到分组消息 |
   
-callback：事件发生时的回调函数，函数原型如下，不同事件data参数取值不一样。
+callback原型如下所示：
 
 ```js
 function callback(data)
@@ -307,7 +318,9 @@ hstRtcEngine.unsubEvent([eventName])
 
 ### 参数说明
 
-eventName：可选参数，要取消订阅的事件名称，如果参数为空或为null，则表示取消已经订阅的所有事件。
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| eventName | string | 否 | 要取消订阅的事件名称，如果参数为空或为null，则表示取消已经订阅的所有事件 |
 
 ### 返回值
 
@@ -335,34 +348,20 @@ startPublishMedia(mediaType, mediaId, options)
 
 ### 参数说明
 
-mediaType： AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| mediaType | number | 是 | AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD |
+| mediaId | string | 是 | 媒体ID，指定哪一路媒体 |
+| options | object | 否 | 媒体选项，音频和屏幕共享暂不支持 |
 
-mediaId： 不同媒体类型定义不一样，具体如下表所示：
-
-| 媒体类型 | mediaId |
-| - | - |
-|AUDIO | 通过getMediaDevices获取的deviceId |
-|VIDEO | 通过getMediaDevices获取的deviceId |
-|SCREEN_SHARE | 填null即可 |
-|WHITE_BOARD | 暂不支持 |
-
-options：不同媒体类型定义不一样，具体如下表所示：
-
-| 媒体类型 | options |
-| - | - |
-|AUDIO | 暂不支持，填null或者不传递 |
-|VIDEO | 支持，填null或者不传则使用系统默认参数 |
-|SCREEN_SHARE | 支持，填null或者不传则使用系统默认参数 |
-|WHITE_BOARD | 暂不支持，填null或者不传递 |
-
-options成员变量定义如下：
+options定义如下表所示：
 
 | 成员 | 类型 | 描述 | 默认值 |
 | - | - | - | - |
-|width | Integer | 视频宽度 | 640 |
-|height | Integer | 视频高度 | 480 |
-|frameRate | Integer | 视频帧率 | 15 |
-|bitRate | Integer | 视频码率 | 0 |
+|width | number | 视频宽度 | 640 |
+|height | number | 视频高度 | 480 |
+|frameRate | number | 视频帧率 | 15 |
+|bitRate | number | 视频码率 | 0 |
 
 > bitRate单位为kbps，如果设置为0，则使用引擎内部默认码率。
 
@@ -405,9 +404,10 @@ stopPublishMedia(mediaType, mediaId)
 
 ### 参数说明
 
-mediaType： AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD。
-
-mediaId: 只有当媒体类型为VIDEO的时候，才需要传递此参数，其它媒体类型可以传null或不传。
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| mediaType | number | 是 | AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD |
+| mediaId | string | 是 | 媒体ID，指定哪一路媒体 |
   
 
 ### 返回值
@@ -443,11 +443,12 @@ startReceiveMedia(userId, mediaType, mediaId)
 
 ### 参数说明
 
-userId： 用户ID，指定接收哪个用户的音频。
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| userId | string | 是 | 用户ID，指定哪个用户 |
+| mediaType | number | 是 | AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD |
+| mediaId | string | 是 | 媒体ID，指定哪一路媒体 |
 
-mediaType： AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD
-
-mediaId： 媒体ID，指定接收哪一路音频流。
   
 
 ### 返回值
@@ -479,11 +480,11 @@ stopReceiveMedia(userId, mediaType, mediaId)
 
 ### 参数说明
 
-userId： 用户ID，指定停止接收哪个用户的音频。
-
-mediaType： AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD
-
-mediaId： 媒体ID，指定停止接收哪一路音频流。
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| userId | string | 是 | 用户ID，指定哪个用户 |
+| mediaType | number | 是 | AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD |
+| mediaId | string | 是 | 媒体ID，指定哪一路媒体 |
 
 ### 返回值
 
@@ -520,19 +521,27 @@ userId： 用户ID，指定停止接收哪个用户的媒体，如果是本地�
 
 mediaType： AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD
 
-mediaId： 媒体ID，指定渲染哪一路媒体
+mediaId： 媒体ID，指定哪一路媒体
 
 renderElement： 音频、视频和屏幕共享是video标签对象，电子白板是div标签对象
 
 options： 如果是渲染本地视频和屏幕共享，则可以通过options指定渲染的分辨率、帧率，其它情况无效
 
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| userId | string | 是 | 用户ID，指定哪个用户 |
+| mediaType | number | 是 | AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD |
+| mediaId | string | 是 | 媒体ID，指定哪一路媒体 |
+| renderElement | object | 是 | 媒体渲染的标签对象，音频、视频和屏幕共享是video标签对象，电子白板是div标签对象 |
+| options | object | 否 | 媒体选项，只有视频和屏幕共享支持 |
+
 options成员变量定义如下：
 
 | 成员 | 类型 | 描述 | 默认值 |
 | - | - | - | - |
-|width | Integer | 视频宽度 | 640 |
-|height | Integer | 视频高度 | 480 |
-|frameRate | Integer | 视频帧率 | 15 |
+|width | number | 视频宽度 | 640 |
+|height | number | 视频高度 | 480 |
+|frameRate | number | 视频帧率 | 15 |
 
 ### 返回值
 
@@ -563,11 +572,11 @@ unsetMediaRender(userId, mediaType, renderElement);
 
 ### 参数说明
 
-userId： 用户ID，指定停止接收哪个用户的媒体，如果是本地媒体，就填本地userId
-
-mediaType： AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD
-
-renderElement： 音频、视频和屏幕共享是video标签对象，电子白板是div标签对象
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| userId | string | 是 | 用户ID，指定哪个用户 |
+| mediaType | number | 是 | AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD |
+| renderElement | object | 是 | 媒体渲染的标签对象，音频、视频和屏幕共享是video标签对象，电子白板是div标签对象 |
   
 
 ### 返回值
@@ -598,32 +607,36 @@ getStreamStats(options, callback, interval, userData)
 
 ### 参数说明
 
-options： 对流进行描述的参数对象，成员变量如下所示：
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| options | object | 是 | 对流进行描述的参数对象 |
+| callback | function | 是 | 回调函数 |
+| interval | object | 是 | 回调时间间隔，单位毫秒 |
+| userData | object | 否 | 自定义数据，回调callback时会传回来 |
+
+
+options成员变量如下所示：
 
 | 成员 | 类型 | 描述 |
 | - | - | - |
-|userId | String | 流所属用户 |
-|mediaType | Integer | AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD |
-|mediaId | String  | 媒体标识 |
+|userId | string | 媒体所属用户 |
+|mediaType | number | AUDIO/VIDEO/SCREEN_SHARE/WHITE_BOARD |
+|mediaId | string  | 媒体ID，指定哪路媒体 |
 
-callback： 回调函数，函数原型如下：
+callback函数原型如下：
 
 ```js
 onGetStreamStats(stats, userData)
 ```
 
-stats成员变量根据不同的媒体类型而变化，当是音频流时，stats只有一个成员变量volume，volume值小于1；当是视频流（屏幕共享流）时，stats的成员变量定义如下：
+stats成员变量根据不同的媒体类型而变化，当媒体类型是音频时，stats只有一个成员变量volume，volume值小于1；当媒体类型是视频或屏幕共享时，stats的成员变量定义如下：
 
 | 成员 | 类型 | 描述 |
 | - | - | - |
-|width | Integer | 视频宽度 |
-|height | Integer | 视频高度 |
-|frameRate | Integer  | 帧率 |
-|bitRate | Integer  | 码流 |
-
-interval： 回调频率，单位毫秒
-
-userData： 自定义数据，回调callback时会传回来
+|width | number | 视频宽度 |
+|height | number | 视频高度 |
+|frameRate | number  | 帧率 |
+|bitRate | number  | 码流 |
 
 
 ### 返回值
@@ -805,24 +818,18 @@ hstRtcEngine.invite(options)
 
 ### 参数说明
 
-options： 邀请参数选项，数据结构定义如下：
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| options | object | 是 | 邀请参数和选项 |
 
-```js
-{
-    seqId: xxx,
-    groupId: "xxx",
-    calleeInfo: ["xxx", "xxx"],
-    extendInfo: "xxxxxxxxx"
-}
-```
+options成员变量定义如下：
 
-> seqId： 用来标识是哪一个邀请，便于与邀请响应进行匹配。
-
-> groupId: 协助实现邀请加入分组，类似于微信的呼叫音视频通话的功能。
-
-> calleeInfo： User ID列表，支持同时呼叫多个用户。
-
-> extendInfo： 开发者自定义数据。
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| seqId | number | 是 | 邀请序列号，用来区分不同的邀请 |
+| groupId | string | 是 | 分组ID，邀请用户加入哪个分组 |
+| calleeInfo | array | 是 | 邀请用户列表 |
+| extendInfo | object | 否 | 自定义数据 |
 
 
 ### 返回值
@@ -854,24 +861,18 @@ hstRtcEngine.replyInvite(options)
 
 ### 参数说明
 
-options： 参数对象，定义如下：
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| options | object | 是 | 响应邀请参数和选项 |
 
-```js
-{
-    seqId: xxx,
-    groupId: "xxx",
-    operation: x,
-    extendInfo: "xxx"
-}
-```
+options成员变量定义如下：
 
-> seqId： 必须填邀请请求中的seqId。
-
-> groupId： 必须填邀请请求中的groupId。
-
-> operation： 0-接受邀请，1-拒绝邀请
-
-> extenInfo： 开发者自定义。
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| seqId | number | 是 | 邀请序列号，用来区分不同的邀请 |
+| groupId | string | 是 | 分组ID，邀请用户加入哪个分组 |
+| operation | number | 是 | 0：接受邀请，1：拒绝邀请 |
+| extendInfo | object | 否 | 自定义数据 |
 
 
 ### 返回值
@@ -905,16 +906,16 @@ hstRtcEngine.sendUserMsg(options)
 
 ### 参数说明
 
-options： 参数选项定义如下：
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| options | object | 是 | 发送消息的参数 |
 
-```js
-{
-    dstUserId: "xxx",
-    msg: "xxxxxxxxxx"
-}
-```
+options成员变量定义如下：
 
-> dstUserId： 消息发送的目标用户ID
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| dstUserId | string | 是 | 消息发送的目标用户ID |
+| msg | object | 是 | 消息内容 |
 
 
 ### 返回值
@@ -924,7 +925,9 @@ options： 参数选项定义如下：
 ### 示例代码
 
 ```js
-hstRtcEngine.sendUserMsg({dstUserId: "userId1", msg: "Hello"});
+hstRtcEngine.sendUserMsg({
+	dstUserId: "userId1", 
+	msg: "Hello"});
 ```
 
 
@@ -940,19 +943,19 @@ hstRtcEngine.sendGroupMsgWithWhiteList(options)
 
 ### 参数说明
 
-options： 参数选项定义如下：
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| options | object | 是 | 发送消息的参数 |
 
-```js
-{
-    groupId: xxx,
-    whiteList: ["xxx", "xxx"],
-    msg: "xxxxxxxxx"
-}
-```
+options成员变量定义如下：
 
-> groupId: 消息发送的目标分组。
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| groupId | string | 是 | 发送消息的目标分组ID |
+| whiteList | string | 是 | 白名单 |
+| msg | object | 是 | 消息内容 |
 
-> whiteList： User ID列表，最多支持一次设置64个用户。
+> 白名单最大支持设置64个用户。
 
 
 ### 返回值
@@ -984,19 +987,19 @@ hstRtcEngine.sendGroupMsgWithBlackList(options)
 
 ### 参数说明
 
-options： 参数选项定义如下：
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| options | object | 是 | 发送消息的参数 |
 
-```js
-{
-    groupId: xxx,
-    blackList: ["xxx", "xxx"],
-    msg: "xxxxxxxxx"
-}
-```
+options成员变量定义如下：
 
-> groupId: 消息发送的目标分组。
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| groupId | string | 是 | 发送消息的目标分组ID |
+| blackList | string | 是 | 黑名单 |
+| msg | object | 是 | 消息内容 |
 
-> blackList： User ID列表，最多支持一次设置64个用户。
+> 黑名单最大支持设置64个用户。
 
 
 ### 返回值
@@ -1028,16 +1031,16 @@ hstRtcEngine.sendGroupMsg(options)
 
 ### 参数说明
 
-options： 参数选项定义如下：
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| options | object | 是 | 发送消息的参数 |
 
-```js
-{
-    groupId: xxx,
-    msg: "xxxxxxxxx"
-}
-```
+options成员变量定义如下：
 
-> groupId: 消息发送的目标分组。
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| groupId | string | 是 | 消息发送的目标分组ID |
+| msg | object | 是 | 消息内容 |
 
 
 ### 返回值
