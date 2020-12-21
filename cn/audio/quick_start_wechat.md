@@ -1,21 +1,64 @@
 # 快速开始
 
-使用音频通信服务前，请确保已经加入分组，具体请参考“准备工作”。
+本文演示如何快速广播本地麦克风和接收远端音频。
 
-> 微信小程序SDK没有接口去控制接收远端音频，内部会自动接收远端广播的音频。
 
 ## 广播本地音频
 
-打开本地麦克风，并广播给分组内所有用户，分组内所有用户都会接收到广播音频事件。
+调用startPublishMedia开始广播本地麦克风；同时，设置webrtc-room组件的muted属性为false，打开本地麦克风。
 
 ```js
-$hstEngine.unmute()
+const MediaType = hstRtcEngine.MediaType;
+hstRtcEngine.startPublishMedia(MediaType.AUDIO, deviceId, null);
 ```
 
 ## 停止广播本地音频
 
-关闭本地麦克风，分组内所有用户都会接收到停止广播音频事件。
+调用stopPublishMedia停止广播本地麦克风；同时，设置webrtc-room组件的muted属性为true，关闭本地麦克风。
 
 ```js
-$hstEngine.mute()
+const MediaType = hstRtcEngine.MediaType;
+hstRtcEngine.stopPublishMedia(MediaType.AUDIO);
 ```
+
+## 接收远端音频
+
+订阅"onPublishMedia"事件，收到事件后，调用startReceiveMedia接口开始接收远端音频。
+
+```js
+const MediaType = hstRtcEngine.MediaType;
+hstRtcEngine.subEvent('onPublishMedia', function (data) {
+    if (data.mediaType == MediaType.AUDIO) {
+        hstRtcEngine.startReceiveMedia(data.userId, MediaType.AUDIO, data.mediaId)
+        .then(() => {
+            console.log("Start receive remote audio.");
+        })
+        .catch((err)=>{
+            console.log("Receive remote audio failed!");
+        })
+    } 
+});
+```
+
+> webrtc-room组件会自动播放远端音频。
+
+## 停止接收远端音频
+
+订阅“onUnPublishMedia”事件，收到事件后，调用stopReceiveMedia停止接收远端音频。
+
+```js
+const MediaType = hstRtcEngine.MediaType;
+hstRtcEngine.subEvent("onUnPublishMedia", function(data) {
+    if (data.mediaType == MediaType.AUDIO) {
+        hstRtcEngine.stopReceiveMedia(data.userId, MediaType.AUDIO, data.mediaId)
+        .then(() => {
+			hstRtcEngine.unsetMediaRender(data, MediaType.AUDIO, videoElement)
+            console.log("Stop receive remote audio.");
+        })
+        .catch(()=>{
+            console.log("Stop receive remote audio failed!");
+        })
+    }
+});
+```
+

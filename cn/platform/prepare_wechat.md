@@ -1,16 +1,12 @@
+
 # 准备工作
 
-在调用Web SDK接口之前，需要做一些准备工作。
+在进行微信小程序开发之前，需要做一些准备工作。
 
 ## 开发环境
 
-请确保满足以下开发环境要求:
-
-- 音视频通信，建议使用Chrome 70+浏览器
- 
-- 屏幕共享，需要使用Chrome 72+浏览器
-
-- 非本机测试（localhost）必须使用https协议
+- 安装微信开发者工具。
+- 微信基础库版本2.9.0以上。
 
 ## 创建应用
 
@@ -20,7 +16,7 @@
 
 3. 获取 **App ID** 和 **App Secret**。
 
-## 获取 Token
+## 获取Token
 
 安全起见，生产环境，Token应该在业务服务器上生成，客户端需要登录鉴权后才能获取Token，[点击此处](http://customer.paas.hst.com/code) 获取Token生成代码。  
 
@@ -46,14 +42,21 @@
 > 注意Body的内容格式选择“raw”，检查appId和appSecret前后是否包含额外的空格。
 
 
-## 添加 SDK
+## 添加SDK
 
-1. 下载 [Web SDK](http://paas.hst.com/developer/downloadSDK)。
+1. 下载 [WeChat SDK](http://paas.hst.com/developer/downloadSDK)。
  
 2. 将解压后的JS文件放到到项目路径下。
 
 3. 在项目种引用SDK。
 
+## 添加组件
+
+微信小程序的音视频互动都是通过live-pusher和live-player组件来实现的，但是直接使用这两个组件，处理起来比较繁杂，因此，腾讯提供了一个webrtc-room的组件，内部封装live-pusher和live-player组件调用，对外提供了加入房间、广播音视频等易用接口，大大提升了上层应用的开发效率。
+
+如无特殊要求，强烈建议在项目使用webrtc-room组件进行开发，[点此](https://github.com/TencentVideoCloudMLVBDev/MiniProgram/tree/master/wxlite/pages/components/webrtc-room)获取webrtc-room最新代码，你可以直接使用此组件，也可对组件进行定制修改。
+
+当然，也可以使用DEMO中的webrtc-room组件，DEMO中对组件进行了定制化修改，可根据需要进行选择。
 
 ## 初始化
 
@@ -93,7 +96,7 @@ hstRtcEngine.login(options).then(() => {
 
 ## 加入分组
 
-调用joinGroup加入分组。
+调用joinGroup加入分组，接口返回“sdkAppId”、“serverUserId”、“userSig”，“serverRoomId”“privateMapKey”，将这些变量设置到webrtc-room组件的相关属性，可加入腾讯房间。
 
 ```js
 hstRtcEngine.joinGroup(groupId).then(() => {

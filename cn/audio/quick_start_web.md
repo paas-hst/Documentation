@@ -1,10 +1,11 @@
 # 快速开始
 
-使用音频通信服务前，请确保已经加入分组，具体请参考“准备工作”。
+本章用来演示如何快速广播本地麦克风和接收远端音频。
+
 
 ## 获取设备列表
 
-广播本地音频时，需要指定麦克风设备，同时，也需要选择本地使用的扬声器设备。SDK提供一个接口同时获取摄像头、麦克风和扬声器设备，开发者可以根据需要进行选择。
+调用getMediaDevices获取本地麦克风和扬声器设备。
 
 ```js
 hstRtcEngine.getMediaDevices()
@@ -26,7 +27,7 @@ hstRtcEngine.getMediaDevices()
 
 ## 广播本地音频
 
-打开本地麦克风，并广播给分组内所有用户，分组内所有用户都会接收到广播音频事件。
+调用startPublishMedia广播本地麦克风，分组内所有用户都会接收到广播事件。
 
 ```js
 const MediaType = hstRtcEngine.MediaType;
@@ -44,7 +45,7 @@ hstRtcEngine.stopPublishMedia(MediaType.AUDIO);
 
 ## 接收远端音频
 
-订阅"onPublishMedia"事件，收到广播事件后，调用startReceiveMedia接口开始接收远端音频。
+订阅"onPublishMedia"事件，收到事件后，调用startReceiveMedia接口开始接收远端音频。
 
 ```js
 const MediaType = hstRtcEngine.MediaType;
@@ -93,5 +94,3 @@ hstRtcEngine.subEvent("onUnPublishMedia", function(data) {
     }
 });
 ```
-
-> 如果远端音频处于广播状态，再次调用 startReceiveRemoteAudio 又可以重新接听远端音频。
