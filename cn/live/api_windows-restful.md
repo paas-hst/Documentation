@@ -9,35 +9,6 @@
 
 备注：组内先开始广播音视频或者屏幕共享流，再开启直播。
 
-## 获取access_token
-
-获取access_token，后续请求都是使用这个token;超时后需要重新获取。
-使用方法为设置HTTP header.在HTTP请求头Authorization
- 	Authorization:$access_token
-
-### 请求参数说明
-
-请求地址：/access/token
-HTTP协议，GET方法
-
-参数名 | 类型 | 是否必填 | 参数说明 
-| dev_id | String | 是 | 应用对应的开发者id |
-| token | String | 是 | 应用通过token生成方式获得的值 |
-
-说明：
-Token生成方式参考我们官网提供的TokenGenerator
-
-HTTP header.在HTTP请求头Authorization中携带开发者ID和Token，两者用”.”隔开，例如：
-459d0e780b96ce2c42b6356a67e5e35c.k5FUR5LlEoTq5t1ZZ1A9RoQfqgbL1mtJ4DzMdwOW7tvaZZqhXtm6rsisnyoYo9S0HPTDBZGMMhii4gLAorBdCSxb0Iv0yBfFehUTW76gAUm7QuSo3ZqTMvsV
-.前面 那一段是开发者ID，.后面的那一段是token..
-
-
-
-示例：
-
-```js
-Authorization: 459d0e780b96ce2c42b6356a67e5e35c.k5FUR5LlEoTq5t1ZZ1A9RoQfqgbL1mtJ4DzMdwOW7tvaZZqhXtm6rsisnyoYo9S0HPTDBZGMMhii4gLAorBdCSxb0Iv0yBfFehUTW76gAUm7QuSo3ZqTMvsV
-```
 
 ### 返回说明
 
