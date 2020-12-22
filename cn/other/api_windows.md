@@ -340,7 +340,3 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 | :-: | :-: | - |
 | seq_id | long | 请求的唯一标识 |
 | user_id_list | List/Array | 发送失败的用户的ID列表 |
-
-
-
- 
