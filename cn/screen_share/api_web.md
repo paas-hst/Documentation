@@ -280,7 +280,7 @@ subEvent(eventName, callback)
 |onRemoteMediaAdd | {userId: "xxx", mediaType: "xxx", mediaId: "xxx" }  | 接收到远端媒体流|
 |onCommingInvite | {seqId: xxx, groupId: "xxx", userId: "xxx", userName: "xxx", extendInfo: "xxx"} | 收到别人邀请 |
 |onInviteReply | {seqId: xxx, userId: "xxx", result: xxx} | 收到邀请响应 |
-|onOnlineUserState | {userId: "xxx", mutexType: "xxx", customState: "xxx", state: xxx } | 在线用户实时上下线通知 |
+|onOnlineUserState | {userId: "xxx", mutexType: "xxx", customState: "xxx", extendInfo: "xxx" } | 在线用户实时上下线通知 |
 |onRecvUserMsg | {srcUserId: "xxx", msg: "xxx", msgId: "xxx"} | 收到在线消息 |
 |onRecvGroupMsg | {srcUserId: "xxx", msg: "xxx", msgId: "xxx", groupId: "xxx"} | 收到分组消息 |
   
