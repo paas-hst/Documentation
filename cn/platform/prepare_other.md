@@ -57,3 +57,28 @@ HTTP header. 在HTTP请求头Authorization中携带开发者ID和Token，两者�
 	"msg": "Authentication failed"
 }
 ```
+
+### 接口地址（业务网关）
+公有云: https://fsp-store-gw.hst.com
+私有云: http://your-server-ip:28000
+
+### 响应结果
+| 名称 | 类型 | 参数说明 |
+| :-: | :-: | - |
+| code | int | 返回为0时代表成功，其他返回参考错误码列表 |
+| msg | String | 提示信息 |
+
+### 响应格式
+application/json;charset=UTF-8
+
+### 状态码
+| 状态码(code) | 含义 |
+| :-: | :-: |
+| 0 | 成功 |
+| 606000000 | 认证失败 |
+| 606000001 | access_token超时失效 |
+| 606000002 | 重要参数缺失 |
+| 606000003 | 参数错误 |
+| 606000004 | 请求超时 |
+| 606000005 | 操作失败 |
+| 606000006 | 系统繁忙 |
