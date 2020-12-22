@@ -22,7 +22,7 @@ HTTP或HTTPS协议，GET方法
 | dev_id | String | 是 | 开发者ID |
 | token | String | 是 | 使用开发者ID和开发者秘钥生成的token |
 
-利用好视通PaaS官网提供的[TokenGenerator](https://github.com/paas-hst/TokenGenerator_java)来生成token. 开发者ID对应FspToken工具类中的appid，开发者秘钥对应secretkey,其他参数可以不填。开发者ID和秘钥通过PaaS管理平台的面板页面获取。
+利用好视通PaaS官网提供的[FspToken](https://github.com/paas-hst/TokenGenerator_java)来生成token. 开发者ID对应FspToken工具类中的appid，开发者秘钥对应secretkey,其他参数可以不填。开发者ID和秘钥通过PaaS管理平台的面板页面获取。
 
 ### 传参方式
 HTTP header. 在HTTP请求头Authorization中携带开发者ID和Token，两者用”.”隔开，例如：459d0e780b96ce2c42b6356a67e5e35c.k5FUR5LlEoTq5t1ZZ1A9RoQfqgbL1mtJ4DzMdwOW7tvaZZqhXtm6rsisnyoYo9S0HPTDBZGMMhii4gLAorBdCSxb0Iv0yBfFehUTW76gAUm7QuSo3ZqTMvsV
@@ -30,7 +30,7 @@ HTTP header. 在HTTP请求头Authorization中携带开发者ID和Token，两者�
 
 ### 响应结果
 | 参数名 | 类型 | 参数说明 |
-| - | - | - |
+| :-: | :-: | - |
 | access_token | String | 接口凭证 |
 | timeout | int | access_token有效时长，单位:秒 |
 
@@ -64,7 +64,7 @@ HTTP header. 在HTTP请求头Authorization中携带开发者ID和Token，两者�
 
 ### 响应结果
 | 名称 | 类型 | 参数说明 |
-| - | - | - |
+| :-: | :-: | - |
 | code | int | 返回为0时代表成功，其他返回参考错误码列表 |
 | msg | String | 提示信息 |
 
@@ -73,7 +73,7 @@ application/json;charset=UTF-8
 
 ### 状态码
 | 状态码(code) | 含义 |
-| - | - |
+| :-: | :-: |
 | 0 | 成功 |
 | 606000000 | 认证失败 |
 | 606000001 | access_token超时失效 |
@@ -109,7 +109,7 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 
 ### 响应结果
 | 名称 | 类型 | 参数说明 |
-| - | - | - |
+| :-: | :-: | - |
 | app_id | String | 应用唯一标识 |
 | app_secret | String | 应用秘钥 |
 | app_name | String | 应用名称 |
@@ -118,7 +118,7 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 | service | List/Array | 是 | 应用的服务配置 |
 service中的对象：
 | 参数名 | 类型 | 参数说明 |
-| - | - | - |
+| :-: | :-: | - |
 | service_id | int | 服务ID。3：视频服务；4：音频服务；5：屏幕共享服务；6：信令通道服务；7：在线服务；8：录制服务；9：微信小程序服务 |
 | service_name | String | 服务名称 |
 | use_limit | long | 使用限量 |
@@ -150,7 +150,7 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 
 ### 响应结果
 | 名称 | 类型 | 参数说明 |
-| - | - | - |
+| :-: | :-: | - |
 | app_id | String | 应用唯一标识 |
 | app_secret | String | 应用秘钥 |
 | app_name | String | 应用名称 |
@@ -159,7 +159,7 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 | service | List/Array | 应用的服务配置 |
 service中的对象：
 | 参数名 | 类型 | 参数说明 |
-| - | - | - |
+| :-: | :-: | - |
 | service_id | int | 服务ID。3：视频服务；4：音频服务；5：屏幕共享服务；6：信令通道服务；7：在线服务；8：录制服务；9：微信小程序服务 |
 | service_name | String | 服务名称 |
 | use_limit | long | 使用限量 |
@@ -205,7 +205,7 @@ URL传参，例如：http://your-server-ip:28000/v1/consuming/records?start_time
 
 ### 响应结果
 | 名称 | 类型 | 参数说明 |
-| - | - | - |
+| :-: | :-: | - |
 | app_id | String | 应用唯一标识 |
 | app_name | String | 应用名称 |
 | product_id | int | 产品ID |
@@ -266,12 +266,12 @@ URL传参，例如：http://your-server-ip:28000/v1/online/user/state?company_id
 
 ### 响应结果
 | 名称 | 类型 | 参数说明 |
-| - | - | - |
+| :-: | :-: | - |
 | msg_id | int | 消息唯一标识 |
 | user_list | List/Array | 用户列表 |
 user_list中的对象：
 | 名称 | 类型 | 参数说明 |
-| - | - | - |
+| :-: | :-: | - |
 | state | int | 用户状态。0不在线；1在线 |
 | user_id | String | 用户ID |
 | terminal_seq_num | String | 终端标识 |
@@ -304,12 +304,12 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 
 ### 响应结果
 | 名称 | 类型 | 参数说明 |
-| - | - | - |
+| :-: | :-: | - |
 | msg_id | int | 消息唯一标识 |
 | user_list | List/Array | 用户列表 |
 user_list中的对象：
 | 参数名 | 类型 | 参数说明 |
-| - | - | - |
+| :-: | :-: | - |
 | result | int | 0:成功;1:异常;2:该用户对应的设备不在线 |
 | user_id | String | 用户ID |
 | terminal_seq_num | String | 终端标识 |
@@ -325,7 +325,7 @@ HTTP或HTTPS协议，POST方法
 
 ### 请求参数
 | 参数名 | 类型 | 是否必需 | 参数说明 |
-| - | - | - | - |
+| :-: | :-: | :-: | - |
 | app_id | String | 是 | 应用唯一标识 |
 | group_id | String | 是 | 组ID/会议ID |
 | user_id_list | List/Array | 是 | 所呼叫的用户的ID列表。例如[“123”,”abc”] |
@@ -337,9 +337,10 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 
 ### 响应结果
 | 名称 | 类型 | 参数说明 |
-| - | - | - |
+| :-: | :-: | - |
 | seq_id | long | 请求的唯一标识 |
 | user_id_list | List/Array | 发送失败的用户的ID列表 |
 
 
 
+ 
