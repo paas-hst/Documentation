@@ -345,3 +345,391 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 
 
 
+
+
+
+
+
+
+ <center> <font face="黑体" size=10>  事件网关接口  </font>  </center>
+
+
+
+
+
+>简化步骤：
+>​         登录网关（保持长连接）：获取全量，订阅app事件，接收事件推送消息， 取消订阅app事件，退出登录。
+
+
+
+##  获取服务器请求地址
+> 公有云：使用接口 https://access.paas.haoshitong.com/server/address?appType=8 获取
+> 私有云: 使用接口 https://私有云fsp地址:21000/server/address?appType=8        获取
+
+接口的返回类型为JSON。返回字段如下：
+| 参数名 | 类型 | 参数说明 |
+| - | - | - | - |
+| code | int | 登录的返回固定为20001 |
+| result | string | 服务地址 |
+| message | String | 提示的消息 |
+示例：
+```js
+{
+	"code": 0,
+	"message": "OK",
+	"result": "ws://192.168.7.201:29200"
+}
+```
+
+
+## 登录事件网关
+> 登录之后保持长连接发送接收消息
+
+接口的请求类型为JSON。请求字段如下：
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| business | String | 是 | EGW |
+| dev_id | String | 是 | 企业开发者ID |
+| token | String | 是 | 企业开发者ID对应的[access_token](http://paas.hst.com/developer/document?production=other)  获取接口在1.产品文档2.其他3.准备工作 |
+| id | int | 是 | 20000 协议id |
+
+
+示例：
+```js
+{
+	"business":"EGW",
+	"dev_id":"23be7500fa7d6850d976ca473c296db2",
+	"token":"60b52680c356c5c29c8393132eaadf92",
+	"id":20000
+}
+```
+
+### 返回说明
+
+接口的返回类型为JSON。返回字段如下：
+
+| 参数名 | 类型 | 参数说明 |
+| - | - | - | - |
+| id | int | 登录的返回固定为20001 |
+| result | int | 返回为0时代表成功，其他返回参考错误码列表 |
+| message | String | 提示的消息 |
+
+示例：
+```js
+{
+	"id": 20001,
+	"message": "login successful",
+	"result": 0
+}
+```
+## 登出事件网关
+> 登录之后保持长连接发送接收消息
+
+接口的请求类型为JSON。请求字段如下：
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| business | String | 是 | EGW |
+| dev_id | String | 是 | 企业开发者ID |
+| token | String | 是 | 企业开发者ID对应的access_token  获取接口在1.产品文档2.其他3.准备工作 |
+| id | int | 是 | 20002 协议id |
+
+
+示例：
+```js
+{
+	"business":"EGW",
+	"id":20002
+}
+```
+
+### 返回说明
+
+接口的返回类型为JSON。返回字段如下：
+
+| 参数名 | 类型 | 参数说明 |
+| - | - | - | - |
+| id | int | 登出的返回固定为20003 |
+| result | int | 返回为0时代表成功，其他返回参考错误码列表 |
+| message | String | 提示的消息 |
+
+示例：
+```js
+{
+	"id": 20003,
+	"message": "logout successful",
+	"result": 0
+}
+```
+
+
+## 订阅事件
+
+>订阅某个APPID的事件
+
+### 请求参数说明
+接口的请求类型为JSON。请求字段如下：
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| business | String | 是 | 固定是EGW  |
+| id | int | 是 | 20004 协议ID|
+| app_list | json object 数组 | 是 | |
+| app_id | string| 是 | 应用ID |
+
+示例：
+```js
+{
+"business":"EGW",
+"id":20004,
+"app_list":[
+		{
+		"app_id":"15657845fd30b24e9ceb443e6f0a7bf3"
+		}
+	]
+}
+```
+
+### 返回说明
+
+接口的返回类型为JSON。返回字段如下：
+
+| 参数名 | 类型 | 参数说明 |
+| - | - | - | - |
+| id | int | 是 | 20005 协议ID|
+| result | int | 返回为0时代表成功，其他返回参考错误码列表 |
+| message | String | 提示的消息 |
+
+示例：
+```js
+{
+	"id": 20005,
+	"message": "subscribe successful",
+	"result": 0
+}
+```
+## 取消订阅事件
+
+>取消订阅事件  或者取消订阅事件某个APPID的事件
+
+### 请求参数说明
+接口的请求类型为JSON。请求字段如下：
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| business | String | 是 | 固定是EGW  |
+| id | int | 是 | 20006 协议ID|
+| app_list | json object 数组 | 是 | |
+| app_id | string| 是 | 应用ID |
+
+取消订阅指定APPID示例：
+```js
+{
+    "business":"EGW",
+    "id":20006,
+    "app_list":[
+            {
+            	"app_id":"15657845fd30b24e9ceb443e6f0a7bf3"
+            }
+        ]
+}
+```
+取消订阅示例：
+```js
+{
+    "business":"EGW",
+    "id":20006
+}
+```
+### 返回说明
+
+接口的返回类型为JSON。返回字段如下：
+
+| 参数名 | 类型 | 参数说明 |
+| - | - | - | - |
+| id | int | 是 | 20007 协议ID|
+| result | int | 返回为0时代表成功，其他返回参考错误码列表 |
+| message | String | 提示的消息 |
+
+示例：
+```js
+{
+	"id": 20007,
+	"message": "unsubscribe successful",
+	"result": 0
+}
+```
+
+## 获取全量数据
+
+>获取appid下所有在线用户、及广播的媒体数据
+
+### 请求参数说明
+接口的请求类型为JSON。请求字段如下：
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| business | String | 是 | 固定是EGW  |
+| id | int | 是 | 20008 协议ID|
+| app_list | json数组 | 是 | APPID数组  |
+| app_id | string | 是 | 应用ID|
+| group_list | json数组 | 是 | group数组  |
+示例：
+>指定单个app下面单个组
+```js
+{
+"business":"EGW",
+"seq":"1",
+"app_list":[
+		{
+		"app_id":"15657845fd30b24e9ceb443e6f0a7bf3",
+		"group_list":["123456"]
+		}
+],
+"id":20008
+}
+```
+>appid所有数据
+```js
+{
+"business":"EGW",
+"seq":"1",
+"app_list":[
+		{
+		"app_id":"15657845fd30b24e9ceb443e6f0a7bf3",
+		}
+],
+"id":20008
+}
+```
+
+### 返回说明
+
+接口的返回类型为JSON。返回字段如下：
+
+| 参数名 | 类型 | 参数说明 |
+| - | - | - | - |
+| result | int | 返回为0时代表成功，其他返回参考错误码列表 |
+| id | int | 是 | 20009 协议ID|
+| app_id | String | 提示的消息 |
+| group_list | json数组 | 组内的用户及媒体数据 |
+| group_media_list | json数组 | 组内的媒体数据（单前是会有白板） |
+| media_info | json数组 | 用户广播的音视频、屏幕共享 |
+| media_id | string | 标识广播媒体的ID |
+| media_type | int | 广播媒体的类型 4：白板 2：音频 1：视频 0：屏幕共享|
+| user_id | string | 标识用户的ID |
+| group_id | string | 组ID |
+| version | int | 事件版本号(同一个APPID下递增连续)|
+示例：
+```js
+{
+	"app_id": "15657845fd30b24e9ceb443e6f0a7bf3",
+	"group_list": [{
+		"group_id": "123456",
+		"group_media_list": [{
+			"media_id": "whiteboard2",
+			"media_type": 4
+		}],
+		"user_list": [{
+			"media_info": [{
+				"media_id": "0",
+				"media_type": 0
+			}, {
+				"media_id": "appdef_mic_magic",
+				"media_type": 1
+			}, {
+				"media_id": "LocalCam_2",
+				"media_type": 2
+			}],
+			"user_id": "aa"
+		}, {
+			"media_info": [],
+			"user_id": "ff"
+		}]
+	}],
+	"id": 20009,
+	"message": "synchronize all data successful",
+	"result": 0,
+	"version": 3132
+}
+```
+
+## 事件广播消息
+
+>服务器主动推送的事件消息
+
+### 请求参数说明
+接口的请求类型为JSON。请求字段如下：
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| business | String | 是 | 固定是EGW  |
+| id | int | 是 | 20102、20103、20100、20101|
+| group_id | string | 是 | 发生事件的组ID |
+| user_id | string| 是 | 触发事件的用户ID |
+| version | int | 是 | 事件版本号 (不连续时建议全量同步次数据 以保障数据的完整性)|
+| media_id | string| 是 | 媒体的ID |
+| media_type | int | 是 | 媒体类型|
+
+用户加入组示例：
+```js
+{
+	"group_id": "123456",
+	"id": 20100,
+	"user_id": "aa",
+	"version": 2714
+}
+```
+用户退出组示例：
+```js
+{
+	"group_id": "123456",
+	"id": 20101,
+	"user_id": "aa",
+	"version": 2714
+}
+```
+用户广播流示例：
+```js
+{
+	"group_id": "123456",
+	"id": 20102,
+	"media_id": "LocalCam_2",
+	"media_type": 2,
+	"user_id": "aa",
+	"version": 2715
+}
+```
+用户停止广播流示例：
+```js
+{
+	"group_id": "123456",
+	"id": 20102,
+	"media_id": "LocalCam_2",
+	"media_type": 2,
+	"user_id": "aa",
+	"version": 2715
+}
+```
+
+## 协议ID表
+
+| 协议ID | 释义 | 备注 | 其他 |
+| - | - | - | - |
+| 20001 | 登录事件网关请求 |   |   |
+| 20002 | 登录事件网关响应 |   |   |
+| 20003 | 登出事件网关请求 |   |   |
+| 20004 | 登出事件网关响应|   |   |
+| 20005 | 订阅组事件请求 |   |   |
+| 20006 | 订阅组事件响应|   |  |
+| 20007 | 取消订阅组事件请求|   |   |
+| 20008 | 取消订阅组事件响应 |   |   |
+| 20009 | 同步全量请求 |   |   |
+| 20010 | 同步全量响应 |   |   |
+| 20011 | 心跳请求|   |   |
+| 20012 | 心跳响应 |   |   |
+| 20101 | 通知用户进入组|   |   |
+| 20102 | 通知用户推出组 |   |   |
+| 20103 | 通知用户开始广播媒体|   |   |
+| 20104 | 通知用户停止广播媒体 |   |   |

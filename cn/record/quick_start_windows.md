@@ -1,88 +1,40 @@
 # 快速开始
 
-云录制相关业务功能需要客户的账号通过企业开发者的资格认证。认证成功就可以调用云录制api。
-云录制接口是调用一套RESful Api来实现用户对录制业务的控制。
-下面以最简单的自动录制方式，录下第一个自己的视频文件。
-
-## 建立通信连接
-
-通过resful接口控制录制任务的生命周期，需要先使用[登录]功能与好视通服务建立一个长链接。
-token的获取方式参考[token生成]。
-录制服务请求地址：ws://fsp-record-gw.hst.com
-每个字段的具体含义可以参考api手册。
-
-请求内容：
-
-```js
-{
-"business":"RE",
-"app_id":"XXXXXXXXXXX",
-"token":"XXXXXXXXXXX",
-"seq":"",
-"id":4097
-}
-```
-
-当返回code为0时，代表建立长链接成功。
-返回内容：
-```js
-{
-"business":"RE",
-"id":8193,
-"code":0,
-"msg":"XXXXXXXXXXX",
-"seq":""
-}
-```
-
-## 初始化一个录制任务
-
-登录完成后，可以初始化录制任务了。初始化的目的是确定本次录制生成的文件格式，还有文件的一些参数如帧率，分辨率等属性。
-下列参数是在myFristRecord这个分组ID里录制一个30帧分辨率为1920x1080的mp4文件。选择不同的自动录制布局，可以录制出不同的效果，具体可参考[录制布局]。
-更多字段的具体含义可以参考api手册[初始化]。
-
-```js
-{
-"business":"RE",
-"id":4098,
-"group_id":"myFristRecord",
-"width":1920,
-"height":1080,
-"auto":{"type":1}
-"seq":"",
-"id":4097
-}
-```
-
-当返回code为0时，代表建立长链接成功。
-返回内容：
-
-```js
-{
-"business":"RE",
-"id":8193,
-"code":0,
-"msg":"XXXXXXXXXXX",
-"seq":"",
-"record_id":"XXXXXXXX"
-}
-```
-完成以上步骤，代表你已经为myFristRecord这个组ID可以开始自动录制了。
-当分组中没有可录制的音视频流时，不会进行录制。
-
-## 停止录制
-
-停止录制有两种方式，一种是分组中没有用户连续超过3分钟会自动结束。另一种是通过[停止]功能主动停止录制。
+## 获取Access Token
+>使用[接口](http://paas.hst.com/developer/document?production=other)获取开发者ID对应的访问token
+调用录制的所有接口都有使用到 [access_token](http://paas.hst.com/developer/document?production=other)
+使用方式
+HTTP header. 在HTTP请求头Authorization中填[access_token](http://paas.hst.com/developer/document?production=other)值
 
 
-```js
-{
-"business":"RE",
-"id":4101,
-"app_id":"XXXXXXXXXXX",
-"seq":"",
-}
-```
 
-停止录制后，录制任务会结束并进入处理流程。等待一段时间后会收到上传完成回调，代表录制文件处理完了。此时可以通过api或后台查看或下载文件。
+## 请求地址
+公有云：https://fsp-store-gw.hst.com/
+私有云：http://your-server-ip:28000/
 
+
+
+
+## 简化步骤
+
+### 手动录制
+>1.初始化录制任务 
+2.设置合成效果
+3.查询任务列表
+4.结束录制任务
+5.查询任务列表
+6.下载录制文件
+**没有用户事件来源时--》可以登录时间网关订APPID阅事件获取事件参数用于动态实时设置布局信息**
+
+
+### 自动录制
+>1.初始化录制任务
+2.查询任务列表
+3.结束任务任务
+4.查询任务列表
+5.下载录制文件
+
+
+## 说明
+>查询任务列表 对应的**任务状态(status)是6**且**文件大小(file_size)不为 0** 这个两个条件满足才可以调用下载接口否则放回失败。
+![状态图](./state.png)
