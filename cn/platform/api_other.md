@@ -259,20 +259,10 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 | user_id_list | List/Array | 发送失败的用户的ID列表 |
 
 
+# 事件网关接口
 
-
-
-
- <center> <font face="黑体" size=10>  事件网关接口  </font>  </center>
-
-
-
-
-
->简化步骤：
->​         登录网关（保持长连接）：获取全量，订阅app事件，接收事件推送消息， 取消订阅app事件，退出登录。
-
-
+> 简化步骤：
+>​ 登录网关（保持长连接）：获取全量，订阅app事件，接收事件推送消息， 取消订阅app事件，退出登录。
 
 ##  获取服务器请求地址
 > 公有云：使用接口 https://access.paas.haoshitong.com/server/address?appType=8 获取
