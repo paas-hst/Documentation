@@ -383,9 +383,9 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 示例：
 ```js
 {
-"business":"EGW",
-"id":20004,
-"app_list":[
+	"business":"EGW",
+	"id":20004,
+	"app_list":[
 		{
 		"app_id":"15657845fd30b24e9ceb443e6f0a7bf3"
 		}
@@ -481,28 +481,28 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 >指定单个app下面单个组
 ```js
 {
-"business":"EGW",
-"seq":"1",
-"app_list":[
+	"business":"EGW",
+	"seq":"1",
+	"app_list":[
 		{
 		"app_id":"15657845fd30b24e9ceb443e6f0a7bf3",
 		"group_list":["123456"]
 		}
-],
-"id":20008
+	],
+	"id":20008
 }
 ```
 >appid所有数据
 ```js
 {
-"business":"EGW",
-"seq":"1",
-"app_list":[
+	"business":"EGW",
+	"seq":"1",
+	"app_list":[
 		{
 		"app_id":"15657845fd30b24e9ceb443e6f0a7bf3",
 		}
-],
-"id":20008
+	],
+	"id":20008
 }
 ```
 
