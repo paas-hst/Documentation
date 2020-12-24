@@ -37,4 +37,15 @@ HTTP header. 在HTTP请求头Authorization中填[access_token](http://paas.hst.c
 
 ## 说明
 >查询任务列表 对应的**任务状态(status)是6**且**文件大小(file_size)不为 0** 这个两个条件满足才可以调用下载接口否则返回失败。
-![状态图](https://fs.hst.com/download/paas/images/documentation/platform/record_task_status.png)
+
+| status值 | 状态 | 其他 |
+| - | - | - | - |
+| -1 | 错误 |   |
+| 0 | 成功 |  |
+| 1 | 初始化 |   |
+| 2 | 录制中 |   |
+| 3 | 排队等待编码 |    |
+| 4 | 编码中 |   |
+| 5 | 上传中 |   |
+| 6 | 完成 |  |
+| 7 | 暂停 |  |
