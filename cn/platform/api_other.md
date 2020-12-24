@@ -12,7 +12,7 @@ HTTP或HTTPS协议，POST方法
 | 参数名 | 类型 | 是否必需 | 参数说明 |
 | :-: | :-: | :-: | - |
 | app_name | String | 是 | 应用名称。只允许中英文、下划线 |
-| status | String | 否 | 应用状态。online:上线；offline下线。默认下线 |
+| status | String | 是 | 应用状态。online:上线；offline下线。 |
 | consumption_limit | int | 否 | 消费限额。单位：元 |
 | service | List/Array | 是 | 应用的服务配置 |
 service中的对象：
