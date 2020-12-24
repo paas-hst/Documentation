@@ -1,6 +1,6 @@
 # 准备工作
 
-在调用业务网关接口时，需要携带Access Token，服务器会对Access Token进行鉴权。
+在调用业务网关接口时，需要在HTTP请求头Authorization中携带Access Token，服务器会对Access Token进行鉴权。
 
 ## 什么是Access Token
 
