@@ -25,7 +25,7 @@ HTTP或HTTPS协议，GET方法
 | dev_id | String | 是 | 开发者ID |
 | token | String | 是 | 使用开发者ID和开发者秘钥生成的token |
 
-利用好视通PaaS官网提供的[FspToken](https://github.com/paas-hst/TokenGenerator_java)来生成token。开发者ID对应FspToken工具类中的App ID，开发者秘钥对应secretkey,其他参数可以不填。
+开发者ID对应FspToken工具类中的App ID，开发者秘钥对应secretkey,其他参数可以不填。
 
 > 开发者ID和秘钥通过PaaS管理平台的面板页面获取。
 
