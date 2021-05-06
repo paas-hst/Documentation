@@ -62,9 +62,9 @@
 | width | int | 否 | 幕布宽度[1,1920]（单位px）默认1920 |
 | height | int | 否 | 幕布高[1,1080]（单位px）默认1080 |
 | crop_mode | int | 否 | 视频裁剪模式(1:平铺;2:等比平铺裁剪;3:等比平铺填充)默认为2  |
-| frame_rate | int | 否 | 录制视频帧率(默认30帧)[1,30]（单位帧） |                                      |
+| frame_rate | int | 否 | 录制视频帧率(默认30帧)[1,30]（单位帧） |
 | quality_level | int | 否 | 1 流畅、2 清晰、3高清 (默认2)|
-
+| push_addr | String | 否 | rtmp推流地址(私有云是必填项) |
 请求示例：
 
 ```js
@@ -75,7 +75,8 @@
 	"height": 1080,
 	"crop_mode":2,
 	"quality_level":2,
-	"frame_rate":20
+	"frame_rate":20,
+	"push_addr":"rtmp:xxxxx"
 }
 ```
 
@@ -93,11 +94,11 @@
 ```js
 {
 	"code": 0,
-	"flv_url": "http://xxxxxx.haoshitong.com/fsp-live/20200512161527_1111.flv",
+	"flv_url": "http://xxxxxx/fsp-live/20200512161527_1111.flv",
 	"group_id": "1111",
-	"m3u8_url": "http://xxxx.haoshitong.com/fsp-live/20200512161527_1111.m3u8",
+	"m3u8_url": "http://xxxx/fsp-live/20200512161527_1111.m3u8",
 	"msg": "success",
-	"rtmp_url": "rtmp://xxxx.haoshitong.com/fsp-live/20200512161527_1111"
+	"rtmp_url": "rtmp://xxxx/fsp-live/20200512161527_1111"
 }
 ```
 ## 关闭直播
@@ -158,10 +159,10 @@
 	"code": 0,
 	"id": 9475,
 	"list": [{
-		"flv_url": "http://live.alicdn.haoshitong.com/fsp-live/20200513112347_1111.flv",
+		"flv_url": "http://xxxxxx.com/fsp-live/20200513112347_1111.flv",
 		"group_id": "1111",
-		"m3u8_url": "http://live.alicdn.haoshitong.com/fsp-live/20200513112347_1111.m3u8",
-		"rtmp_url": "rtmp://live.alicdn.haoshitong.com/fsp-live/20200513112347_1111",
+		"m3u8_url": "http://xxxxxx.com/fsp-live/20200513112347_1111.m3u8",
+		"rtmp_url": "rtmp://xxxxxx.com/fsp-live/20200513112347_1111",
 		"start_time": 1589340227
 	}],
 	"msg": "success"
