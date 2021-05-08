@@ -608,7 +608,7 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 ```js
 {
 	"group_id": "123456",
-	"id": 20102,
+	"id": 20103,
 	"media_id": "LocalCam_2",
 	"media_type": 2,
 	"user_id": "aa",
