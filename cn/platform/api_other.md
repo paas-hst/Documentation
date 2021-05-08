@@ -573,6 +573,7 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 | version | int | 是 | 事件版本号 (不连续时建议全量同步次数据 以保障数据的完整性)|
 | media_id | string| 是 | 媒体的ID |
 | media_type | int | 是 | 媒体类型|
+| record_statue | int | 否 | 录制任务状态 1:初始化,2:录制中,3:排队等待编码,4:编码中,5:上传中,6:完成,-1:任务异常 |
 
 用户加入组示例：
 ```js
@@ -614,7 +615,17 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 	"version": 2715
 }
 ```
-
+录制任务状态变更
+```js
+{
+	"group_id" : "6094b5b7-b039-e917-0100-0000587f0000",
+	"id" : 20104,
+	"record_id" : "20210507113635_10062",
+	"record_msg" : "",
+	"record_statue" : 2,
+	"version" : 0
+}
+```
 ## 协议ID表
 
 | 协议ID | 释义 | 备注 | 其他 |
@@ -631,7 +642,8 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 | 20010 | 同步全量响应 |   |   |
 | 20011 | 心跳请求|   |   |
 | 20012 | 心跳响应 |   |   |
-| 20101 | 通知用户进入组|   |   |
-| 20102 | 通知用户推出组 |   |   |
-| 20103 | 通知用户开始广播媒体|   |   |
-| 20104 | 通知用户停止广播媒体 |   |   |
+| 20100 | 通知用户进入组|   |   |
+| 20101 | 通知用户推出组 |   |   |
+| 20102 | 通知用户开始广播媒体|   |   |
+| 20103 | 通知用户停止广播媒体 |   |   |
+| 20104 | 录制状态通知 | | |
