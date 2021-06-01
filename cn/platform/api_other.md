@@ -519,7 +519,7 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 | group_media_list | json数组 | 组内的媒体数据（单前是会有白板） |
 | media_info | json数组 | 用户广播的音视频、屏幕共享 |
 | media_id | string | 标识广播媒体的ID |
-| media_type | int | 广播媒体的类型 4：白板 2：音频 1：视频 0：屏幕共享|
+| media_type | int | 广播媒体的类型 4：白板 2：视频 1：音频 0：屏幕共享|
 | user_id | string | 标识用户的ID |
 | group_id | string | 组ID |
 | version | int | 事件版本号(同一个APPID下递增连续)|
