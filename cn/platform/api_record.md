@@ -61,14 +61,7 @@ auto的请求字段如下：
 "app_id":"XXXXXXXX",
 "group_id":"XXXXXXXX",
 "file_name":"XXXXXXXX",
-"file_type":0,
-"file_duration":15,
-"width":10,
-"height":10,
-"record_mode":0,
-"frame_rate":30,
-"timeout":10,
-"auto":{"type":1,"user_id":2,"media_type":2,"media_count":9,"crop_mode":3}
+"auto":{}
 }
 ```
 
@@ -301,12 +294,12 @@ video_list视频列表的请求字段如下：
 "app_id":"XXXXXXXX",
 "record_id":"XXXXXXXX",
 "audio_list":{
-	{"user_id":"Jack_ID","media_id":1,"media_type":1},
-	{"user_id":"Paul_ID","media_id":1,"media_type":1}
+	{"user_id":"Jack_ID","media_id":"appdef_mic","media_type":1},
+	{"user_id":"Paul_ID","media_id":"appdef_mic","media_type":1}
 	},
 "video_list":{
-	{"user_id":"Jack_ID","media_id":0,"media_type":2,"crop_mode":3,"w":530,"h":380},
-	{"user_id":"Paul_ID","media_id":0,"media_type":2,"crop_mode":3,"x":531,"w":530,"h":380}
+	{"user_id":"Jack_ID","media_id":"LocalCam_0","media_type":2,"crop_mode":3,"w":530,"h":380},
+	{"user_id":"Paul_ID","media_id":"LocalCam_0","media_type":2,"crop_mode":3,"x":531,"w":530,"h":380}
 	}
 }
 ```
