@@ -9,7 +9,7 @@ HTTP header. 在HTTP请求头Authorization中填[access_token](http://paas.hst.c
 
 
 ## 请求地址
-公有云：https://fsp-store-gw.hst.com/
+公有云：https://access.paas.hst.com/server/address?appType=10&app_id=xxxxxxxx 获取
 私有云：http://your-server-ip:28000/
 
 
