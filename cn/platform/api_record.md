@@ -29,7 +29,7 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 | timeout | int | 否 | 该录制任务拉流失败超过timeout时间，且无录制命令，则服务器主动停止录制，[5,1800]（单位秒）默认值600秒 |
 | auto | Object | 否 | 不为空时使用自动录制 |
 | seq | String | 是 | 返回时会把此数据原样输出 |
-
+| company_id | String | 是 | 公司ID |
 auto的请求字段如下：
 
 | 参数名 | 类型 | 是否必填 | 参数说明 |
@@ -61,6 +61,7 @@ auto的请求字段如下：
 "app_id":"XXXXXXXX",
 "group_id":"XXXXXXXX",
 "file_name":"XXXXXXXX",
+"company_id":1234,
 "auto":{}
 }
 ```
@@ -331,7 +332,91 @@ video_list视频列表的请求字段如下：
 "record_id":"XXXXXXXXXXX"
 }
 ```
+## 设置文字水印
+在视频上面指定位置设置一下文字说明
 
+
+### 请求参数说明
+
+请求地址：/v1/record/set-output-overlay  HTTP协议，POST方法
+接口的请求类型为JSON。请求字段如下：
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| app_id | String | 是 | 应用ID |
+| record_id | String | 是 | 录制任务的ID  |
+| subtitle_list | Array | 否 | 文字水印列表  |
+| logo_list | Array | 否 |  图片水印列表（未开放外部使用）  |
+
+subtitle_list文字水印列表的请求字段如下：
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| x | int | 是 | 幕布中横坐标[0,1920]  |
+| y | int | 是 | 幕布中横坐标[0,1920]  |
+| content | String | 是 | 需要显示的文字  |
+| color | int | 是 | 文字颜色  |
+| size | int | 是 | 文字大小  |
+| transparency | int | 是 | 透明度 |
+
+logo_list水印列表的请求字段如下：
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| x | int | 是 | 幕布中横坐标[0,1920]  |
+| y | int | 是 | 幕布中横坐标[0,1920]  |
+| file_path | String | 是 | 服务器上图片的路径  |
+| scaleratio | float | 是 | 缩放比例  |
+
+
+示例：
+```js
+{
+        "id": 4103,
+        "logo_list": [{
+                "x": 1240,
+                "y": 1240,
+                "file_path": "bg/720P/4_640x360_able.png",
+                "scaleratio": 1
+        }],
+        "subtitle_list": [{
+                "type": 1,
+                "x": 1240,
+                "y": 1240,
+                "content": "",
+                "color": 255,
+                "size": 30,
+                "transparency": 50
+        }]
+}
+```
+
+### 返回说明
+
+接口的返回类型为JSON。返回字段如下：
+
+| 参数名 | 类型 | 参数说明 |
+| - | - | - | - |
+| code | int | 返回为0时代表成功，其他返回参考错误码列表 |
+| msg | String | 提示的消息 |
+| seq | String | 用户请求时填写的数据 |
+| record_id | String | 返回录制任务唯一身份识别ID |
+
+示例：
+```js
+//成功结果示例
+{
+"code":0,
+"msg":"10000",
+"record_id":"XXXXXXXXXXX"
+}
+
+//失败结果示例
+{
+"code":30001,
+"msg":"10000",
+"record_id":"XXXXXXXXXXX"
+}
+```
 
 
 ## 录制任务查询
@@ -382,7 +467,11 @@ record_list录制任务列表的返回字段如下：
 | start_time| date | 任务开启时间 |
 | stop_time | date | 任务结束时间 |
 | status | int | 任务状态  |
-
+| file_name | String | 文件名  |
+| company_id | String |  公司ID  |
+| record_time | int |  录制时长(秒)  |
+| width | int |  视频宽  |
+| height | int |  视频高  |
 
 
 ## 获取下载录制文件的URL
@@ -391,8 +480,8 @@ record_list录制任务列表的返回字段如下：
 
 ### 请求参数说明
 
-参数名 | 类型 | 是否必填 | 参数说明 
-|- | - | - | - 
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
 | app_id | String | 是 | 应用对应的appid |
 | record_id | String | 是 | 录制ID |
 | page | int | 否 | 页码 |
@@ -405,8 +494,8 @@ http://localhost:8080/v1/record/file/download/url?app_id=123&record_id=record
 ```
 
 ### 返回说明
-参数名 | 类型 | 是否必填 | 参数说明 
-|- | - | - | - 
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
 | total_num | int | 是 | 多少个文件即data_list的数量 |
 | data_list | Array | 是 | 录制文件链接数组 |
 | page | int | 否 | 页码 |
@@ -450,9 +539,9 @@ data_list  录制文件下载链接列表的返回字段如下：
 
 ### 请求参数说明
 
-参数名 | 类型 | 是否必填 | 参数说明 
-|- | - | - | - 
-| mode | String | 是 | 删除模式（1：同时删除源文件和录制记录；2：只删除源文件）默认值为2 |
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| mode | String | 是 | 删除模式（1：同时删除源文件和录制记录；2：只删除源文件; 3: 只删除录制任务记录）|
 | app_id | String | 是 | 应用对应的appid |
 | record_list | Array | 是 | 录制任务ID列表 |
 
