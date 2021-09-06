@@ -16,7 +16,8 @@ Access Token是长度为32的随机字符串。它的有效时长是7200秒（�
 HTTP或HTTPS协议，GET方法
 
 ### 请求地址
-公有云：https://fsp-store-gw.hst.com/access/token
+公有云： 通过 https://access.paas.hst.com/server/address?appType=10 先获取到地址 如：{"code":0,"message":"OK","result":"https://fsp-bgw2.hst.com"};
+在用地址拼接 /access/token 如：https://fsp-bgw2.hst.com/access/token 
 私有云：http://your-server-ip:28000/access/token
 
 ### 请求参数
@@ -59,7 +60,7 @@ HTTP header. 在HTTP请求头Authorization中携带开发者ID和Token，两者�
 ```
 
 ### 接口地址（业务网关）
-公有云: https://fsp-store-gw.hst.com
+公有云: https://access.paas.hst.com/server/address?appType=10&app_id=xxxxxxxx
 私有云: http://your-server-ip:28000
 
 ### 响应结果
