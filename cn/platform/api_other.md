@@ -621,9 +621,17 @@ HTTP body, Content-Type为application/json;charset=UTF-8
 	"group_id" : "6094b5b7-b039-e917-0100-0000587f0000",
 	"id" : 20104,
 	"record_id" : "20210507113635_10062",
-	"record_msg" : "",
 	"record_statue" : 2,
-	"version" : 0
+	"record_msg":"{
+        "file_name" : "ChingChuen_10000_20210906200734",
+        "file_path" : "",
+        "file_resource" : "",
+        "file_size" : 0,
+        "media_duration" : 60,
+        "mission_id" : 1,
+        "mission_state" : 3,
+        "start_time" : 1630930056
+		}"
 }
 ```
 ## 协议ID表

@@ -507,6 +507,7 @@ data_list  录制文件下载链接列表的返回字段如下：
 | md5 | int | 录制文件的md5值 |
 | file_name | int | 最开始初始化设置的文件名 |
 | extent| date | 扩展字段 |
+| play_url| string | 点播地址(私有云部署且文件是MP4才有) |
 
 返回示例：
 
@@ -564,4 +565,74 @@ data_list  录制文件下载链接列表的返回字段如下：
 	"code":0,
 	"msg":"ok"
 }
+```
+## 获取录制详情（未开放）
+
+请求地址：/v1/record/info  HTTP协议，POST方法
+文件删除成功和文件不存在都是返回ok，data为空。
+
+### 请求参数说明
+
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| - | - | - | - |
+| app_id | String | 是 | 应用对应的appid |
+| record_id | String | 是 | 录制任务ID列表 |
+
+请求示例：
+
+```js
+{
+	"app_id":"97017e465d19b62033ab4e13680e3028",
+	"record_id":"20200220115205_10001"
+}
+```
+
+### 返回说明
+| 参数名 | 类型 | 参数说明 |
+| - | - | - | - |
+| business | String  | 固定是RE |
+| code | Int  | 成功为0 其他为失败的错误码 |
+| create_time | String  | 录制创建时间 |
+| file_name | String  | 录制文件名 |
+| height | String  | 视频高 |
+| width | String  | 视频宽 |
+| msg | String  | 成功为SUCESS  错误时的错误描述 |
+| record_id | String  | 录制ID |
+| status | int  | 录制状态 |
+| room_id | string  | 房间ID |
+| record_file | Array  | 录制文件信息列表 |
+
+
+record_file  录制文件下载链接列表的返回字段如下：
+| 参数名 | 类型 | 参数说明 |
+| - | - | - |
+| duration | String | 视频时长 |
+| file_id | int | 合成文件ID |
+| size | int | 文件大小(byte) |
+| start_time| date | 视频开始时间 |
+| thumbnail_id| string | 视频缩略图文件ID |
+返回示例：
+
+```js
+{
+	"business": "RE",
+	"code": 0,
+	"create_time": "2021-08-14 10:51:10",
+	"file_name": "-",
+	"height": 1080,
+	"id": 8213,
+	"msg": "SUCESS",
+	"record_file": {
+		"duration": 31,
+		"file_id": "cdeffc32057268dc8b182014dfc25d80",
+		"size": 5531857,
+		"start_time": "2021-08-14 10:51:10",
+		"thumbnail_id" : "b06a38b96f546ff7bf4cf91329ca9277"
+	},
+	"record_id": "20210814105110_10000_control1",
+	"status":6,
+	"room_id": "",
+	"width": 1920
+}
+
 ```
