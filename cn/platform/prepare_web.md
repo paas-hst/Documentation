@@ -48,7 +48,7 @@
 
 ## 添加 SDK
 
-1. 下载 [Web SDK](http://paas.hst.com/developer/downloadSDK)。
+1. 下载 [Web SDK](http://fs.hst.com/download/paas/sdk/web/fsp_sdk_web.zip)。
  
 2. 将解压后的JS文件放到到项目路径下。
 
