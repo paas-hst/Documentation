@@ -738,12 +738,21 @@ hstRtcEngine.getOnlineUsers()
 
 ### 参数说明
 
-无参数
+| 参数名 | 类型 | 是否必填 | 参数说明 |
+| :-: | :-: | :-: | - |
+| callback | function | 是 | 回调函数 |
 
+callback函数原型如下：
+
+多页情况下会多次触发
+
+```js
+callback(pageData) // 格式如下
+```
 
 ### 返回值
 
-此方法是一个异步调用，会返回一个Promise对象。
+此方法如果没有填入callback回调函数，会返回一个Promise对象。（只会返回第一页数据 适合人数少的场景）
 
 调用成功，会返回在线用于列表，数据结构如下所示：
 
@@ -785,7 +794,7 @@ hstRtcEngine.getOnlineUsers()
 }
 ```
 
-> totalPages和curPage用来实现分页拉取，当在线用户比较多时会用到。
+> totalPages和curPage用来表示当前页码和总页数。
 
 > mutexType用来实现同一用户在不同终端登录的情况。
 
@@ -794,6 +803,13 @@ hstRtcEngine.getOnlineUsers()
 ### 示例代码
 
 ```js
+// 带参数
+hstRtcEngine.getOnlineUsers((data) => {
+    for (const user of data.userInfo){
+        console.log(user.userId);
+    }
+});
+// 不带参数 不推荐
 hstRtcEngine.getOnlineUsers()
 .then (data => {
     for (const user of data.userInfo){
