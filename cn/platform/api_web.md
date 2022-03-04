@@ -24,6 +24,9 @@
 | sendGroupMsgWithWhiteList | 基于白名单发送分组消息 |
 | sendGroupMsgWithBlackList | 基于黑名单发送分组消息 |
 | sendGroupMsg | 发送分组内广播消息 |
+| setMagicAudioSwitch | 设置变声开关 |
+| setSendMagicAudioValue | 设置变声值 |
+| setRecvMagicAudioMode | 设置是否接收变音 |
 
 ## init
 
@@ -1034,7 +1037,6 @@ let options = {
 hstRtcEngine.sendGroupMsgWithBlackList(options);
 ```
 
-
 ## sendGroupMsg
 
 在分组内发送广播消息。
@@ -1072,4 +1074,89 @@ let options = {
     msg: "Hello everybody!"
 };
 hstRtcEngine.sendGroupMsg(options);
+```
+
+## setMagicAudioSwitch
+
+设置发送变声开关。
+
+### 接口原型
+
+```js
+hstRtcEngine.setMagicAudioSwitch(status)
+```
+
+### 参数说明
+
+| 参数名 | 类型 | 是否必填 | 默认值 | 参数说明 |
+| :-: | :-: | :-: | :-: | - |
+| status | boolean | 是 | false | 开关状态 |
+
+
+### 返回值
+
+此方法是一个同步调用，无返回值。
+
+### 示例代码
+
+```js
+// 打开变声开关
+hstRtcEngine.setMagicAudioSwitch(true)
+```
+
+## setSendMagicAudioValue
+
+设置发送变声变声值。
+
+### 接口原型
+
+```js
+hstRtcEngine.setSendMagicAudioValue(num)
+```
+
+### 参数说明
+
+| 参数名 | 类型 | 是否必填 | 默认值 | 参数说明 |
+| :-: | :-: | :-: | :-: | - |
+| num | number | 是 | 0 | 变声值(-12 - 12) |
+
+
+### 返回值
+
+此方法是一个同步调用，无返回值。
+
+### 示例代码
+
+```js
+// 设置变声值
+hstRtcEngine.setMagicAudioSwitch(8)
+```
+
+
+## setRecvMagicAudioMode
+
+设置发送变声开关。
+
+### 接口原型
+
+```js
+hstRtcEngine.setRecvMagicAudioMode(mode)
+```
+
+### 参数说明
+
+| 参数名 | 类型 | 是否必填 | 默认值 | 参数说明 |
+| :-: | :-: | :-: | :-: | - |
+| mode | number | 是 | 0 | 0：跟随；1： 只接原音；2： 只接变音 |
+
+
+### 返回值
+
+此方法是一个同步调用，无返回值。
+
+### 示例代码
+
+```js
+// 设置接收变音
+hstRtcEngine.setRecvMagicAudioMode((2)
 ```
