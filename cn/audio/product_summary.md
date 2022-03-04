@@ -160,10 +160,10 @@
 <tr>
 <td>变声</td>
 <td align="center">&#10003</td>
-<td align="center">&#10005</td>
-<td align="center">&#10005</td>
-<td align="center">&#10005</td>
-<td align="center">&#10005</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
+<td align="center">&#10003</td>
 <td align="center">&#10005</td>
 </tr>
 
