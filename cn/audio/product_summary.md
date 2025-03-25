@@ -104,12 +104,14 @@
 <th>macOS</th>
 <th>Web</th>
 <th>WeChat</th>
+<th>Harmony</th>
 </tr>
 
 <tr>
 <td rowspan="6">功能规格</td>
 <td>RTSP插件</td>
 <td align="center">&#10003</td>
+<td align="center">&#10005</td>
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
@@ -125,10 +127,12 @@
 <td align="center">&#10005</td>
 <td align="center">&#8211</td>
 <td align="center">&#10005</td>
+<td align="center">&#10005</td>
 </tr>
 
 <tr>
 <td>AEC/AGC/ANS</td>
+<td align="center">&#10003</td>
 <td align="center">&#10003</td>
 <td align="center">&#10003</td>
 <td align="center">&#10003</td>
@@ -145,6 +149,7 @@
 <td align="center">&#10003</td>
 <td align="center">&#10003</td>
 <td align="center">&#10003</td>
+<td align="center">&#10003</td>
 </tr>
 
 <tr>
@@ -155,6 +160,7 @@
 <td align="center">&#10003</td>
 <td align="center">&#8211</td>
 <td align="center">&#8211</td>
+<td align="center">&#10003</td>
 </tr>
 
 <tr>
@@ -165,6 +171,7 @@
 <td align="center">&#10003</td>
 <td align="center">&#10003</td>
 <td align="center">&#10005</td>
+<td align="center">&#10003</td>
 </tr>
 
 
@@ -172,6 +179,7 @@
 <tr>
 <td rowspan="6">参数规格</td>
 <td>最大采样率</td>
+<td align="center">48K</td>
 <td align="center">48K</td>
 <td align="center">48K</td>
 <td align="center">48K</td>
@@ -188,6 +196,7 @@
 <td align="center">OPUS</td>
 <td align="center">OPUS</td>
 <td align="center">OPUS</td>
+<td align="center">OPUS</td>
 </tr>
 
 <tr>
@@ -198,6 +207,7 @@
 <td align="center">2</td>
 <td align="center">&#8211</td>
 <td align="center">&#8211</td>
+<td align="center">2</td>
 </tr>
 
 <tr>
@@ -208,10 +218,12 @@
 <td align="center">2</td>
 <td align="center">&#8211</td>
 <td align="center">&#8211</td>
+<td align="center">2</td>
 </tr>
 
 <tr>
 <td>采样位数</td>
+<td align="center">16</td>
 <td align="center">16</td>
 <td align="center">16</td>
 <td align="center">16</td>
@@ -228,6 +240,7 @@
 <td align="center">50%</td>
 <td align="center">&#8211</td>
 <td align="center">&#8211</td>
+<td align="center">50%</td>
 </tr>
 
 </table>
