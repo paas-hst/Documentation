@@ -101,12 +101,14 @@
 <th>macOS</th>
 <th>Web</th>
 <th>WeChat</th>
+<th>Harmony</th>
 </tr>
 
 <tr>
 <td rowspan="6">功能规格</td>
 <td>RTSP插件</td>
 <td align="center">&#10003</td>
+<td align="center">&#10005</td>
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
@@ -122,10 +124,12 @@
 <td align="center">&#10005</td>
 <td align="center">&#8211</td>
 <td align="center">&#10005</td>
+<td align="center">&#10005</td>
 </tr>
 
 <tr>
 <td>视频降噪</td>
+<td align="center">&#10003</td>
 <td align="center">&#10003</td>
 <td align="center">&#10003</td>
 <td align="center">&#10003</td>
@@ -142,10 +146,12 @@
 <td align="center">&#10003</td>
 <td align="center">&#8211</td>
 <td align="center">&#8211</td>
+<td align="center">&#10003</td>
 </tr>
 
 <tr>
 <td>H.264编码</td>
+<td align="center">&#10003</td>
 <td align="center">&#10003</td>
 <td align="center">&#10003</td>
 <td align="center">&#10003</td>
@@ -162,6 +168,7 @@
 <td align="center">&#10003</td>
 <td align="center">&#10005</td>
 <td align="center">&#10005</td>
+<td align="center">&#10003</td>
 </tr>
 
 <tr>
@@ -173,6 +180,7 @@
 <td align="center">1080P</td>
 <td align="center">1080P</td>
 <td align="center">&#8211</td>
+<td align="center">1080P</td>
 </tr>
 
 <tr>
@@ -183,6 +191,7 @@
 <td align="center">1080P</td>
 <td align="center">1080P</td>
 <td align="center">&#8211</td>
+<td align="center">1080P</td>
 </tr>
 
 <tr>
@@ -193,6 +202,7 @@
 <td align="center">3Mbps</td>
 <td align="center">&#8211</td>
 <td align="center">&#8211</td>
+<td align="center">3Mbps</td>
 </tr>
 
 <tr>
@@ -203,6 +213,7 @@
 <td align="center">30fps</td>
 <td align="center">&#8211</td>
 <td align="center">&#8211</td>
+<td align="center">30fps</td>
 </tr>
 
 <tr>
@@ -212,6 +223,7 @@
 <td align="center">2</td>
 <td align="center">6</td>
 <td align="center">&#8211</td>
+<td align="center">2</td>
 <td align="center">2</td>
 </tr>
 
@@ -223,6 +235,7 @@
 <td align="center">40%</td>
 <td align="center">&#8211</td>
 <td align="center">&#8211</td>
+<td align="center">40%</td>
 </tr>
 
 </table>
