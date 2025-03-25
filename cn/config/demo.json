@@ -58,6 +58,14 @@
 					"icon": "http://fs.hst.com/download/paas/images/demo/qrcode.png",
                     "acc": "扫码体验",
                     "accImg": "http://fs.hst.com/download/paas/images/demo/meetingdemo_wx.jpg"
+                },
+		{
+                    "pic": "http://fs.hst.com/download/paas/images/demo/pc.png",
+                    "title": "Windows(C++)",
+                    "url": "https://github.com/paas-hst/MeetingDemo_windows",
+		    "icon": "http://fs.hst.com/download/paas/images/demo/download.png",
+                    "acc": "下载体验",
+                    "accUrl": "http://fs.hst.com/download/paas/meetingdemo/harmony/meetingdemo_harmony.zip"
                 }
             ]
         },
