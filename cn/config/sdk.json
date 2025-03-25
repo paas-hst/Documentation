@@ -65,7 +65,16 @@
                     "size": "78KB",
                     "updateDate": "2020年12月17日",
                     "downloadUrl": "http://fs.hst.com/download/paas/sdk/wechat/fsp_sdk_wechat.zip"
-                }
+                },
+				{
+                    "icon": "http://fs.hst.com/download/paas/images/sdk/web.png",
+                    "title": "SDK for Harmony",
+                    "platform": "Harmony",
+                    "version": "1.0.0",
+                    "size": "11.3MB",
+                    "updateDate": "2025年3月25日",
+                    "downloadUrl": "http://fs.hst.com/download/paas/sdk/harmony/fsp_sdk_harmony.zip"
+                },
             ]
         },
 		{
