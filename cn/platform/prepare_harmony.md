@@ -11,7 +11,7 @@
 - 设备要求 HarmonyOS 5.0.0 或以上版本
 
 ## 添加 SDK
-- 下载 [http://fs.hst.com/download/paas/sdk/harmony/fsp_sdk_harmony.zip](downloadSDK)，解压并打开。
+- 下载 [HormonySDK](http://fs.hst.com/download/paas/sdk/harmony/fsp_sdk_harmony.zip)，解压并打开。
 - 将 `.har` 文件拷贝到项目的 `libs` 目录下。
 - 在模块的 `oh-package.json5` 文件中添加依赖：
 ```JSON
